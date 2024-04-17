@@ -13,15 +13,16 @@
           <legend>필수 입력 사항</legend>
           <strong>ID</strong>
           <input type="text" placeholder="아이디 10글자 이내" />
-          <input type="submit" value="중복 확인" /> <br />
+          <input type="submit" value="중복 확인" required /> <br />
           <strong>비밀번호</strong>
           <input
             type="password"
             placeholder="영문,숫자,특수문자 포함 8자 이상"
+            required
           /><br />
           <strong>비밀번호 확인</strong>
-          <input type="password" /><br />
-          <strong>Email</strong> <input type="email" />
+          <input type="password" required /><br />
+          <strong>Email</strong> <input type="email" required />
           <select name="email">
             <option value="직접입력" selected>직접입력</option>
             <option value="@naver.com">@naver.com</option>
@@ -55,8 +56,14 @@
       </form>
     </div>
     <br />
-    <input type="submit" value="회원가입" />
-    <input type="submit" value="다시 입력" />
-    <input type="submit" value="이전 입력" />
+    <form name="input" action="getid.jsp" method="get">
+      <input
+        type="button"
+        value="회원가입"
+        onclick="alert('가입된 회원입니다.')"
+      />
+      <input type="button" value="다시 입력" onclick="alert('입력되있어요.')" />
+      <input type="button" value="이전 입력" onclick="alert('입력완료')" />
+    </form>
   </body>
 </html>
