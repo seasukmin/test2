@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <form name="input" action="temphtml.html" method="get">
+        사용자 아이디:
+        <input type="text" name="user" /><br />
+        이메일 : <input type="email" required /><br />
+        전화번호 :
+        <input type="tel" required pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" />
+        <!-- <input type="reset" value="초기화" /> -->
+        <!-- <input type="image" src="../resources/Img/진돗개.jpg" alt="제출 버튼" /> -->
+        <br /><br />
+        <input type="file" accept="image/jpeg,image/gif" />
+        <!-- 모든 이미지는 accept="image/*" /> 한글은 .hwpx  -->
+        <input type="hidden" value="hiddenvalue" />
+        <!-- 저장된 비밀번호 <<  -->
+        <input type="submit" value="제출" />
+      </form>
+      <button onclick="alert('안녕하세요?')">눌러보세요!</button>
+      <br /><br />
+      고객의 의견<br />
+      <textarea name="feedback" rows="2" cols="30"></textarea>
+    </div>
+  </body>
+</html>
