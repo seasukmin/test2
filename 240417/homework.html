@@ -44,12 +44,26 @@
           <p>생년월일 : <input type="date" /></p>
           <p>
             취미<br />
-            <input type="checkbox" name="hobby" value="야구" />야구
-            <input type="checkbox" name="hobby" value="농구" />농구
-            <input type="checkbox" name="hobby" value="축구" />축구<br />
-            <input type="checkbox" name="hobby" value="공부" />공부
-            <input type="checkbox" name="hobby" value="음악감상" />
-            음악감상<br />
+            <input type="checkbox" name="hobby" id="야구" value="야구" />
+            <label for="야구">야구</label>
+            <input type="checkbox" name="hobby" id="농구" value="농구" />
+            <label for="농구">농구</label>
+            <input
+              type="checkbox"
+              name="hobby"
+              id="축구"
+              value="축구"
+            />축구<br />
+            <label for="축구"></label>
+            <input type="checkbox" name="hobby" id="공부" value="공부" />
+            <label for="공부">공부</label>
+            <input
+              type="checkbox"
+              name="hobby"
+              id="음악감상"
+              value="음악감상"
+            />
+            <label for="음악감상">음악감상</label><br />
             기타 <input type="text" name="hobby" /><br /><br />
             자기소개<br />
             <textarea name="feedback" rows="7" cols="50"></textarea>
