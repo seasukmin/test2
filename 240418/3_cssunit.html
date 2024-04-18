@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        CSS 단위
+        길이나 크기 등을 다룰 때 사용하는 단위로 px, em, rem, vw, vh, %...
+        
+        px: 
+        픽셀은 절대 단위이고 css에서 가장 기본적인 단위이다.
+        스크린의 픽셀을 기준으로 한다. 1980x1080이면 <<
+        
+        em:
+        배수 단위이며 해당 글꼴 (font)의 기본 크기를 1em으로 놓고, 그에 대한 상대적인 크기를 설정한다.
+        부모요소가 있으면 부모요소의 크기를 기본으로 가져간다 1em
+        
+        %:
+        100%= 1em
+        
+        rem: 
+        html을 기준으로 1em (html에 정해놓은 폰트 크기를 기준으로 1em!!) 16픽셀 x 6.25 =1픽셀
+        em은 상속관계가 복잡해지면 값을 계산하기 어렵다는 단점이 있다. 그래서 기준값을 고정한
+        상대단위가 나왔는데, 그것이 root em -> rem 이다.
+        rem은 루트 요소(Html)의 폰트 크기를 기준으로 한다. 
+        브라우저마다 폰트 크기의 하한선이 있다. 폰트 사이즈에만 하한선이 적용된다. 
+
+        vw, vh:
+        viewport width, viewport height의 약어로, 각각 뷰포트의 너비와 높이를 100등분한 단위이다. what is viewport? 우리가 본 화면..
+        우리가 보는 화면 100등분한 단위?! 
+        style="width: 10vw; height: 10vw;"(보는 화면의 1/10을 뜻한다.)     -->
+    <!-- 전체적인 레이아웃을 잡을때 쓴다 영역을 잡을 떄 -->
+    <!-- 100vw,vh가 우리가 보는 화면 전체 -->
+
+    <!-- 지금까지 type 선택자를 사용함: HTML 요소 이름을 사용 ,여러개의 스타일을..
+    아스테리스크 *(곱셈 or 전체의 뜻이 있다) 전체를 뜻할 때 html 전체를 뜻함. * {color:green;}>> 텍스트만 적용 배경은 x -->
+
+    <div>
+      <p>
+        하우스 로스팅 원두의 <span>신선한 커피</span>를 맛보세요!
+        <em>공인 1급 Barista</em>가 최고급 원두만을 직접 엄선하여 사용합니다.
+      </p>
+    </div>
+  </body>
+</html>

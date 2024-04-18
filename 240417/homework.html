@@ -48,13 +48,8 @@
             <label for="야구">야구</label>
             <input type="checkbox" name="hobby" id="농구" value="농구" />
             <label for="농구">농구</label>
-            <input
-              type="checkbox"
-              name="hobby"
-              id="축구"
-              value="축구"
-            />축구<br />
-            <label for="축구"></label>
+            <input type="checkbox" name="hobby" id="축구" value="축구" />
+            <label for="축구">축구</label><br />
             <input type="checkbox" name="hobby" id="공부" value="공부" />
             <label for="공부">공부</label>
             <input
@@ -72,14 +67,10 @@
       </form>
     </div>
     <br />
-    <form name="input" action="getid.jsp" method="get">
-      <input
-        type="button"
-        value="회원가입"
-        onclick="alert('가입된 회원입니다.')"
-      />
-      <input type="button" value="다시 입력" onclick="alert('입력되있어요.')" />
-      <input type="button" value="이전 입력" onclick="alert('입력완료')" />
+    <form>
+      <input type="submit" value="회원가입" />
+      <input type="reset" value="다시 입력" />
+      <input type="button" value="이전 입력" onclick="history.go(-1)" />
     </form>
   </body>
 </html>
