@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>border</title>
+  </head>
+  <style>
+    p.width {
+      border-style: solid;
+      /*border-width: 10px 3px;*/
+      /* 상우아래좌 시계방향으로 두 개만 써도 4개 적용됨*/
+      /* border-width: thick; */
+      /*border-width: medium; */
+      /*border-width: thin;*/
+    }
+    div.radius {
+      width: 300px;
+      height: 300px;
+      border: 5px solid red;
+      /*border-radius: 40px 20px 40px 20px / 20px 40px 20px 40px;
+      앞부분은 x축 뒷부분은 y축 기준은 각 모서리 깍는다. */
+    }
+    div.shadow {
+      width: 300px;
+      height: 100px;
+      background-color: aqua;
+      box-shadow: 20px 10px 5px #666666 inset;
+      /* box-shadw: offset-x offset-y blur spread color inset
+      필수 요소 x,y blur color*/
+    }
+  </style>
+  <body>
+    <div style="border-style: none">none.</div>
+    <div style="border-style: dotted">dotted</div>
+    <div style="border-style: dashed">dashed</div>
+    <div style="border-style: solid">solid</div>
+    <div style="border-style: double">double</div>
+    <div style="border-style: groove">groove</div>
+    <div style="border-style: ridge">ridge.</div>
+    <div style="border-style: inset">inset.</div>
+    <div style="border-style: outset">outset.</div>
+    <div class="width">border-width 확인</div>
+    <br />
+    <div class="radius">border-radius 확인</div>
+    <br />
+    <div class="shadow"></div>
+  </body>
+</html>
