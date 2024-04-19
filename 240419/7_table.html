@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>table</title>
-</head>
-<style>
+  </head>
+  <style>
     /*table,
-    td,
-    th {
-border: 2px solid orange;
-    }
-    table {
-      border-collapse: separate;
-      border-spacing: 20px 30px;
-      width: 100%;
-      text-align: center;}
-      /*tr, td는 테이블의 속성을 물려받음*/
+        td,
+        th {
+    border: 2px solid orange;
+        }
+        table {
+          border-collapse: separate;
+          border-spacing: 20px 30px;
+          width: 100%;
+          text-align: center;}
+          /*tr, td는 테이블의 속성을 물려받음*/
     /*
-    th {
-      height: 50px;
-      vertical-align: text-bottom;
-    }
-    td {
-      height: 50px;
-      vertical-align: text-bottom;
-    }
-    caption {
-      caption-side: bottom;
-    }*/
+        th {
+          height: 50px;
+          vertical-align: text-bottom;
+        }
+        td {
+          height: 50px;
+          vertical-align: text-bottom;
+        }
+        caption {
+          caption-side: bottom;
+        }*/
     #list {
-        width: 100%
+      width: 100%;
     }
     #list td,
     #list th {
-        border: 1px dotted gray;
-        text-align: center;
+      border: 1px dotted gray;
+      text-align: center;
     }
-    #list th {
-        color: white;
-        background-color: blue;
+    tr:nth-child(odd) {
+      background-color: yellow;
+      /*odd 홀수 even 짝수*/
     }
-    #list tr.alt td {
-        background-color: yellow;
+    tr:first-child {
+      background-color: blue;
+      color: white;
     }
+    tr: not(: first-child);
+    /*구조 의사 클래스 중 많이 쓰는거 first, last, not*/
+
+    /*
+        #list th {
+            color: white;
+            background-color: blue;
+        }
+        #list tr.alt td {
+            background-color: yellow;
+        }*/
   </style>
   <body>
     <!-- <table>
@@ -62,21 +74,42 @@ border: 2px solid orange;
         <td>김영희</td>
         <td>young@google.com</td>
       </tr>
+      마우스 올렸을때 배경색 노란색 사진까지 배경색 이미지까지 클릭 방문시.. !_!_!_!;;
     </table> -->
-        
+
     <table id="list">
-        <tr>
+      <tr>
         <th>이름</th>
         <th>이메일</th>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td>김철수</td>
         <td>chul@google.com</td>
-        <tr class="alt"><td>김영희</td><td>young@google.com</td></tr>
-        <tr><td>홍길동</td><td>hong@google.com</td><tr></tr>
-        <tr class="alt"><td>김수진</td><td>sujin@google.com</td><tr>
-        </tr>
-        </td>
+      </tr>
+      <tr class="alt">
+        <td>김영희</td>
+        <td>young@google.com</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>hong@google.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김수진</td>
+        <td>sujin@google.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김영희</td>
+        <td>young@google.com</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>hong@google.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김수진</td>
+        <td>sujin@google.com</td>
+      </tr>
     </table>
   </body>
 </html>
