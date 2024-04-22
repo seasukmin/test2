@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>absolute</title>
+  </head>
+  <style>
+    #one {
+      background-color: aquamarine;
+      width: 800px;
+      height: 400px;
+      position: absolute;
+      left: 100px;
+      top: 100px;
+    }
+    #two {
+      background-color: yellow;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      /*left: 1px;
+      top: 1px;*/
+      /*가장 가까운 position 지정요소 여기선 위에 relative나 fixed absolute 있거나 없으면
+      브라우저 기준 예를 들면 body 태그*/
+    }
+    #three {
+      background-color: blue;
+      width: 300px;
+      height: 100px;
+      position: absolute;
+      left: 200px;
+      top: 200px;
+    }
+  </style>
+  <body>
+    <div id="one">
+      <div id="two">block #2<br />position: absolute;</div>
+    </div>
+    <div id="three"></div>
+  </body>
+</html>
