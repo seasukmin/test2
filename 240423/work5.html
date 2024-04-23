@@ -26,58 +26,80 @@
       justify-content: center;
       align-items: center;
       flex-grow: 0.5;
+      font-size:24px;
+      padding: 5px;
+      margin: 5px;
+      border-radius: 20px;
     }
     #two {
+        background-color: blueviolet;
         display: flex;
         flex-direction: column;
-        flex-grow: 0.5;
+        color: white;
+        font-size:15px;
+        margin: 5px;
+        border-radius: 20px;
     }
     ul li {
       list-style-type: none;
     }
     .bor {
-      background-color: blueviolet;
       display: flex;
-      justify-content: space-between;
-    }
+      justify-content: space-around;
+
+     }
+     a {
+        text-decoration-line: none;
+     }
     #three {
-      display: flex;
+      display: flex;;
       flex-grow: 5;
     }
     #three1 {
       display: flex;
       background-color: papayawhip;
-      flex-shrink: 0;
-      flex-grow: 1;
       flex-direction: column;
+      padding: 10px;
+      border-radius: 20px;
+      margin:5px;
+      flex-grow: 1;
     }
     #three2 {
       display: flex;
-      flex-grow: 1;
-      justify-content: center;
-      align-items: center;
+      flex-grow: 4;
     }
     #three3 {
       display: flex;
       background-color: pink;
-      flex-shrink: 0;
+      border-radius: 20px;
+      flex-direction: column;
       flex-grow: 1;
+      margin: 5px;
+      padding: 5px;
     }
     #zero1 {
       display: flex;
+      border: 1px solid gray;
+      flex-direction: column;
       flex-grow: 1;
-      flex-shrink: 0;
-    }
+      align-content: center;
+      margin: 5px;
+       }
     #zero2 {
       display: flex;
+      border: 1px solid gray;
+      flex-direction: column;
       flex-grow: 1;
-      flex-shrink: 0;
+      align-content: center;
+      margin: 5px;
     }
     #zero3 {
       display: flex;
+      border: 1px solid gray;
+      flex-direction: column;
       flex-grow: 1;
-      flex-shrink: 0;
-    }
+      margin: 5px;
+        }
     #four {
         display: flex;
         flex-grow: 0.5;
@@ -90,57 +112,89 @@
         border: 1px solid black;
         background-color: pink;
     }
+    .set {
+        display: flex;
+        border: 1px solid pink;
+        padding: 10px;
+        background-color: palevioletred;
+        color :white;
+    }
+    h1 {
+        text-align: center;
+    }
   </style>
   <body>
     <div id="main">
       <h1>main.html</h1>
       <div id="one">
-        <img src="../resources/Img/592242.jpg" width="20px" height="20px" />
+        <img src="../resources/Img/592242.jpg" width="40px" height="40px" />
         <strong>Web shopping</strong>
       </div>
       <div id="two">
         <ul class="bor">
-          <li class="bor">HOME</li>
-          <li class="bor">SHOPPING</li>
-          <li class="bor">ABOUTNEWSMY</li>
-          <li class="bor">ACCOUNT</li>
-          <li class="bor">CONTACT</li>
+          <li class="bor">
+            <a href="https://127.0.0.1:5500/240423/work5.html">HOME</a>
+          </li>
+          <li class="bor"><a href="#">SHOPPING </a></li>
+          <li class="bor"><a href="#">ABOUTNEWSMY</a></li>
+          <li class="bor"><a href="#">ACCOUNT</a></li>
+          <li class="bor"><a href="#">CONTACT</a></li>
         </ul>
       </div>
       <div id="three">
         <div id="three1">
-          카테고리
-          <div class="three0">컴퓨터</div>
-          <div class="three0">음악</div>
-          <div class="three0">영화</div>
-          <div class="three0">스포츠/레져</div>
-          <div class="three0">가구/인테리어</div>
-          <div class="three0">식품</div>
+          <h3>카테고리</h3>
+          <li class="set">컴퓨터</li>
+          <li class="set">의류</li>
+          <li class="set">음악</li>
+          <li class="set">영화</li>
+          <li class="set">스포츠/레져</li>
+          <li class="set">가구/인테리어</li>
+          <li class="set">식품</li>
         </div>
         <div id="three2">
           <div id="zero1">
-            <!-- <input /> -->
-            <img src="../resources/Img/커피.jpg" width="100px" height="100px" />
-            한성컴
-            <!-- <input type="text" /> -->
+            <img src="../resources/Img/커피.jpg" width="200px" height="200px" />
+            <p>
+              한성컴퓨터 TFG AX8726 데스크탑 I7<br />
+              8700/RTX2060로스트아크,포트나이트,<br />배틀그라운드, 배그,
+              오버워치, 롤, <br />피파, 방송용pc,방조립,가정용,<br />사무용,가성비,본체
+            </p>
+            <span><input type="submit" value="쇼핑카트에 추가하기" /></span>
           </div>
           <div id="zero2">
-            <img src="../resources/Img/good.png" width="100px" height="100px" />
-            LG Gra
+            <img src="../resources/Img/good.png" width="200px" height="200px" />
+            <p>
+              한성컴퓨터 TFG AX8726 데스크탑 I7<br />
+              8700/RTX2060(로스트아크,포트나이트,<br />배틀그라운드, 배그,
+              오버워치, 롤, <br />피파, 방송용pc,방조립,가정용,<br />사무용,가성비,본체
+            </p>
+            <span><input type="submit" value="쇼핑카트에 추가하기" /></span>
           </div>
           <div id="zero3">
             <img
               src="../resources/Img/우주배경.jpg"
-              width="100px"
-              height="100px"
+              width="200px"
+              height="200px"
             />
-            N)CTO주문가능/
+            <p>
+              < 한성컴퓨터 TFG AX8726 데스크탑 I7<br />
+              8700/RTX2060(로스트아크,포트나이트,<br />배틀그라운드, 배그,
+              오버워치, 롤, <br />피파, 방송용pc,방조립,가정용,<br />사무용,가성비,본체
+            </p>
+            <span><input type="submit" value="쇼핑카트에 추가하기" /></span>
           </div>
         </div>
-
         <div id="three3">
-          <p>Shopping Cart</p>
-          현재 쇼
+          <h3>Shopping Cart</h3>
+          <p>현재 쇼핑카트에 물품이 없습니다.</p>
+          <a href="https://www.naver.com">쇼핑카트 보기</a>
+          <h2>Log In</h2>
+          <p>아이디</p>
+          <input type="text" />
+          <p>패스워드</p>
+          <input type="text" />
+          <span><a href="#">회원가입</a> <a href="#">비밀번호 분실</a></span>
         </div>
       </div>
       <div id="four">2019.08.23 DW아카데미 042-123-4567</div>
