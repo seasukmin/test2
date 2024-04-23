@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    #main {
+        display: flex;
+        flex-direction: column;
+        background color: white;
+        height: 100%;
+    }
+    #one {
+      background-color: brown;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 0.5;
+    }
+    #two {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 0.5;
+    }
+    ul li {
+      list-style-type: none;
+    }
+    .bor {
+      background-color: blueviolet;
+      display: flex;
+      justify-content: space-between;
+    }
+    #three {
+      display: flex;
+      flex-grow: 5;
+    }
+    #three1 {
+      display: flex;
+      background-color: papayawhip;
+      flex-shrink: 0;
+      flex-grow: 1;
+      flex-direction: column;
+    }
+    #three2 {
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      align-items: center;
+    }
+    #three3 {
+      display: flex;
+      background-color: pink;
+      flex-shrink: 0;
+      flex-grow: 1;
+    }
+    #zero1 {
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+    #zero2 {
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+    #zero3 {
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+    #four {
+        display: flex;
+        flex-grow: 0.5;
+        background-color: blue;
+        justify-content: center;
+        align-items: center;
+    }
+    .three0 {
+        display: flex;
+        border: 1px solid black;
+        background-color: pink;
+    }
+  </style>
+  <body>
+    <div id="main">
+      <h1>main.html</h1>
+      <div id="one">
+        <img src="../resources/Img/592242.jpg" width="20px" height="20px" />
+        <strong>Web shopping</strong>
+      </div>
+      <div id="two">
+        <ul class="bor">
+          <li class="bor">HOME</li>
+          <li class="bor">SHOPPING</li>
+          <li class="bor">ABOUTNEWSMY</li>
+          <li class="bor">ACCOUNT</li>
+          <li class="bor">CONTACT</li>
+        </ul>
+      </div>
+      <div id="three">
+        <div id="three1">
+          카테고리
+          <div class="three0">컴퓨터</div>
+          <div class="three0">음악</div>
+          <div class="three0">영화</div>
+          <div class="three0">스포츠/레져</div>
+          <div class="three0">가구/인테리어</div>
+          <div class="three0">식품</div>
+        </div>
+        <div id="three2">
+          <div id="zero1">
+            <!-- <input /> -->
+            <img src="../resources/Img/커피.jpg" width="100px" height="100px" />
+            한성컴
+            <!-- <input type="text" /> -->
+          </div>
+          <div id="zero2">
+            <img src="../resources/Img/good.png" width="100px" height="100px" />
+            LG Gra
+          </div>
+          <div id="zero3">
+            <img
+              src="../resources/Img/우주배경.jpg"
+              width="100px"
+              height="100px"
+            />
+            N)CTO주문가능/
+          </div>
+        </div>
+
+        <div id="three3">
+          <p>Shopping Cart</p>
+          현재 쇼
+        </div>
+      </div>
+      <div id="four">2019.08.23 DW아카데미 042-123-4567</div>
+    </div>
+  </body>
+</html>

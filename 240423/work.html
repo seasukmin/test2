@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body div {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    #stay {
+      border: 5px solid blue;
+      display: flex;
+    }
+    #myblog {
+      display: flex;
+      background-color: yellow;
+      border-radius: 10%;
+      flex-
+    }
+    #links {
+      display: flex;
+      background-color: #99e6e6;
+      border-radius: 20px;
+      flex-grow: 1;
+    }
+    #img {
+      display: flex;
+      align-items: center;
+    }
+    #semantic {
+      display: flex;
+      border-radius: 20px 20px 20px 20px;
+      background-color: pink;
+      flex-grow: 3;
+    }
+    #semantic1 {
+      display: flex;
+      border
+    }
+    #copy {
+      display: flex;
+      background-color: rgb(255, 0, 0);
+      border-radius: 30px 30px 30px 30px;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+    }
+    #row {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 3;
+    }
+    .top {
+      color: yellow;
+    }
+  </style>
+  <body>
+    <div id="stay">
+        <div id="myblog">my blog page</div>
+        <div id="row">
+          <div id="links">
+            <p><strong>Links</strong></p>
+            <ul>
+              <li>w3schools</li>
+              <li class="top">naver</li>
+              <li class="top">daum</li>
+            </ul>
+            <div id="img">
+              <img
+                src="../resources/Img/우주배경.jpg"
+                width="100px"
+                hight="100px"
+              />스폰지밥
+            </div>
+          </div>
+          <div id="semantic">
+            <div id="semantic1">semantic tags</div>
+            <div id="semantic2">div와 span</div>
+          </div>
+        </div>
+        <div id="copy">copyright (c) 2019 hong</div>
+      </div>
+    </div>
+  </body>
+</html>
