@@ -21,7 +21,7 @@
         height: 100%;
     }
     #one {
-      background-color: brown;
+      background-color: rgb(211, 255, 206);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,7 +32,7 @@
       border-radius: 20px;
     }
     #two {
-        background-color: blueviolet;
+        background-color: rgb(230, 252, 245);
         display: flex;
         flex-direction: column;
         color: white;
@@ -47,61 +47,54 @@
       display: flex;
       justify-content: space-around;
      }
-     a {
+     .bor > a {
         text-decoration-line: none;
-        color:white;
-     }
+        color:blue;
+        letter-spacing: 2px;
+             }
     #three {
       display: flex;;
-      flex-grow: 5;
+      flex-grow: 4;
     }
     #three1 {
-      display: flex;
-      background-color: papayawhip;
+      background-color: rgb(255, 227, 227);
       flex-direction: column;
       padding: 10px;
       border-radius: 20px;
       margin:5px;
-      flex-grow: 1;
+      width: 30%;
     }
     #three2 {
       display: flex;
-      flex-grow: 4;
+      flex-grow: 1;
+      justify-content: center;
+      align-content: center;
     }
     #three3 {
-      display: flex;
-      background-color: pink;
+      width: 30%;
+      background-color:  rgb(255, 227, 227);
       border-radius: 20px;
       flex-direction: column;
-      flex-grow: 1;
       margin: 5px;
       padding: 5px;
     }
     #zero1 {
-      display: flex;
       border: 1px solid gray;
-      flex-direction: column;
-      align-content: center;
-      flex-grow:1;
       margin: 5px;
-      padding: 50px;
+      padding: 25px;
+      height: 70%;
        }
     #zero2 {
-      display: flex;
       border: 1px solid gray;
-      flex-direction: column;
-      flex-grow: 1;
-      align-content: center;
       margin: 5px;
-      padding: 50px;
+      padding: 25px;
+      height: 70%;
     }
     #zero3 {
-      display: flex;
       border: 1px solid gray;
-      flex-direction: column;
-      flex-grow: 1;
       margin: 5px;
-      padding: 50px;
+      padding: 25px;
+      height: 70%;
         }
     #four {
         display: flex;
@@ -119,11 +112,15 @@
         display: flex;
         border: 1px solid pink;
         padding: 10px;
-        background-color: palevioletred;
+        background-color: rgb(255, 135, 135);
         color :white;
     }
     h1 {
         text-align: center;
+    }
+    .set > a {
+      text-decoration-line: none;
+      color: white;
     }
   </style>
   <body>
@@ -138,7 +135,7 @@
           <li class="bor">
             <a href="https://127.0.0.1:5500/240423/work5.html">HOME</a>
           </li>
-          <li class="bor"><a href="#">SHOPPING </a></li>
+          <li class="bor"><a href="#">SHOPPING ABOUT</a></li>
           <li class="bor"><a href="#">ABOUTNEWSMY</a></li>
           <li class="bor"><a href="#">ACCOUNT</a></li>
           <li class="bor"><a href="#">CONTACT</a></li>
@@ -147,43 +144,39 @@
       <div id="three">
         <div id="three1">
           <h3>카테고리</h3>
-          <li class="set">컴퓨터</li>
-          <li class="set">의류</li>
-          <li class="set">음악</li>
-          <li class="set">영화</li>
-          <li class="set">스포츠/레져</li>
-          <li class="set">가구/인테리어</li>
-          <li class="set">식품</li>
+          <li class="set"><a href="#">컴퓨터</a></li>
+          <li class="set"><a href="#">의류</a></li>
+          <li class="set"><a href="#">음악</a></li>
+          <li class="set"><a href="#">영화</a></li>
+          <li class="set"><a href="#">스포츠/레져</a></li>
+          <li class="set"><a href="#">가구/인테리어</a></li>
+          <li class="set"><a href="#">식품</a></li>
         </div>
         <div id="three2">
           <div id="zero1">
-            <img src="../resources/Img/커피.jpg" width="200px" height="200px" />
+            <img src="../resources/Img/컴1.jpg" width="250px" height="200px" />
             <p>
-              한성컴퓨터 TFG AX8726 데스크탑 I7<br />
-              8700/RTX2060로스트아크,포트나이트,<br />배틀그라운드, 배그,
-              오버워치, 롤, <br />피파, 방송용pc,방조립,가정용,<br />사무용,가성비,본체
+              한성컴퓨터 TFG AX8726 데스크탑 I7
+              8700/RTX2060로스트아크,포트나이트,배틀그라운드, 배그, 오버워치,
+              롤, 피파, 방송용pc,방조립,가정용,사무용,가성비,본체
             </p>
             <span><input type="submit" value="쇼핑카트에 추가하기" /></span>
           </div>
           <div id="zero2">
-            <img src="../resources/Img/good.png" width="200px" height="200px" />
+            <img src="../resources/Img/컴2.jpg" width="250px" height="200px" />
             <p>
-              한성컴퓨터 TFG AX8726 데스크탑 I7<br />
-              8700/RTX2060(로스트아크,포트나이트,<br />배틀그라운드, 배그,
-              오버워치, 롤, <br />피파, 방송용pc,방조립,가정용,<br />사무용,가성비,본체
+              한성컴퓨터 TFG AX8726 데스크탑 I7
+              8700/RTX2060(로스트아크,포트나이트,배틀그라운드, 배그, 오버워치,
+              롤, 피파, 방송용pc,방조립,가정용,사무용,가성비,본체
             </p>
             <span><input type="submit" value="쇼핑카트에 추가하기" /></span>
           </div>
           <div id="zero3">
-            <img
-              src="../resources/Img/우주배경.jpg"
-              width="200px"
-              height="200px"
-            />
+            <img src="../resources/Img/노1.jpg" width="250px" height="200px" />
             <p>
-              < 한성컴퓨터 TFG AX8726 데스크탑 I7<br />
-              8700/RTX2060(로스트아크,포트나이트,<br />배틀그라운드, 배그,
-              오버워치, 롤, <br />피파, 방송용pc,방조립,가정용,<br />사무용,가성비,본체
+              < 한성컴퓨터 TFG AX8726 데스크탑 I7<
+              8700/RTX2060(로스트아크,포트나이트,배틀그라운드, 배그, 오버워치,
+              롤, 피파, 방송용pc,방조립,가정용,사무용,가성비,본체
             </p>
             <span><input type="submit" value="쇼핑카트에 추가하기" /></span>
           </div>
@@ -191,12 +184,12 @@
         <div id="three3">
           <h3>Shopping Cart</h3>
           <p>현재 쇼핑카트에 물품이 없습니다.</p>
-          <a href="https://www.naver.com">쇼핑카트 보기</a>
+          <a href="https://www.naver.com" target="_blank">쇼핑카트 보기</a>
           <h2>Log In</h2>
           <p>아이디</p>
           <input type="text" />
           <p>패스워드</p>
-          <input type="text" />
+          <input type="text" /><br />
           <span><a href="#">회원가입</a> <a href="#">비밀번호 분실</a></span>
         </div>
       </div>
