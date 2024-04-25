@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>work</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+    }
+    #main {
+      display: grid;
+      grid-template-rows: 1fr 3fr 1fr;
+      gap: 1%;
+    }
+    #header {
+      background-color: yellow;
+    }
+    #main2 {
+      display: grid;
+      grid-template-columns: 1fr 5fr;
+      gap: 1%;
+    }
+    #aside {
+      background-color: pink;
+    }
+    #nav {
+      background-color: beige;
+    }
+    #footer {
+      background-color: saddlebrown;
+    }
+  </style>
+  <body>
+    <div id="main">
+      <div id="header">header</div>
+      <div id="main2">
+        <div id="aside">aside</div>
+        <div id="nav">nav</div>
+      </div>
+      <div id="footer">footer</div>
+    </div>
+  </body>
+</html>

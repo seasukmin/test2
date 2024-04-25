@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>work</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+    .alt {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    body {
+      margin: 0;
+    }
+    #main {
+      display: grid;
+      background-color: white;
+      border: 5px solid white;
+      gap: 1%;
+      grid-template-columns: 1fr 3fr;
+      grid-template-rows: 1fr 3fr 1fr;
+      grid-template-areas:
+        "header header"
+        "aside main"
+        "footer footer";
+    }
+    div:nth-child(1) {
+      grid-area: header;
+      background-color: yellow;
+    }
+    div:nth-child(2) {
+      grid-area: aside;
+      background-color: pink;
+    }
+    div:nth-child(3) {
+      grid-area: main;
+      background-color: beige;
+    }
+    div:nth-child(4) {
+      grid-area: footer;
+      background-color: brown;
+    }
+  </style>
+  <body>
+    <div id="main">
+      <div class="alt">header</div>
+      <div class="alt">aside</div>
+      <div class="alt">main</div>
+      <div class="alt">footer</div>
+    </div>
+  </body>
+</html>
