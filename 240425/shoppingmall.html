@@ -21,6 +21,7 @@
     #wrapper {
       display: grid;
       grid-template-rows: 1fr 1fr 5fr 1fr;
+      gap: 1%;
     }
     #header {
       background-color: yellow;
@@ -29,7 +30,37 @@
       background-color: rgb(209, 179, 224);
     }
     #aside {
-      background-color: rgb(250, 235, 235);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      background-color: white;
+      gap: 1%;
+    }
+    .aside1 {
+      background-color: pink;
+      padding:5%;
+    }
+    .aside2 {
+      display: grid;
+      grid-template-rows: 3fr 1fr 1fr;
+      background-color: white;
+      height: 100%;
+      width:100%;
+    }
+    #row2 {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+    }
+    input {
+      width:100%;
+    }
+    ul {
+      padding:0;
+      text-decoration: none;
+    }
+    ul li {
+      border: 2px solid sandybrown;
+      border-bottom: 2px solid salmon;
     }
     #content {
       background-color: white;
@@ -44,15 +75,66 @@
   <body>
     <div id="wrapper">
       <div id="header"></div>
-      <div id="nav"></div>
-      <div id="aside">
-        <div></div>
-        <div></div>
-        <div></div>
+      <div id="nav">
       </div>
+      <div id="aside">
+        <div class="aside1">
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+          </ul>
+        </div>
+        <div class="aside2">
+          <div id="row"
+            style="
+              background-image: url(../resources/Img/컴1.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          >
+            </div>
+            <div id="row1">sdfsdfsdfsfsdfsdf</div>
+            <div id="row2"><input type="submit" value="제출" /></div>
+          </div>
+        <div class="aside2">
+          <div id="row"
+            style="
+              background-image: url(../resources/Img/컴1.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          >
+            </div>
+            <div id="row1">sdfsdfsdfsfsdfsdf</div>
+            <div id="row2"><input type="submit" value="제출" /></div>
+        </div>
+        <div class="aside2">
+          <div id="row"
+            style="
+              background-image: url(../resources/Img/컴1.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          >
+            </div>
+            <div id="row1">sdfsdfsdfsfsdfsdf</div>
+            <div id="row2"><input type="submit" value="제출" /></div>
+        </div>
+        <div class="aside1"></div>
+      </div>
+        <div id="footer"></div>
+      </div>
+     
       <div id="content"></div>
       <div id="crisis"></div>
-      <div id="footer"></div>
+      
     </div>
   </body>
 </html>
