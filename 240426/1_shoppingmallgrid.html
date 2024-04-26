@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      display: grid;
+      grid-template-rows: repeat(
+        1,
+        1fr minmax(65px, auto) 6fr minmax(65px, auto)
+      );
+      gap: 1%;
+    }
+    #header {
+      background-color: #ffd65c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #header img {
+      width: 100px;
+      height: 100px;
+    }
+    #nav {
+      background-color: #d1b3e0;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(10%, auto));
+      align-items: center;
+      justify-content: space-evenly;
+    }
+    li {
+      color: white;
+      font-weight: 600;
+    }
+    li a {
+      color: inherit;
+      text-decoration: none;
+    }
+    #main {
+    }
+    #footer {
+      background-color: #ccccf2;
+    }
+    .aside {
+      background-color: #faebeb;
+      padding: 5%;
+    }
+    #category {
+      background-color: #e6b3b3;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    #category li {
+      padding: 5%;
+      border-bottom: 1px solid #d1a3a3;
+      cursor: pointer;
+    }
+    #category li:nth-child(1) {
+      border-top: 1px solid #d1a3a3;
+    }
+    #category li:hover {
+      background-color: rgb(247, 168, 168);
+    }
+    #main {
+      display: grid;
+      grid-template-columns: 1fr 4fr 1fr;
+      gap: 1%;
+    }
+    #content {
+      background-color: #fafafa;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(100px, auto));
+      padding: 1%;
+      gap: 1%;
+    }
+    .item {
+      border: 1px solid #e5e5e5;
+      padding: 5%;
+      display: grid;
+      grid-template-rows: 5fr 4fr 1fr;
+      gap: 1%;
+    }
+    .item a {
+      color: black;
+      text-decoration: none;
+    }
+    .item a:hover {
+      text-decoration: underline;
+    }
+    #footer {
+      background-color: #ccccf2;
+    }
+    #item-desc {
+      align-self: center;
+    }
+    .item button {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <img src="../resources/Img/592242.jpg" />
+        <span>SHOPPING MALL</span>
+      </div>
+      <ul id="nav">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">SHOPPING ABOUT</a></li>
+        <li><a href="#">NEWS</a></li>
+        <li><a href="#">MY ACCOUNT</a></li>
+        <li><a href="#">CONTACTS</a></li>
+      </ul>
+      <div id="main">
+        <div id="aside1" class="aside">
+          <h3>카테고리</h3>
+          <ul id="category">
+            <li><a href="#">컴퓨터</a></li>
+            <li><a href="#">의류</a></li>
+            <li><a href="#">음악</a></li>
+            <li><a href="#">영화</a></li>
+            <li><a href="#">스포츠/레져</a></li>
+            <li><a href="#">가구/인테리어</a></li>
+            <li><a href="#">식품</a></li>
+          </ul>
+        </div>
+        <div id="content">
+          <div class="item">
+            <div
+              style="
+                background-image: url(../resources/Img/컴1.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
+            ></div>
+            <div class="item-desc">
+              <a href="#"
+                >한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060로스트아크,
+                포트나이트, 배틀그라운드, 배그, 오버워치 배틀그라운드, 배그,
+                오버워치</a
+              >
+            </div>
+            <div><button>쇼핑카트에 추가하기</button></div>
+          </div>
+          <div class="item">
+            <div
+              style="
+                background-image: url(../resources/Img/컴1.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
+            ></div>
+            <div class="item-desc">
+              <a href="#"
+                >한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060로스트아크,
+                포트나이트, 배틀그라운드, 배그, 오버워치 배틀그라운드, 배그,
+                오버워치</a
+              >
+            </div>
+            <div><button>쇼핑카트에 추가하기</button></div>
+          </div>
+          <div class="item">
+            <div
+              style="
+                background-image: url(../resources/Img/컴1.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
+            ></div>
+            <div class="item-desc">
+              <a href="#"
+                >한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060로스트아크,
+                포트나이트, 배틀그라운드, 배그, 오버워치 배틀그라운드, 배그,
+                오버워치</a
+              >
+            </div>
+            <div><button>쇼핑카트에 추가하기</button></div>
+          </div>
+        </div>
+        <div id="aside1" class="aside"></div>
+      </div>
+      <div id="footer"></div>
+    </div>
+  </body>
+</html>
+<!-- min-width << 그리드 영역 최소로 잡아줄떄. !!!!
+max width height에도 민과 맥스과 있다. 반응형 할때 많이 씀 -->

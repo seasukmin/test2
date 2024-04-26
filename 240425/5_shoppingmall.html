@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    body,
+    html, #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      display: grid;
+      grid-template-rows: 1fr 1fr 7fr 0.5fr;
+      gap: 1%;
+      padding: 1%;
+    }
+    #header {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(50px, auto));
+      justify-content: center;
+      align-items: center;
+      background-color: yellow;
+      border-radius: 20px;
+    }
+    #header img {
+      width: 50px;
+      height: 50px;
+    }
+    #nav {
+      display: grid;
+      background-color: rgb(209, 179, 224);
+      list-style: none;
+      grid-template-columns: repeat(auto-fit, minmax(200px,auto));
+      justify-items: center;
+      align-content: center;
+      letter-spacing: 1px;
+      border-radius: 20px;
+      margin: 0;
+    }
+    #aside {
+      display: grid;
+      grid-template-columns: 0.5fr 1fr 1fr 1fr 0.5fr;
+      background-color: white;
+      gap: 1%;
+      font-size: 15px;
+    }
+    #aside1 {
+      background-color: pink;
+      padding: 10px;
+      border-radius: 20px;
+    }
+    #aside3 {
+      background-color: pink;
+      padding: 20px;
+      border-radius: 20px;
+    }
+    #aside1 li {
+      padding: 6% 6%;
+      border-bottom: 1px solid sandybrown;
+      list-style: none;
+      background-color: rgb(233, 109, 109);
+    }
+    a {
+      color: white;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    ul {
+      padding: 0;
+    }
+    .aside2 {
+      display: grid;
+      grid-template-rows: 50% 45% 5%;
+      background-color: white;
+    }
+    #row2 {
+      display: grid;
+      justify-items: center ;
+    }
+    #row2 input {
+      width: 100%;
+    }
+    #footer {
+      display: grid;
+      grid-template-columns: row;
+      justify-items: center;
+      align-items: center;
+      background-color: rgb(204, 207, 44);
+      border-radius: 20px;
+    }
+    h3 {
+      padding:0;
+      margin:0;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <img src="../resources/Img/592242.jpg" />
+        <h1>EA shopping<h1>
+      </div>
+      <ul id="nav">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">SHOWPPING ABOUT</a></li>
+        <li><a href="#">NEWS</a></li>
+        <li><a href="#">MY ACCOUNT</a></li>
+        <li><a href="#">CONTACTS</a></li>
+      </ul>
+      <div id="aside">
+        <div id="aside1">
+          <h3>카테고리</h3>
+          <ul>
+            <li><a href="#">컴퓨터</a></li>
+            <li><a href="#">의류</a></li>
+            <li><a href="#">음악</a></li>
+            <li><a href="#">영화</a></li>
+            <li><a href="#">스포츠/레져</a></li>
+            <li><a href="#">가구/인테리어</a></li>
+            <li><a href="#">식품</a></li>
+          </ul>
+        </div>
+        <div class="aside2">
+          <div
+            id="row"
+            style="
+              background-image: url(../resources/Img/컴1.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          ></div>
+          <div id="row1">
+            한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060로스트아크,
+            포트나이트, 배틀그라운드, 배그, 오버워치 배틀그라운드, 배그,
+            오버워치
+          </div>
+          <div id="row2">
+            <input type="submit" value="쇼핑카트에 추가하기" />
+          </div>
+        </div>
+        <div class="aside2">
+          <div
+            id="row"
+            style="
+              background-image: url(../resources/Img/노1.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          ></div>
+          <div id="row1">
+            한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060로스트아크,
+            포트나이트, 배틀그라운드, 배그, 오버워치...
+          </div>
+          <div id="row2">
+            <input type="submit" value="쇼핑카트에 추가하기" />
+          </div>
+        </div>
+        <div class="aside2">
+          <div
+            id="row"
+            style="
+              background-image: url(../resources/Img/컴2.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+            "
+          ></div>
+          <div id="row1">
+            한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060로스트아크,
+            포트나이트, 배틀그라운드, 배그, 오버워치...
+          </div>
+          <div id="row2">
+            <input type="submit" value="쇼핑카트에 추가하기" />
+          </div>
+        </div>
+        <div id="aside3">
+          <h3>shopping cart</h3>
+          <p>현재 쇼핑카트에 물품이 없습니다.</p>
+          <a href="https://www.naver.com">쇼핑카트 보기</a>
+          <h3>Log in</h3>
+          <span>비밀번호</span>
+          <p><input type="password" /></p>
+          <input type="submit" value="로그인" />
+          <input type="reset" value="초기화" />
+          <p><a href="#">회원가입</a> <a href="#">비밀번호 분실</a></p>
+        </div>
+      </div>
+      <div id="footer">
+        <h3>2019.08.23 DW아카데미 042-123-4567</h3>
+      </div>
+    </div>
+  </body>
+</html>
