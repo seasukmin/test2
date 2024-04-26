@@ -34,17 +34,40 @@
     }
     body > div > div {
       background-color: #2bd34a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .translate:hover {
+      /* translate: 요소의 위치를 x축, y축으로 이동시킨다. */
+      /* transform: translate(10px, 50px); */
+      transform: translate(10px, 50px);
+      transition: 1s linear;
+    }
+    .scale:hover {
+      /* scale: 요소의 크기를 x축으로 x배, y축으로 y배 확대 또는 축소한다. 
+      0또는 양수 음수는 안돼!*/
+      transform: scale(0.75, 0.5);
+      transition: 1s linear;
+    }
+    .skew:hover {
+      /* skew:요소를 x축으로 y축으로 x각도만큼, y축으로 y각도만큼 기울인다.
+      각도가 들어간다! 따라서 음수가 들어갈 수 있음!
+      */
+      transform: skew(50deg, 0);
+      transition: 1s linear;
     }
   </style>
   <body>
     <div>
-      <div></div>
+      <div class="translate">translate</div>
     </div>
     <div>
-      <div></div>
+      <div class="scale">scale</div>
     </div>
     <div>
-      <div></div>
+      <div class="skew">skew</div>
     </div>
     <div>
       <div></div>
