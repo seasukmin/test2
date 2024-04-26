@@ -32,9 +32,15 @@
       justify-content: center;
       align-items: center;
     }
-    #header img {
-      width: 100px;
-      height: 100px;
+    #header div {
+      width: 10%;
+      height: 100%;
+      gap: 2%;
+    }
+    #header span {
+      font-size: 2rem;
+      font-weight: 800;
+      color: rgb(83, 25, 138);
     }
     #nav {
       background-color: #d1b3e0;
@@ -120,7 +126,14 @@
   <body>
     <div id="wrapper">
       <div id="header">
-        <img src="../resources/Img/592242.jpg" />
+        <div
+          style="
+            background-image: url(../resources/Img/진돗개.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+          "
+        ></div>
         <span>SHOPPING MALL</span>
       </div>
       <ul id="nav">
@@ -199,7 +212,17 @@
             <div><button>쇼핑카트에 추가하기</button></div>
           </div>
         </div>
-        <div id="aside1" class="aside"></div>
+        <div id="aside1" class="aside">
+          <h3>shopping cart</h3>
+          <p>현재 쇼핑카트에 물품이 없습니다.</p>
+          <a href="https://www.naver.com">쇼핑카트 보기</a>
+          <h3>Log in</h3>
+          <span>비밀번호</span>
+          <p><input type="password" /></p>
+          <input type="submit" value="로그인" />
+          <input type="reset" value="초기화" />
+          <p><a href="#">회원가입</a> <a href="#">비밀번호 분실</a></p>
+        </div>
       </div>
       <div id="footer"></div>
     </div>
