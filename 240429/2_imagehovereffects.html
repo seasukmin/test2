@@ -22,7 +22,7 @@
       padding: 1rem;
     }
     .column {
-      margin: 15px 15px 0px;
+      margin: 15px 15px 0;
       display: flex;
     }
     .column div {
@@ -37,23 +37,187 @@
       margin: 0;
       overflow: hidden;
     }
+    .column div span {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      z-index: -1;
+      display: block;
+      width: 300px;
+      text-align: center;
+      opacity: 0;
+      transition: 0.3s ease-in-out;
+    }
+    figure:hover + span {
+      bottom: -30px;
+      opacity: 1;
+    }
+
+    /* Zoom In #1 */
+    .hover01 figure img {
+      transition: 0.3s ease-in-out;
+    }
+    .hover01 figure:hover img {
+      transform: scale(1.3);
+      transform-origin: 0 0;
+    }
+
+    /* Zoom Out */
+    .hover02 figure img {
+      transition: 0.3s ease-in-out;
+      transform: scale(1.5);
+    }
+    .hover02 figure:hover img {
+      transform: scale(1);
+    }
+
+    /* Slide */
+    .hover03 figure img {
+      transition: 0.3s ease-in-out;
+      width: 400px;
+    }
+    .hover03 figure:hover img {
+      transform: translate(-50px, 0);
+    }
+
+    /* Blur */
+    .hover04 figure img {
+      transition: 0.3s ease-in-out;
+      filter: grayscale(100%) blur(3px);
+    }
+    .hover04 figure:hover img {
+      filter: grayscale(0) blur(0);
+    }
+
+    /* Flasing */
+    @keyframes flash {
+      from {
+        opacity: 0.3;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hover05 figure:hover img {
+      animation: flash 1.5s;
+    }
+    .hover06 div {
+      background-image: linear-gradient(red, yellow, blue);
+    }
   </style>
   <body>
     <div id="wrapper">
       <h2>No Effect</h2>
       <div class="column">
         <div>
-          <figure><img src="https://picsum.photos/300/300" /></figure>
-          <span>hover</span>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <span>Hover</span>
         </div>
         <div>
-          <figure><img src="https://picsum.photos/300/300" /></figure>
-          <span>hover</span>
+          <figure><img src="https://picsum.photos/300/200?image=222" /></figure>
+          <span>Hover</span>
         </div>
         <div>
-          <figure><img src="https://picsum.photos/300/300" /></figure>
-          <span>hover</span>
+          <figure><img src="https://picsum.photos/300/200?image=777" /></figure>
+          <span>Hover</span>
         </div>
+      </div>
+
+      <h2>1. Zoom In #1</h2>
+      <div class="column hover01">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=222" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=777" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>2. Zoom Out #1</h2>
+      <div class="column hover02">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=222" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=777" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>3. Slide</h2>
+      <div class="column hover03">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=222" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=777" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>4. Blur</h2>
+      <div class="column hover04">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=222" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=777" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+
+      <h2>5. Flashing</h2>
+      <div class="column hover05">
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=222" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=777" /></figure>
+          <span>Hover</span>
+        </div>
+      </div>
+      <h2>6. shine</h2>
+      <div class="column hover06">
+        <div></div>
+        <!-- <div>
+          <figure><img src="https://picsum.photos/300/200?image=111" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=222" /></figure>
+          <span>Hover</span>
+        </div>
+        <div>
+          <figure><img src="https://picsum.photos/300/200?image=777" /></figure>
+          <span>Hover</span>
+        </div> -->
       </div>
     </div>
   </body>
