@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    /*  animation
+    html 요소에 애니메이션 효과를 적용시킨다. 애니메이션을 적용하기 위해서
+    특별한 속성이 쓰여지는데 이를 @keyframes 라 한다.
+    애니메이션은 하나의 줄거리(keyframes)를 구성하여 줄거리 내부에서 세부 움직임을
+    시간 흐름 단위로 제어하여 요소의 움직임을 표현한다.
+
+    transition vs animation
+    1. 일반적으로 transition 효과는 요소 프로퍼티값이 다른 값으로 변화할 때 주로 사용하며 
+    요소의 로드와 함께 자동으로 발동되지 않는다.
+    2. animation 프로퍼티는 kyeframes를 사용할 수 있고, 전체 줄거리의 재생과 정지, 반복까지
+    제어할 수 있다.
+    */
+    @keyframes move {
+      /* 애니메이션 시작 시점 */
+      from {
+        left: 0;
+      }
+      /* 애니메이션 종료 시점 */
+      to {
+        left: 300px;
+      }
+    }
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+  <body>
+    <div></div>
+  </body>
+</html>
