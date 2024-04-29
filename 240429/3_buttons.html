@@ -18,6 +18,51 @@
       width: 100%;
       height: 100%;
     }
+
+    #wrapper {
+      padding: 1rem;
+    }
+    .btn-3d {
+      position: relative;
+
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    }
+    .btn-3d.green {
+      background-color: #82c8a0;
+      box-shadow: 0 0 0 1px #82c8a0 inset,
+        0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+        0 8px 0 0 rgba(126, 194, 155, 0.7), 0 8px 0 1px rgba(0, 0, 0, 0.4),
+        0 8px 8px 1px rgba(0, 0, 0, 0.5);
+    }
+    .btn-3d.green:hover {
+      background-color: burlywood;
+    }
+    .btn-3d.green:active {
+      box-shadow: 0 0 0 1px #82c8a0 inset,
+        0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 0 0 1px rgba(0, 0, 0, 0.4);
+    }
+    .btn-3d:active {
+      top: 9px;
+    }
+    a {
+      display: inline-block;
+      font-size: 22px;
+      padding: 20px 60px;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+    }
   </style>
-  <body></body>
+  <body>
+    <div id="wrapper">
+      <div class="content">
+        <h2>3D button</h2>
+        <a href="#" class="btn-3d green">Button</a>
+      </div>
+      <div class="content">
+        <h2>Fade button</h2>
+        <a href="#" class="btn orange">Fade</a>
+      </div>
+    </div>
+  </body>
 </html>
