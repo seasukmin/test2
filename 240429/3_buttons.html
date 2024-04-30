@@ -18,14 +18,20 @@
       width: 100%;
       height: 100%;
     }
-
     #wrapper {
       padding: 1rem;
     }
+    a {
+      display: inline-block;
+      font-size: 22px;
+      padding: 20px 60px;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+    }
     .btn-3d {
       position: relative;
-
-      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+      /* text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15); */
     }
     .btn-3d.green {
       background-color: #82c8a0;
@@ -35,7 +41,7 @@
         0 8px 8px 1px rgba(0, 0, 0, 0.5);
     }
     .btn-3d.green:hover {
-      background-color: burlywood;
+      background-color: #80c49d;
     }
     .btn-3d.green:active {
       box-shadow: 0 0 0 1px #82c8a0 inset,
@@ -44,20 +50,111 @@
     .btn-3d:active {
       top: 9px;
     }
-    a {
-      display: inline-block;
-      font-size: 22px;
-      padding: 20px 60px;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
+
     .orange {
       background-color: #ffaa40;
     }
     .btnFade.orange:hover {
+      transition: all 0.2s;
       background-color: #ff8300;
+    }
+
+    .purple {
+      background-color: #a74982;
+    }
+    .btnBorder.purple {
+      box-shadow: 0 0 0 0 #6d184b;
+    }
+    .btnBorder.purple:hover {
+      transition: all 0.2s;
+      box-shadow: 0 0 0 5px #6d184b;
+    }
+
+    .skyblue {
+      background-color: #4ec0e9;
+    }
+    .clickMe {
+      animation: clickMe 4s infinite;
+    }
+    @keyframes clickMe {
+      5% {
+        transform: scale(1);
+      }
+      10% {
+        transform: scale(0.9);
+      }
+      15% {
+        transform: scale(1.15);
+      }
+      20% {
+        transform: scale(1.15) rotate(-5deg);
+      }
+      25% {
+        transform: scale(1.15) rotate(5deg);
+      }
+      30% {
+        transform: scale(1.15) rotate(-3deg);
+      }
+      35% {
+        transform: scale(1.15) rotate(2deg);
+      }
+      40% {
+        transform: scale(1.15) rotate(0);
+      }
+      50% {
+        transform: scale(1);
+      }
+    }
+
+    .purpleBlue {
+    }
+    .gradient {
+      /* background-color: #e0e5ec; */
+      background-color: transparent;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 2px 2px 2px 0px rgba(255, 255, 255, 0.5) inset,
+        7px 7px 20px 0px rgba(0, 0, 0, 1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    }
+    .gradient::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
+      border-radius: 6px;
+      transition: all 2s ease;
+    }
+    .gradient:hover::after {
+      transform: scale(2) rotate(180deg);
+    }
+    .openBtn {
+      border: 2px solid #4dbde5;
+      color: #4dbde5;
+      position: relative;
+      transition: 5s;
+    }
+    .openBtn::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #4dbde5;
+      transform: scalex(0);
+      transition: 5s;
+      z-index: -1;
+    }
+    .openBtn:hover {
+      color: white;
+    }
+    .openBtn:hover::before {
+      transform: scalex(1);
     }
   </style>
   <body>
@@ -69,6 +166,22 @@
       <div class="content">
         <h2>Fade button</h2>
         <a href="#" class="btnFade orange">Fade</a>
+      </div>
+      <div class="content">
+        <h2>Border button</h2>
+        <a href="#" class="btnBorder purple">Border</a>
+      </div>
+      <div class="content">
+        <h2>click me button</h2>
+        <a href="#" class="clickMe skyblue">Click me</a>
+      </div>
+      <div class="content">
+        <h2>gradient button</h2>
+        <a href="#" class="gradient purpleBlue">Gradient</a>
+      </div>
+      <div class="content">
+        <h2>open button</h2>
+        <a href="#" class="openBtn">OPEN</a>
       </div>
     </div>
   </body>
