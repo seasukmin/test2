@@ -29,7 +29,7 @@
       position: relative;
       transition: 5s;
       transform-style: preserve-3d;
-      animation: cube 9s infinite;
+      animation: cube 3s infinite;
     }
     .card > div {
       width: 100%;
@@ -42,80 +42,139 @@
       left: 0;
       font-size: 3rem;
       font-weight: 800;
-      color: white;
+      color: black;
+      border-radius: 5%;
+      border: 1px solid white;
+      box-shadow: 0 0 40px 5px yellow;
     }
     .card:hover {
       /* transform: rotatey(360deg); */
     }
     #front {
-      background-color: aqua;
+      background-color: hsla(0, 100%, 50%, 0.5);
       transform: translatez(150px);
     }
     #back {
-      background-color: blue;
+      background-color: hsla(60, 100%, 50%, 0.5);
       transform: translatez(-150px);
     }
     #left {
-      background-color: red;
+      background-color: hsla(120, 100%, 50%, 0.5);
       transform: translatex(-150px) rotatey(-90deg);
     }
     #right {
-      background-color: green;
+      background-color: hsla(180, 100%, 50%, 0.5);
       transform: translatex(150px) rotatey(90deg);
     }
     #top {
-      background-color: yellow;
+      background-color: hsla(240, 100%, 50%, 0.5);
       transform: translatey(-150px) rotatex(-90deg);
     }
     #bottom {
-      background-color: black;
+      background-color: hsla(300, 100%, 50%, 0.5);
       transform: translatey(150px) rotatex(90deg);
     }
     @keyframes cube {
       0% {
         transform: rotatey(0deg);
       }
-      10% {
-        transform: rotatey(45deg) rotatez(90deg);
-      }
-      20% {
-        transform: rotatey(90deg) rotatez(120deg);
-      }
-      30% {
-        transform: rotatey(135deg) rotatez(150deg);
-      }
-      40% {
-        transform: rotatey(0deg);
-      }
       50% {
-        transform: rotatey(90deg) rotatez(120deg);
-      }
-      60% {
-        transform: rotatey(180deg) rotatez(-120deg);
-      }
-      70% {
-        transform: rotatey(270deg) rotatez(-600deg);
-      }
-      80% {
-        transform: rotatey(0deg);
-      }
-      90% {
-        transform: rotatey(90deg) rotatez(120deg);
+        transform: rotatex(360deg);
       }
       100% {
-        transform: rotatey(180deg) rotatez(-120deg);
+        transform: rotatey(180deg);
       }
+    }
+    #front1 {
+      display: flex;
+      background-color: hsla(0, 100%, 50%, 0.5);
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+    }
+    .front2 {
+      display: flex;
+      background-color: hsla(60, 100%, 50%, 0.5);
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      margin: 20px;
+    }
+    .front3 {
+      display: flex;
+      background-color: hsla(120, 100%, 50%, 0.5);
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      margin: 20px;
+    }
+    .front4 {
+      display: flex;
+      background-color: hsla(180, 100%, 50%, 0.5);
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      margin: 20px;
+    }
+    .front5 {
+      display: flex;
+      background-color: hsla(240, 100%, 50%, 0.5);
+      width: 50px;
+      height: 50px;
+      justify-content: s;
+      align-items: center;
+      margin: 20px;
+    }
+    .front6 {
+      display: flex;
+      background-color: hsla(300, 100%, 50%, 0.5);
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      margin: 20px;
+    }
+    .card > div:nth-child(1) {
+      /* 
+      hsla()
+      h : huue - 색상(=색조 =색깔) 0 ~ 360
+      s : saturation - 채도(=컬러 정도, 음영) 0~ 100%
+      l : lightness - 명도(=밝기) 0 ~ 100%
+      a : alpha - 불투명도 0.0 ~ 1.0
+      */
     }
   </style>
   <body>
     <div id="wrapper">
       <div class="card">
-        <div id="front">front</div>
-        <div id="back">back</div>
-        <div id="left">left</div>
-        <div id="right">right</div>
-        <div id="top">top</div>
-        <div id="bottom">bottom</div>
+        <div id="front">
+          <div id="front1"></div>
+        </div>
+        <div id="back">
+          <div class="front2"></div>
+          <div class="front2"></div>
+        </div>
+        <div id="left">
+          <div class="front3"></div>
+          <div class="front3"></div>
+          <div class="front3"></div>
+        </div>
+        <div id="right">
+          <div class="front4"></div>
+        </div>
+        <div id="top">
+          <div class="front5"></div>
+        </div>
+        <div id="bottom">
+          <div class="front6"></div>
+        </div>
       </div>
     </div>
   </body>
