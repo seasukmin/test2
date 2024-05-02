@@ -52,7 +52,6 @@
       true;
       result = "0" === 0;
       false; // ===를 쓰면 형변환을 하지 않고 값과 타입까지 동일해야 true가 된다.
-
       //   null, undefined 비교
       //    ==, !=, : 동등 비교 연산
       //   ===, !== : 일치 비교 연산
@@ -60,7 +59,49 @@
       ressult = null > 0; //false
       ressult = null == 0; //false
       ressult = null >= 0; // true 기타비교연산때는 숫자로 변환됨.
-      alert(result);
+      // 동등 연산자와 기타 비교 연산자의 동작 방식이 다르기 때문에
+      // (1)과 (3) 에서는 null이 숫자형으로 변환돼 0이 된다.
+      // 그런데 동등 연산자는 피연산자가 UNDEFINED 이거나 NULL 일 때 형변환을 하지 않는다.
+      // undefined와 null을 비교하는 경우에만 true를 반환하고 그 외의 경우에는 false를 반환한다.
+
+      // console.log(counter);
+
+      // console.log(counter);
+      // result = counter;
+      // console.log(`result:${counter}`);
+      // console.log("result : " + result);
+      // console.log(`result : ${result}`);
+      // console.log(1 + "true" + "false" + 2 + "문자열");
+      // let ew = 1;
+      // ew + 1;
+      // ew = ew + 1;
+      // console.log(`ew:${ew}`);
+      //   console.log(a + b + 3); //18
+      //   console.log(str1 + "number is"); //mynumberis
+      //   console.log("my number is" + a); //my number is5
+
+      // 증감 연산자
+      let counter = 2;
+      counter++; //무조건 1만 +1
+      ++counter;
+      result = counter;
+      // counter++; 후위형 : 증가, 감소 전의 기존 값을 반환한다.
+      // ++counter; 전위형 : 증가, 감소 후의 새로운 값을 반환한다.
+      // counter = counter + 1;
+      // counter += 1;
+      counter--; //무조건 1만 -1
+      --counter;
+
+      let c = counter++;
+      result = c;
+
+      "" + 1 + 0; //10
+      "" - 1 + 0; //-1 문자열 - 1 >>문자열 부분이 0으로 falcy한 값으로
+      true + false; //1
+      6 / "3"; // 2
+      "2" * "3"; //6
+
+      console.log(`result : ${result}`);
     </script>
   </body>
 </html>
