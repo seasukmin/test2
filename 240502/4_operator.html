@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>연산자</title>
+  </head>
+  <body>
+    <script>
+      // 수학 연산자
+      //  +(덧셈), -(뺄셈), *(곱셈), / (나눗셈), 나머지(%)
+      let result = 0;
+
+      let a = 5;
+      let b = 10;
+      result = a + b / 2;
+      result = b % 3;
+      //   b를 3으로 나눴을때 남은 1 << 요게 표시됨!!!!
+
+      //   문자열 연산 공백 또한 문자열이다!
+      let str1 = "my";
+      var str2 = " string";
+      let checked = true;
+
+      //   문자열과 다른 자료형을  + 연산하면 다른 자료형은 문자열로 변환되어 연산된다.
+      result = str1 + str2 + checked;
+      //   result = "my" + "string";
+      //   하드 코딩하면 하드 코딩 값만 나온다.
+      //   result = "1" + a;
+      //   result = `1${a}`;
+      result = `1${a}${b}`;
+      result = a - "2";
+      result = +"2" + a;
+      //  -뺄셈일때는 뒤에 문자열이 숫자로 바뀜
+      //   문자열이 숫자인 놈은 앞에 +를 붙여주면 숫자로 취급이 된다.
+
+      //   비교연산자 (요것도 문자열이 숫자로 바뀐다 +말고 나머진 문자가 숫자로! 이걸 용어로 형변환!!)
+      // true or false
+      result = a > b;
+      result = a <= b;
+      //<= 할때 부등호의 위치는 항상 오른쪾!!!!!!
+      result = a != b;
+      //   ==에서 !=로 바꾸면 이게 맞냐?라고하는것! !: 부정연산자
+      //   result = !cheched;
+      // true를 부정하니 false가 나온다!
+      //  truthy 한 값들은 1로 변형되고, falsy 한 값들은 0으로 변형된다.
+      result = true == 1;
+      true;
+      result = false == 1;
+      true;
+      result = "0" == 0;
+      true;
+      result = "0" === 0;
+      false; // ===를 쓰면 형변환을 하지 않고 값과 타입까지 동일해야 true가 된다.
+
+      //   null, undefined 비교
+      //    ==, !=, : 동등 비교 연산
+      //   ===, !== : 일치 비교 연산
+      // <, <=, >, >= : 기타 비교 연산
+      ressult = null > 0; //false
+      ressult = null == 0; //false
+      ressult = null >= 0; // true 기타비교연산때는 숫자로 변환됨.
+      alert(result);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>날짜출력</title>
+  </head>
+  <!-- 자바의 위치: 바디에 둬도 되고 헤드 다음에 둬도 돼고! 외부는 헤드쪽 내부는 -->
+  <!-- .js 는 모두다 자바스크립트가 작성됨.
+    var now =now 부분 변수 값()<< 함수 
+    = <<개발자는 대입을 한다고 한다 같다x
+    == << 개발자는 요게 같다다.
+    document == 문서(화면전체 html 중요!)
+    document.write에 점은 들어있는 document에 있는 write라는 함수를 실행할거다.
+-->
+  <body>
+    <script>
+      var now = new Date();
+      document.write(`<h1>${now}</h1>`);
+      document.write(`<h1>` + now + `</h1>`);
+    </script>
+  </body>
+</html>
