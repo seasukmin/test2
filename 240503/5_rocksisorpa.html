@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가바보</title>
+  </head>
+  <body>
+    <script>
+      // 비기는 경우: if(1 == 2)
+
+      // 1. 1번 사용자에게 가위바위보를 입력 받는다.
+
+      // 2. 2번 사용자에게 가위바위보를 입력 받는다.
+
+      // 3. 1번 사용자와 2번 사용자가 낸 가위바위보를 비교한다.
+
+      // 4. 결과를 화면에 출력한다.
+
+      // 이기는 경우: 가위 - 보, 바위 - 가위, 보 - 바위
+      // 지는 경우: 가위 - 바위, 바위 - 보, 보- 가위
+      // 가위 = 3 바위 = 2 보 = 1
+      let shall = 0;
+      let shell = 0;
+      let result;
+
+      shall = prompt("첫번째분 가위 바위 보 중에 하나 입력해주세요.");
+      shell = prompt("두번째분 가위 바위 보 중에 하나 입력해주세요.");
+
+      if (shall == "가위") {
+        if (shell == "보") alert("승");
+      }
+      if (shall == "바위") {
+        if (shell == "가위") alert("승");
+      }
+      if (shall == "보") {
+        if (shell == "바위") alert("승");
+      }
+      if (shall == "보") {
+        if (shell == "가위") alert("패");
+      }
+      if (shall == "가위") {
+        if (shell == "바위") alert("패");
+      }
+      if (shall == "바위") {
+        if (shell == "보") alert("패");
+      }
+      if (shall == "바위") {
+        if (shell == "바위") alert("비김");
+      }
+      if (shall == "가위") {
+        if (shell == "가위") alert("비김");
+      }
+      if (shall == "보") {
+        if (shell == "보") alert("비김");
+      }
+
+      document.write(`
+      <h1>첫번째 사람: ${shall}</h1>
+      <h1>두번째 사람: ${shell}</h1>
+      <h1>결과 : ${result}</h1>
+      `);
+    </script>
+  </body>
+</html>
