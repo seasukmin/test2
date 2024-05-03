@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조건문 연습</title>
+  </head>
+  <body>
+    <script>
+      // 0. 변수 선언
+
+      // 1. 첫 번째 숫자를 입력받을 프롬프트를 띄운다.
+
+      // 2. 두 번째 숫자를 입력받을 프롬프트를 띄운다.
+
+      // 3. 연산자를 입력받을 프롬프트를 띄운다.
+
+      // 4. 연산자를 확인할 조건문 안에서 계산 결과를 도출한다.
+
+      // 5. 화면에 출력한다.
+      let one = 0;
+      one = +prompt("스크립트 프롬프트: 첫번째 숫자를 입력하세요 ");
+      if (one == 22) {
+        alert("Correct");
+      } else {
+        alert("X");
+      }
+      let two = 0;
+      two = +prompt("스크립트 프롬프트: 두번째 숫자를 입력하세요 ");
+      if (two == 42) {
+        alert("Correct");
+      } else {
+        alert("X");
+      }
+      let three = 0;
+      three = prompt("연산자를 입력하세요.");
+      if (three == "+") {
+        alert(one + two);
+      } else if (three == "-") {
+        alert(one - two);
+      }
+      result = one + two;
+      //   function four(one, two) {
+      //     let result = 0;
+      //     result = one + two;
+      //     22;
+      //   let four = 0;
+      //   four = one + two;
+      //   if (four == one + two) {
+      document.write(`${one} ${three} ${two} = ${result}`);
+
+      //   }
+      //   four(22, 42);
+    </script>
+  </body>
+</html>

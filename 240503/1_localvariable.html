@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>지역변수</title>
+  </head>
+  <body>
+    <script>
+      let sum = 0; //전역 변수 (script 내 어디서든 선언이 가능.)
+      //   선언할때 값이 들어가는거 초기화 선언돼고 나서 값이 들어가는거 할당한다.
+      function showAlert() {
+        sum = 0;
+        let message; //지역 변수 ({코드블록 안에 변수를 지역 변수라 지칭.})(블록을 벗어나는 순간 사용을 할 수 없다.) 함수선언식
+        alert();
+      }
+      alert(window.sum);
+      alert(message);
+      // 함수표현식 함수도 객체 중 하나
+      const func = function () {};
+    </script>
+  </body>
+</html>
