@@ -20,29 +20,30 @@
     }
     #wrapper {
       display: flex;
+      background-color: #3d3d3e;
     }
 
     #wrapper div {
-      background-color: aqua;
+      background-color: #3d3d3e;
       flex-grow: 1;
       margin: 5%;
       border-radius: 20px;
       box-shadow:/* 0 0 2px 5px skyblue, 0 0 2px 10px rgb(104, 245, 104),
-        0 0 2px 15px rgb(235, 235, 208); */ 
+        0 0 2px 15px rgb(235, 235, 208); */
           /* 5px 30px 5px skyblue,
         5px 5px 2px 10px rgb(104, 245, 104), 5px 5px 2px 15px rgb(235, 235, 208),
-        -5px 5px 2px 15px rgb(110, 110, 25); */ 0
-          1px 1px 0 rgba(0, 0, 0, 0.11),
+        -5px 5px 2px 15px rgb(110, 110, 25); */ 1px
+          1px 0 rgba(0, 0, 0, 0.11),
         0 2px 2px 0 rgba(0, 0, 0, 0.11), 0 4px 4px 0 rgba(0, 0, 0, 0.11),
         0 8px 8px 0 rgba(0, 0, 0, 0.11), 0 16px 16px 0 rgba(0, 0, 0, 0.11),
-        0 32px 32px 0 rgba(0, 0, 0, 0.11);
+        0 32px 32px 0 rgba(0, 0, 0, 0.11), 0 0 16px 0 rgba(255, 255, 255) inset;
     }
   </style>
   <body>
     <div id="wrapper">
-      <div></div>
-      <div></div>
-      <div></div>
+      <div id="header"></div>
+      <div id="nav"></div>
+      <div id="aside"></div>
     </div>
   </body>
 </html>
