@@ -30,9 +30,9 @@
 
       // 1 ~ 20 까지의 숫자 중에서 짝수만 출력을 하세요.
 
-      //   for (let i = 1; i <= 10; i++) {
-      //     document.write(`<h1> ${2 * i}</h1>`);
-      //   }
+      for (let i = 1; i <= 10; i++) {
+        document.write(`<h1> ${2 * i}</h1>`);
+      }
       //   for (let i = 1; i <= 20; i++) {
       //     if (i % 2 == 0) {
       //       document.write(`<h1>${i}</h1>`);
@@ -40,7 +40,6 @@
       //   }
       //   document.write(`<h1> ${i}</h1>`);
       document.write(`<hr>`);
-
       //    1 ~ 100 까지 숫자 중 홀수들의 합을 구하세요.
       let sum = 0;
       for (let i = 1; i <= 100; i++) {
@@ -58,9 +57,25 @@
           alert("i는 2가 아닙니다.");
         }
       }
+
       for (i = 0; i < 10; i++) {
+        document.write(`<h1 style="color: red;">i 반복문 ${i}회차 시작</h1>`);
         for (let j = 0; j < 10; j++) {
-          // i가 0일때 j가 열번 반복
+          document.write(`<h1>j 반복문 ${j}회차 시작</h1>`);
+          document.write(`<h1>j 반복문 ${j}회차 끝</h1>`);
+        }
+        document.write(`<h1 style="color: red;">i 반복문 ${i}회차 끝</h1>`);
+      }
+      for (let i = 1; i <= 9; i++) {
+        document.write(`<h1 style="color: red;">${i}단수 시작</h1>`);
+        for (let j = 1; j <= 9; j++) {
+          document.write(`<h1>${i} x ${j} = ${i * j}</h1>`);
+        }
+      }
+      for (let i = 10; i <= 100; i++) {
+        document.write(`<h1 style="color: red;">${i}단수 시작</h1>`);
+        for (let j = 1; j <= 9; j++) {
+          document.write(`<h1>${i} x ${j} = ${i * j}</h1>`);
         }
       }
     </script>
