@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- 가위 = 1 바위 = 2 보 = 3
+가위 - 보 = -2 : 바위 - 가위 = 1 : 보 - 바위 = 1 >> -2 ,1
+가위 - 바위 = -1 : 바위 - 보 = -1 : 보 - 가위 = 2 >> -1, 2
+-->
+  <body>
+    <script>
+      let user1, user2, userNum1, userNum2, result;
+
+      function changeRap(rsp) {
+        if (rsp == "가위") {
+          return 1;
+        } else if (rsp == "바위") {
+          return 2;
+        } else {
+          return 3;
+        }
+      }
+
+      user1 = prompt("가위, 바위, 보 중에 하나를 내시오.");
+      userNum1 = changeRap(user1);
+
+      user2 = prompt("가위, 바위, 보 중에 하나를 내시오.");
+      userNum2 = changeRap(user2);
+
+      switch (userNum1 - userNum2) {
+        case -2:
+        case 1:
+          result = "첫번째 사람 승!!";
+          break;
+        case -1:
+        case 2:
+          result = "두번째 사람 승!!";
+          break;
+        default:
+          result = "무승부!!";
+          break;
+      }
+      document.write(`
+            <h1>첫번째 사람 : ${user1}</h1>
+            <h1>두번째 사람 : ${user2}</h1>
+            <h1>결과 : ${result}</h1>
+          `);
+    </script>
+  </body>
+</html>
