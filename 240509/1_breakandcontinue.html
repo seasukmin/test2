@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>breakandcontinue</title>
+  </head>
+  <body>
+    <script>
+      document.write(`<h1>&lt;break&gt;</h1>`);
+      for (let i = 0; i < 10; i++) {
+        if (i == 3) {
+          break; // 조건을 만족하면 가장 가까운 반복문을 끝냄
+        }
+        document.write(`<h3>${i}<h3>`);
+      }
+
+      document.write("<hr>");
+      // true일 경우 무한루프 >> 이럴때 종료시키고 싶을때 break를 건다.
+      let j = 0;
+      while (true) {
+        document.write(`<h3>${j}</h3>`);
+        j++;
+        if (j == 5) {
+          break;
+        }
+      }
+      document.write("<hr>");
+      document.write(`<h1>&lt;continue&gt;</h1>`);
+      for (let i = 0; i < 10; i++) {
+        if (i == 3) {
+          continue;
+        }
+        document.write(`<h3>${i}<h3>`);
+      }
+      let stage = 0;
+      while (true) {
+        document.write(`<h3>${stage}</h3>`);
+        stage++;
+        if (stage == 5) {
+          continue;
+        }
+        if (stage >= 11) {
+          // 엔딩장면
+          break;
+        }
+      }
+
+      for (let i = 1; i <= 10; i++) {
+        if (i % 2 == 1) {
+          contine;
+        }
+        document.write(`<h2>${i}</h2>`);
+
+        if (i % 2 == 0) {
+          document.write(`<h2>${i}</h2>`);
+        }
+      }
+    </script>
+  </body>
+</html>
