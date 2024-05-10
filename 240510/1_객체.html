@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체형</title>
+  </head>
+  <body>
+    <script>
+      // 객체 선언 방법
+      //   array, object << 클래스 개념이 있듬.. (하나의 집단처럼 객체 한 가지로 만들어놓은거임
+      //  객체 하나만 부르면 그 안에 있는 모든 걸 쓸 수 있다? )
+      let person = {};
+      // 객체:  순서가 없고 프로퍼티가 있는 녀석
+      let person2 = new Object();
+      //   객체 생성 후 프로퍼티 추가 방법1
+      // array.length
+      //   age,name = 키값이다 얘네로 꺼낼거야 키값은 중복될수가 없듬..
+      // 중복되게 입력하면 후위껄로 값이 나옴
+      person.age = 20;
+      person.age = 30;
+      person.name = "홍길동";
+      console.log(person);
+    </script>
+  </body>
+</html>

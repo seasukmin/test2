@@ -114,6 +114,7 @@
 
       // 함수 실행 코드
       console.log(solution4(arr4.pop()));
+      console.log(solution4(arr4));
 
       //   // ---------------------------------------------------------------
 
@@ -121,11 +122,12 @@
       const arr5 = ["apply", "pie", "fig", "melon", "pear", "peach"];
 
       function solution5(inputValue) {
-        return inputValue;
+        return inputValue.shift();
       }
 
       // 함수 실행 코드
-      console.log(solution5(arr5.shift()));
+      console.log(solution5(arr5));
+      console.log(arr5);
 
       //   // ---------------------------------------------------------------
 
@@ -141,6 +143,16 @@
       // 함수 실행 코드
       console.log(solution6(arr6)); // ["pie", "fig", "melon"] 나와야함
       console.log(arr6 != solution6(arr6)); // false 나와야함
+
+      const arr9 = ["apply", "pie", "fig", "melon", "pear", "peach"];
+
+      function solution6(inputValue) {
+        return inputValue.slice(1, 4);
+      }
+
+      // 함수 실행 코드
+      console.log(solution6(arr9)); // ["pie", "fig", "melon"] 나와야함
+      console.log(arr9 == solution6(arr9)); // false 나와야함
 
       //   // ---------------------------------------------------------------
 
