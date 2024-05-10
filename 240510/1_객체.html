@@ -21,6 +21,22 @@
       person.age = 30;
       person.name = "홍길동";
       console.log(person);
+
+      //   객체 생성 후 프로퍼티 추가 방법2
+      const addr = "대전광역시";
+      person["addr"] = "대전 광역시 중구 선화동";
+      person["tel"] = "010-6773-3469";
+
+      //  객체 생성과 동시에 프로퍼티를 추가하는 방법
+      let person3 = {
+        age: 25,
+        name: "둘리",
+        addr: "대전광역시 중구 대흥동",
+        tel: "010-1111-2222",
+      };
+      //  객체의 값을 가져오는 방법
+      console.log(person3);
+      console.log(person3.age);
     </script>
   </body>
 </html>
