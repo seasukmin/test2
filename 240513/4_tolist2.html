@@ -40,8 +40,14 @@
       // 2.5 입력한 값을 배열에 추가한다.
       fruits.push(inputValue);
       // 3. 꺼낸 값을 h1태그에 추가한다.
-      // documnet.querySelectior("h1").innerHTML += `<p>${fruits.join("," )}</p>`;
-      const pTag = docmnet.createElemnet("p");
+      // documnet.querySelectior("h1").innerHTML += `<p>${fruits.join(",")}</p>`;
+      const pTag = docmnent.createElemnet("p");
+      pTag.innerHTML = fruits.join(",");
+      document.querySelector("h1").append(pTag);
+      // 4. 입력된 input 값을 지워준다.
+      input.value = "";
+      // 5. input 창에 커서를 이동시킨다.
+      input.focus();
     }
   </script>
 </html>
