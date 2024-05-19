@@ -6,46 +6,23 @@
     <title>Document</title>
   </head>
   <body>
-    <button onclick="openPopup()">게임하러 가기</button>
-    <button onclick="closePopup()">게임창 닫기</button>
-    <p>버튼을 누르면 3초 후에 경고 박스가 화면에 표시됩니다.</p>
-    <button onclick="showAlert()">눌러보세요></button>
-    <p>버튼</p>
-    <button onclick=" startInterval()">눌러보세요</button>
-    <button>눌러보세요</button>
-    <br />
-    <button>눌러보세요</button>
+    <div id="target">
+      <p id="p1">첫번째 단락</p>
+      <p id="p1">첫번째 단락</p>
+      <p id="p2">두번째 단락</p>
+      <p id="p2">두번째 단락</p>
+      <p id="p2">두번째 단락</p>
+      <p id="p2">두번째 단락</p>
+    </div>
+    <button onclick="deleteChild()">CLICK</button>
   </body>
+
   <script>
-    let child;
-    function openPopup() {
-      child = window.open(
-        "../240510/2_numberguess.html",
-        "+blank",
-        "width=1000,height=500, left=500, top=0."
-      );
-      function closePopup() {
-        child.close();
-      }
-    }
-    function showAlert() {
-      alert("3초 후에 경고창이 표시됩니다.");
-      setTimeout(function () {
-        alert("setTimeout()을 사용하여 3초 이후에 표시되었습니다.");
-      }, 3000);
-    }
-    // function delayAlert() {
-    //   alert(`setTimeout()을 사용하여 3초 이후에 표시되었습니다.`);
-    // }
-    let start;
-    function startInterval() {
-      const colorArr = [];
-      for (let i = 0; i < 3; i++) {
-        const randNum = parseInt(Math.random() * 256);
-        colorArr.push(randNum);
-      }
-      const pEl = document.querySelector("body > p");
-      pEl.style.backgroundColor = `rgb(${colorArr.toString()})`;
+    function deleteChild() {
+      const parent = document.querySelector("#target");
+      const p1 = document.getElementById("p1");
+      const child = parent.firstElementChild;
+      parent.removeChild(child);
     }
   </script>
 </html>
