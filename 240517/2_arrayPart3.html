@@ -113,19 +113,48 @@
     console.log(newusers2);
     // ["김덕배","최덕배", "이덕배"]
 
+    // 결과 ==> [[2,4,6]],[8,10,12],[14,16,18]]
+
+    // function test() {
+    // let newtest = [];
+    // for (let i = 0; i < doubleArr.length; i++) {
+    //   for (let j = 0; j < doubleArr[i].length; j++) {
+    //     doubleArr[i][j] = doubleArr[i][j] * 2;
+    //   }
+    //   newtest.push(doubleArr[i]);
+    // } vbnh
+
+    // console.log(newtest);
+    // // }
+    // test();
+    document.write("<p></p>");
     const doubleArr = [
       [1, 2, 3],
       [4, 5, 6],
       [7, 8, 9],
     ];
-    // 결과 ==> [[2,4,6]],[8,10,12],[14,16,18]]
-    const qwer = [];
     const newdoubleArr = doubleArr.map(function (v) {
-      return `${v[0] * 2} ${v[1] * 2} ${v[2] * 2} `;
-      const newdoubleArr2 = newdoubleArr.map(function (f) {
-        return qwer.push(newdoubleArr2);
+      return v.map(function (f) {
+        return f * 2;
       });
     });
-    console.log(newdoubleArr2);
+
+    console.log(newdoubleArr);
+
+    // test2(); // const newdoubleArr = doubleArr.map(test2);
+
+    // newtest2.push(newdoubleArr);
+    // document.write(newdoubleArr);
+    //왜 1,4,7이 [0]이지?
+
+    // const newdoubleArr2 = newdoubleArr.map(function (f) {});
+    // newtest2.push(newdoubleArr[0], newdoubleArr[1], newdoubleArr[2]);
+
+    // const newdoubleArr = doubleArr.map(function (v) {
+    //   return `${v[0] * 2} ${v[1] * 2} ${v[2] * 2} `;
+    //   const newdoubleArr2 = newdoubleArr.map(function (f) {
+    // return qwer.push(newdoubleArr2);
+    //   });
+    // });
   </script>
 </html>
