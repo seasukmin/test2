@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>이미지바꾸기</title>
-</head>
-<body>
-    <img id="image" src="../resources/Img/진돗개.jpg" width="500" height="auto"/>
-    <br>
+  </head>
+  <body>
+    <img
+      id="image"
+      src="../resources/Img/진돗개.jpg"
+      width="500"
+      height="auto"
+    />
+    <br />
     <button onclick="changeImage()">눌러보세요</button>
-</body>
-<script>
-// 사진 5장 정도를 준비
-// 사진의 경로를 배열에 담는다.
+  </body>
+  <script>
+    // 사진 5장 정도를 준비
+    // 사진의 경로를 배열에 담는다.
 
-// 클릭할 때마다 0 ~ 4 의 랜덤 숫자를 뽑는다  
-function changeImage () {
-let photo = ['노1.jpg', '우주배경.jpg', '진돗개.jpg', '커피.jpg', '컴1.jpg'
-];
+    // 클릭할 때마다 0 ~ 4 의 랜덤 숫자를 뽑는다
+    let number2 = 0;
+    function changeImage() {
+      let photo = [
+        "노1.jpg",
+        "우주배경.jpg",
+        "진돗개.jpg",
+        "커피.jpg",
+        "컴1.jpg",
+      ];
 
-let randNum = changeImage2(photo.length);
+      let randNum = changeImage2(photo.length);
 
-document.querySelector("#image").src=`../resources/Img/${photo[randNum]}`;
-}
-function changeImage2 (length){
-const number = parseInt(Math.random() * 5);
-return number;
-}
+      document.querySelector(
+        "#image"
+      ).src = `../resources/Img/${photo[randNum]}`;
+    }
+    function changeImage2(length) {
+      while (true) {
+        const number = parseInt(Math.random() * 5);
+        if (number !== number2) {
+          number2 = number;
+          return number; //??????
+        }
+      }
+    }
 
-// 클릭할때마다 사진이 변경되는 걸 만들어라.
-
-</script>
+    // 클릭할때마다 사진이 변경되는 걸 만들어라.
+  </script>
 </html>

@@ -33,7 +33,7 @@
     console.log(newstudents2);
     // 4. 모든 학생의 평균 점수 구하기
     const newstudents3 = students.reduce(function (x, y) {
-      return x + y.score / 6;
+      return x + y.score / students.length;
     }, 0);
     console.log(Math.round(newstudents3));
 
