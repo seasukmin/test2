@@ -32,10 +32,17 @@
     // \b: 단어의 맨 앞이나 맨 뒤가 패턴과 일치하는지를 검색
     // 전화번호 검색패턴 예 : 000-0000-0000=> /[0-9]{3}-[0-9]{3,4}-[0-9]{4}/
     // 전화번호 검색패턴 예 : 000-0000-0000=> /\d{3}-\d{3,4}-\d{4}/
-
+// \n 개행
     // 플래그 
     // g: 전역검색
-    const str = "abcabc";
+    let str = "abcabc";
+    let result = str.match(/a/g);
+    console.log(result);
 
+    // m : 줄바꿈 검색
+    str = "Hello World and\nPower Hello?\nOverwhelming!!";
+    str.match(/^/);  //^문자는 문장 시적점을 의미함(대괄호밖에서)
+console.log(result);
+alert(str);
 </script>
 </html>
