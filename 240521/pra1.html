@@ -124,22 +124,54 @@
       </div>
     </div>
 <script>
-    const myInput = document.getElementById("my-input");
-  const key = document.getElementById("key");
-  const code = document.getElementById("code");
-  const keydown = document.getElementById("keydown");
-  const keypress = document.getElementById("keypress");
-  const keyup = document.getElementById("keyup");
+    const myInput = document.getElementById('my-input');
+    const key = document.getElementById('key');
+    const code = document.getElementById('code');
+    const keydown = document.getElementById('keydown');
+    const keypress = document.getElementById('keypress');
+    const keyup = document.getElementById('keyup');
+    const dkey = document.getElementById('keyD');
    
-  function presskeyEvent() {
-      keypress.classList.add('check');
+   function pressKeyEvent() {
+    keypress.classList.add('check');
 
-      setTimeout(function () {
-        keypress.classList.remove('check');
-      }, 300);
+    setTimeout(function(){
+      keypress.classList.remove('check')
+    },300);
+   }
+   
+   function downKeyEvent(e) {
+    if(e.code == 'F1' && e.code == 'F3') {
+      e.preventDefault();
     }
-    function downkeyEvent(e) {
-        console.log(`key : ${e.key}, code : ${e.code}`);}
-        const el=document.querySelector(`#KeyT`);
+
+   const el=document.querySelector(`#${e.code}`);
+ 
+   colorArr = [];
+   for(let i = 0; i < 3; i++) {
+    colorArr.push(parseInt(Math.random()*256));
+   }
+   el.style.setProperty('--main-color', `rgb(${colorArr})`);
+
+   const luma =
+   0.2126* colorArr[0] + 0.7152* colorArr[1] * 0.0722 * colorArr[2];
+   el.style.setProperty("--font-color", `${luma <= 155? "white" : "black"}`);
+   el.classList.add('on');
+   key.innerHTML = `key: ${e.key}`;
+   code.innerHTML = `code: ${e.code}`;
+   
+   setTimeout(function (){
+    keydown.classList.remove('check');
+  })
+  }
+  function upKeyEvent(e){
+    console.log(`key: ${e.key}, code: ${e.code}`);
+    const el = document.querySelector(`#${e.code}`);
+    keyup.classList.add('check');
+    el.classList.remove('on');
+    setTimeout(function (){
+      keyup.classList.remove('check')
+    }, 300);
+  }
    </script>
 </html>
