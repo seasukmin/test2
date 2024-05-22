@@ -63,6 +63,7 @@
     const input = document.querySelector("#input");
     // 단어들이 뿌려질 container의 범위를 파악한다.
     const container = document.querySelector("#container");
+    let count = 0;
     console.log(
       `offsetWidth: ${container.offsetWidth}, offsetHeight: ${container.offsetHeight}`
     );
@@ -95,10 +96,20 @@
       const word = document.querySelector(`span[id=${input.value}]`);
       if (word != null) {
         word.remove();
+        count++;
+        // 게임 클리어
+        if (count == words.length) {
+          alert("clear!!👍");
+          if (confirm("재도전??")) {
+            window.location.reload();
+          }
+        }
       }
       input.value = "";
     });
 
+    // 단어들을 내려오게 하는 부분
+    function wordRain() {}
     init();
   </script>
 </html>
