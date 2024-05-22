@@ -163,5 +163,63 @@
 
   myInput.addEventListener('keypress',keypressEvent);
   myInput.addEventListener('keydown',keydownEvent);
+   const myInput = document.getElementById("my-input");
+   const key = document.getElementById("key");
+   const code = document.getElementById("code");
+   const keypress = document.getElementById("keypress");
+   const keydown = document.getElementById("keydown");
+   const keyup = document.getElementById("keyup");
+   
+   function keyPressEvent () {
+
+    keypress.classList.add("check");
+
+    setTimeout(function (){
+      keypress.classList.remove('check');
+    }, 300)
+   }
+
+   function KeyDownEvent (e) {
+   const el = document.querySelector(`#${e.code}`);
+   key.innerHTML = `${e.key}`;
+   code.innerHTML = `${e.code}`;
+   console.log(`key: ${e.key} key: ${e.code}`);
+   keydown.classList.add('check');
+   el.classList.add('on');
+
+   const ColorArr=[];
+    for(let i=0; i < 3; i++){
+      ColorArr.push(parseInt(Math.random()*255));
+    }
+    el.style.setProperty('--main-color', `rgb(${ColorArr}`);
+
+    const luma =  0.2126 * ColorArr[0] + 0.7152 * ColorArr[1] + 0.0722 * ColorArr[2];
+    el.style.setProperty('--font-color', `${luma <= 155 ? "white" : "black"}`);
+   
+    setTimeout(function ( ){
+    keydown.classList.remove('check');
+    el.classList.remove('on');
+   },300)
+   }
+   
+
+   function KeyUpEvent (e) {
+    const el = document.querySelector(`#${e.code}`);
+    keyup.classList.add('check');
+    el.classList.add('on');
+
+    setTimeout(function (){
+     keyup.classList.remove('check');
+     el.classList.remove('on'); 
+    },300);
+   }
+   
+   
+  
+   
+   
+   myInput.addEventListener("keypress", keyPressEvent);
+   myInput.addEventListener("keydown",  KeyDownEvent);
+   myInput.addEventListener("keyup",  KeyUpEvent);
    </script>
 </html>
