@@ -53,6 +53,7 @@
     div.innerHTML = changeMessage;
     div.classList.add('bubble','my-bubble');
     chatBox.append(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
     input.value="";
   }
 

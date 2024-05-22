@@ -146,7 +146,7 @@
         e.preventDefault();
     }
     const el=document.querySelector(`#${e.code}`);
-    
+    el.classList.add('on');
     colorArr = [];
       for (let i = 0; i < 3; i++) {
         colorArr.push(parseInt(Math.random() * 256));
@@ -156,8 +156,6 @@
       const luma =
         0.2126 * colorArr[0] + 0.7152 * colorArr[1] + 0.0722 * colorArr[2];
       el.style.setProperty("--font-color", `${luma <= 155 ? "white" : "black"}`);
-
-    el.classList.add('on');
     key.innerHTML=`key:${e.key}`;
     code.innerHTML=`code:${e.key}`;
     setTimeout(function(){

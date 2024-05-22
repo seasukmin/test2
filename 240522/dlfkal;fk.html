@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.charAt() 함수
+    // 문자열에서 전달받은 인덱스에 위치한 문자나 문자 코드를 반환한다.
+    document.write(`<h1>1.charAt() 함수</h1>`);
+    const str1 = "Javascript";
+    document.write(`<h2>0번째 인덱스 : ${str1.charAt(0)}</h2>`);
+    document.write(`<h2>5번째 인덱스 : ${str1.charAt(5)}</h2>`);
+
+    // 2. indexOf() 함수
+    // 문자열에서 특정 문자나 문자열이 처음으로 등장하는 위치(인덱스)를 반환한다.
+    document.write(`<h1>2.indexOf() 함수</h1>`);
+    const str2 = "abcDEFabc";
+    document.write(`<h2>abc가 시작되는 인덱스 :  ${str2.indexOf("abc")}</h2>`);
+    document.write(`<h2>abcd가 시작되는 인덱스 : ${str2.indexOf("abcd")}</h2>`)
+
+    // 3. lastindexOf() 함수
+    // 문자열에서 특정 문자나 문자열이 마지막으로 등장하는 위치(인덱스)를 반환한다.
+    document.write(`<h1>3.lastIndexOf() 함수</h1>`);
+    document.write(
+        `<h2>abc가 마지막으로 시작되는 인덱스 : ${str2.lastIndexOf("abc")}</h2>`
+    );
+    // 4. trim() 함수
+    // 문자열의 양 끝에 존재하는 모든 공백과 줄바꿈 문자를 제거한 새로운 문자열을 반환한다.
+    document.write(`<h1>4. trim() 함수<h1>`);
+    const str3 = "    J a v a s c r i p t    ";
+    document.write(`<h2>trim 함수로 공백 제거 : ${str3.trim()}</h2>`);
+    
+    // 5. replace(), replaceAll() 함수
+    // 문자열에서 파라미터로 전달받은 문자를 이용하여 기존 문자열의 대체작업을 수행한다.
+    document.write(`<h1> 5.replace(),replaceAll() 함수</h1>`);
+    const str4 = "javascipt is Awesome";
+    document.write(`${str4.replace("s","*")}`)
+
+    // 6. substring() g함수
+    // 문자열에서 전달받은 시작 인덱스부터 종료 인덱스 바로 앞까지의 
+    // 문자열을 추출한 새로운 문자열을 반환한다.
+</script>
+</html>
