@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="2_keyboard.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="2_keyboard.css" />
     <title>Document</title>
-   
-</head>
-<body>
+  </head>
+  <body>
     <input type="text" id="my-input" />
     <div class="events">
       <div id="keydown" class="event">KeyDown</div>
@@ -124,73 +123,40 @@
           </div>
         </div>
       </div>
-    </div>   
-</body>
-<script>
-  const myInput = document.getElementById("my-input");
-  const key = document.getElementById("key");
-  const code = document.getElementById("code");
-  const keydown = document.getElementById("keydown");
-  const keypress = document.getElementById("keypress");
-  const keyup = document.getElementById("keyup");
+    </div>
+  </body>
+  <script>
+    const myInput = document.getElementById("my-input");
+    const key = document.getElementById("key");
+    const code = document.getElementById("code");
+    const keypress = document.getElementById("keypress");
+    const keyup = document.getElementById("keyup");
+    const keydown = document.getElementById("keydown");
 
-  function presskeyEvent() {
-    keypress.classList.add('check');
+    function keypressEvent() {
+      keypress.classList.add("check");
 
-    setTimeout(function(){
-        keypress.classList.remove('check');
-    },300);
-  }
-  function downKeyEvent(e) {
-    if(e.code =='F1'){
-        e.preventDefault();
+      setTimeout(function () {
+        keypress.classList.remove("check");
+      }, 300);
     }
-    const el=document.querySelector(`#${e.code}`);
-    el.classList.add('on');
-    colorArr = [];
+
+    function keydownEvent(e) {
+      keypress.classList.add("check");
+      const el = document.getElementById(`${e.code}`);
+      colorArr = [];
       for (let i = 0; i < 3; i++) {
         colorArr.push(parseInt(Math.random() * 256));
       }
-      el.style.setProperty('--main-color', `rgb(${colorArr})`);
-      
-      const luma =
-        0.2126 * colorArr[0] + 0.7152 * colorArr[1] + 0.0722 * colorArr[2];
-      el.style.setProperty("--font-color", `${luma <= 155 ? "white" : "black"}`);
-    key.innerHTML=`key:${e.key}`;
-    code.innerHTML=`code:${e.key}`;
-    setTimeout(function(){
-        keydown.classList.remove('check');
-    },500);
-  }
-  function upKeyEvent(e) {
-    const el=document.querySelector(`#${e.code}`);
-    keyup.classList.add('check');
-    el.classList.remove('on')
-    setTimeout(function(){
-        keyup.classList.remove('check')
-    },500);
-    if(e.code =="AltRight"){
-      
-        el.classList.add('on')   
-     setTimeout(function(){
-        el.classList.remove('on')
-     },500);
-        
+      el.style.setProperty(`--main-color`, `rgb(${colorArr}`);
+      el.classList.add("on");
+      setTimeout(function () {
+        keydown.classList.remove("check");
+        el.classList.remove("on");
+      }, 300);
     }
-  }
 
-//   const rootStyles = window.getComputedStyle(el);
-// console.log(rootStyles.backgroundColor);
-
-// colorArr = [];
-// for(let i= 0; i < 3; i++){
-//     colorArr.push(parseInt(Math.random()*256));
-// }
-// el.style.setProperty('--main-color') = `rgb(${colorArr})`;
-
-
-myInput.addEventListener('keypress', presskeyEvent);
-  myInput.addEventListener('keydown', downKeyEvent);
-  myInput.addEventListener('keyup', upKeyEvent);
-</script>
+    myInput.addEventListener("keypress", keypressEvent);
+    myInput.addEventListener("keydown", keydownEvent);
+  </script>
 </html>
