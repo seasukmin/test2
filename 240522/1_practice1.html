@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="1_practice.css"/>
+</head>
+<body>
+    <img class="background" src="../resources/Img/background.png">
+    <div class="container">
+    <div class="header">
+        <button class="btn">
+            <img src="../resources/Img/left-arrow.png" width="30" height="30"/>
+        </button>
+        <img class="profile-pic" src="../resources/Img/profile.png" width="40" height="40"/>
+        <div class="info-block">
+            <p class="username">썸남</p>
+            <p class="status">1시간 전에 활동</p>
+        </div>
+        <div class="call-box">
+            <button class="btn"><img src="../resources/Img/phone-call.png" width="20" height="20"/></button>
+            <button class="btn"><img src="../resources/Img/video-call.png" width="20" height="20"/></button>
+        </div>
+    </div>
+    <div id="chat-box">
+        <div class="bubble friend-bubble">자니?</div>
+        <div class="bubble friend-bubble">자나보네</div>
+        <div class="bubble friend-bubble">잘자..</div>
+        <div class="bubble friend-bubble">왜 연락했어?</div>
+    </div>
+    <div class="footer">
+        <textarea id="input" placeholder="메세지를 입력하세요."></textarea>
+        <button class="btn" id="sendBtn">
+            <img src="../resources/Img/send.png" width="24" height="24"/>
+        </button>
+    </div>
+</div>
+</body>
+<script>
+  const chatBox = document.querySelector('#chat-box');
+  const input = document.querySelector('#input');
+  const sendBtn = document.querySelector('#sendBtn');
+
+  function sendMyText () {
+    const newMessage = input.value;
+    changeMessage = newMessage.replaceAll(" ",'&nbsp');
+    changeMessage = changeMessage.replaceAll('\n','<br>');
+    if (newMessage.length==0) {
+        return false;
+    }
+    const div = document.createElement('div');
+    div.innerHTML = changeMessage;
+    div.classList.add('bubble','my-bubble');
+    chatBox.append(div);
+    input.value="";
+  }
+
+  function sendMyTextByEnter (e){
+    if (e.key == 'Enter'&&!e.shiftKey) {
+        sendMyText();
+        e.preventDefault();
+    }
+  }
+
+  sendBtn.addEventListener('click',sendMyText);
+  input.addEventListener('keypress',sendMyTextByEnter);
+
+</script>
+</html>
