@@ -27,6 +27,7 @@
 .function-keys {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
   width: 700px;
 }
 .key {
