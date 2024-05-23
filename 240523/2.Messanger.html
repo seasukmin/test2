@@ -4,125 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="../240522/1_Messenger.css" />
   </head>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .background {
-      width: 100%;
-      max-width: 1200px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-    .container {
-      width: 340px;
-      height: 540px;
-      border: 1px solid black;
-      background-color: white;
-      padding: 5px;
-      box-shadow: 3px 3px 3px 0 #3e3e3e;
-      border-radius: 10px;
-    }
-    .btn {
-      border: none;
-      background-color: transparent;
-      cursor: pointer;
-    }
-    #header {
-      display: flex;
-    }
-    .phone-call {
-      display: flex;
-      justify-content: space-between;
-    }
-    #photo {
-      margin-left: 5px;
-      margin-right: 5px;
-    }
-    .input {
-      width: 200px;
-      padding-left: 10px;
-    }
-    #Text1 {
-      margin: 0 0 3px;
-    }
-
-    #Text2 {
-      margin: 0;
-      font-size: 12px;
-    }
-    #main {
-      height: 400px;
-      margin: 5px;
-      display: flex;
-      flex-direction: column;
-      overflow: auto;
-    }
-    #footer {
-      height: 80px;
-      display: flex;
-      justify-content: center;
-    }
-    #area {
-      width: 280px;
-      height: 60px;
-      border-radius: 10px;
-      margin-top: 12px;
-      margin-left: 5px;
-      background-color: #e8e8e8;
-      padding: 5px;
-      resize: none;
-      border: none;
-    }
-    .bubble {
-      margin: 5px 0;
-      max-width: 300px;
-      font-size: 14px;
-      width: max-content;
-    }
-    .friend-bubble {
-      background-color: #f3f0f5;
-      border-radius: 14px 14px 14px 0;
-      padding: 7px 15px;
-      color: #8f00fe;
-    }
-
-    .my-bubble {
-      background-color: #8f00fe;
-      border-radius: 14px 14px 0px 14px;
-      padding: 7px 15px;
-      color: #f3f0f5;
-      align-self: flex-end;
-    }
-  </style>
+  <style></style>
   <body>
     <img class="background" src="../resources/Img/background.png" />
+    <!--header : 상대방 정보 표시 및 전화(음성, 영상)통화 버튼-->
     <div class="container">
-      <div id="header">
+      <div class="header">
         <button class="btn">
           <img src="../resources/Img/left-arrow.png" width="30" height="30" />
         </button>
         <img
-          id="photo"
+          class="profile-pic"
           src="../resources/Img/profile.png"
           width="40"
           height="40"
         />
-        <div class="input">
-          <p id="Text1">썸남</p>
-          <p id="Text2">1시간 전에 활동</p>
+        <div class="info-block">
+          <p class="username">썸남</p>
+          <p class="status">1시간 전에 활동</p>
         </div>
-        <div class="phone-call">
+        <div class="call-box">
           <button class="btn">
             <img src="../resources/Img/phone-call.png" width="20" height="20" />
           </button>
@@ -131,47 +34,50 @@
           </button>
         </div>
       </div>
-      <div id="main">
+      <!-- 대화내용 표시부-->
+      <div id="chat-box">
         <div class="bubble friend-bubble">자니?</div>
-        <div class="bubble friend-bubble">자나보네?</div>
-        <div class="bubble friend-bubble">잘자</div>
-        <div class="bubble my-bubble">왜 연락했어</div>
+        <div class="bubble friend-bubble">자나보네..</div>
+        <div class="bubble friend-bubble">잘자..</div>
+        <div class="bubble my-bubble">왜 연락했어?</div>
       </div>
-      <div id="footer">
-        <textarea id="area" placeholder="메세지를 입력해주세요."></textarea>
-        <button class="btn" id="send">
-          <img src="../resources/Img/send.png" width="25" height="25" />
+
+      <!--대화 작성부-->
+      <div class="footer">
+        <textarea id="input" placeholder="메세지를 입력하세요."></textarea>
+        <button class="btn" id="sendBtn">
+          <img src="../resources/Img/send.png" width="24" height="24" />
         </button>
       </div>
     </div>
   </body>
   <script>
-    const area = document.querySelector("#area");
-    const main = document.querySelector("#main");
-    const send = document.querySelector("#send");
+    const chatBox = document.querySelector("#chat-box");
+    const input = document.querySelector("#input");
+    const send = document.querySelector("#sendBtn");
 
     function sendMessage() {
-      const newMessage = area.value;
+      const newMessage = input.value;
       if (newMessage.length == 0) {
         return false;
       }
-      changeMessage = newMessage.replaceAll(" ", "&nbsp");
+      let changeMessage = newMessage.replaceAll(" ", "&nbsp;");
       changeMessage = changeMessage.replaceAll("\n", "<br>");
       const div = document.createElement("div");
       div.classList.add("bubble", "my-bubble");
       div.innerHTML = changeMessage;
-      main.append(div);
-      main.scrollTop = main.scrollHeight;
-      area.value = "";
+      chatBox.append(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      input.value = "";
     }
+
     function sendMessageText(e) {
-      if (e.key == "Enter" && !e.shiftKey) {
+      if (e.code == "Enter" && !e.shiftKey) {
         sendMessage();
         e.preventDefault();
       }
     }
-
     send.addEventListener("click", sendMessage);
-    area.addEventListener("keypress", sendMessageText);
+    input.addEventListener("keypress", sendMessageText);
   </script>
 </html>

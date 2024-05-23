@@ -6,7 +6,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-self: center;
 }
 
 .background {
@@ -18,10 +18,11 @@ body {
   z-index: -1;
 }
 
-#container {
+.container {
   width: 340px;
   height: 540px;
-  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 1px 1px 10px #333333;
   background-color: white;
 }
 
@@ -30,26 +31,62 @@ body {
   background-color: transparent;
   cursor: pointer;
 }
-
-#header {
+.header {
   display: flex;
   height: 60px;
   padding: 12px 5px 8px;
 }
-
-.pTag {
-  margin: 0 0 3px;
+.info-block {
+  margin-left: 12px;
+  margin-right: 80px;
 }
-.active {
+.username {
+  margin: 0 0 3px;
+  font-size: 16px;
+}
+.status {
   margin: 0;
   font-size: 12px;
   color: #999999;
 }
-.button {
+
+.call-box {
   display: flex;
+  width: 60px;
   justify-content: space-between;
 }
-.info-block {
-  margin-left: 12px;
-  margin-right: 80px;
+#chat-box {
+  height: 400px;
+  padding: 12px 10px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.bubble {
+  margin: 5px 0;
+  max-width: 300px;
+  font-size: 14px;
+  width: max-content;
+}
+.friend-bubble {
+  background-color: #f3f0f5;
+  border-radius: 14px 14px 14px 0;
+  padding: 7px 15px;
+  color: #8f00fe;
+}
+.my-bubble {
+  background-color: #8f00fe;
+  border-radius: 14px 14px 0px 14px;
+  padding: 7px 15px;
+  color: #f3f0f5;
+  align-self: flex-end;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+  height: 80px;
+  align-items: center;
 }

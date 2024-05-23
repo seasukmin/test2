@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="..//240521/1_keyboard.css" />
+    <link rel="stylesheet" href="1.keyboard.css" />
   </head>
   <body>
     <input type="text" id="my-input" />
@@ -126,35 +126,32 @@
     </div>
   </body>
   <script>
-    const myInput = document.querySelector("#my-input");
+    const Input = document.querySelector("#my-input");
     const key = document.querySelector("#key");
     const code = document.querySelector("#code");
     const keypress = document.querySelector("#keypress");
     const keydown = document.querySelector("#keydown");
     const keyup = document.querySelector("#keyup");
 
-    function KeypressEvent() {
+    function keypressEvent() {
       keypress.classList.add("check");
 
       setTimeout(function () {
         keypress.classList.remove("check");
       }, 300);
     }
-
     function keydownEvent(e) {
+      const el = document.querySelector(`#${e.code}`);
+      keydown.classList.add("check");
       if (e.code == "F1" || e.code == "F3") {
         e.preventDefault();
       }
-      const el = document.querySelector(`#${e.code}`);
-      keydown.classList.add("check");
-
+      el.classList.add("on");
       colorArr = [];
       for (let i = 0; i < 3; i++) {
         colorArr.push(parseInt(Math.random() * 256));
       }
       el.style.setProperty("--main-color", `rgb(${colorArr})`);
-
-      el.classList.add("on");
 
       setTimeout(function () {
         keydown.classList.remove("check");
@@ -164,8 +161,8 @@
 
     function keyupEvent(e) {
       const el = document.querySelector(`#${e.code}`);
-      keyup.classList.add("check");
       el.classList.remove("on");
+      keyup.classList.add("check");
 
       setTimeout(function () {
         keyup.classList.remove("check");
@@ -184,8 +181,8 @@
       }
     }
 
-    myInput.addEventListener("keypress", KeypressEvent);
-    myInput.addEventListener("keydown", keydownEvent);
-    myInput.addEventListener("keyup", keyupEvent);
+    Input.addEventListener("keypress", keypressEvent);
+    Input.addEventListener("keydown", keydownEvent);
+    Input.addEventListener("keyup", keyupEvent);
   </script>
 </html>

@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+#my-input {
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+}
+
+.events {
+  border: 1px solid black;
+  border-left: none;
+  margin: 5px;
+  width: 333px;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.event {
+  border-left: 1px solid black;
+  padding-top: 5px;
+  width: 50%;
+  text-align: center;
+}
+
+.function-keys {
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+}
+.key {
+  width: 43px;
+  height: 43px;
+  border: 1px solid black;
+  margin: 1px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#keypress.check {
+  background-color: green;
+}
+#keydown.check {
+  background-color: red;
+}
+#keyup.check {
+  background-color: blue;
+}
+.main-keys {
+  width: 700px;
+  height: 300px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+#Backspace,
+#Tab,
+#CapsLock {
+  width: 110px;
+}
+#Enter {
+  width: 86px;
+}
+#ShiftRight,
+#ShiftLeft {
+  width: 120px;
+}
+#Space {
+  width: 284px;
+}
+.on {
+  color: black;
+  background-color: var(--main-color);
+  transform: translate(1px);
+  box-shadow: 0 0 5px black;
+}
