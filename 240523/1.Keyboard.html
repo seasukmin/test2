@@ -146,6 +146,8 @@
       if (e.code == "F1" || e.code == "F3") {
         e.preventDefault();
       }
+      key.innerHTML = `key : ${e.key}`;
+      code.innerHTML = `code : ${e.code}`;
       el.classList.add("on");
       colorArr = [];
       for (let i = 0; i < 3; i++) {

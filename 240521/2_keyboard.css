@@ -31,7 +31,7 @@
   background-color: rgb(255, 78, 78);
 }
 #keyup.check {
-  background-color: rgb(73, 73, 250);
+  background-color: black;
 }
 .function-keys {
   width: 730px;

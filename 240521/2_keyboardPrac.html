@@ -126,39 +126,65 @@
     </div>
   </body>
   <script>
-    const myInput = document.getElementById("my-input");
-    const key = document.getElementById("key");
-    const code = document.getElementById("code");
-    const keypress = document.getElementById("keypress");
-    const keyup = document.getElementById("keyup");
-    const keydown = document.getElementById("keydown");
+    const input = document.querySelector("#my-input");
+    const key = document.querySelector("#key");
+    const code = document.querySelector("#code");
+    const keypress = document.querySelector("#keypress");
+    const keydown = document.querySelector("#keydown");
+    const keyup = document.querySelector("#keyup");
 
     function keypressEvent() {
       keypress.classList.add("check");
 
       setTimeout(function () {
         keypress.classList.remove("check");
-      }, 300);
+      });
     }
 
     function keydownEvent(e) {
-      keypress.classList.add("check");
-      const el = document.getElementById(`${e.code}`);
-
+      const el = document.querySelector(`#${e.code}`);
+      keydown.classList.add("check");
+      if (e.code == "F1" && e.code == "F3") {
+        e.preventDefault();
+      }
       el.classList.add("on");
-
       colorArr = [];
       for (let i = 0; i < 3; i++) {
         colorArr.push(parseInt(Math.random() * 256));
       }
       el.style.setProperty("--main-color", `rgb(${colorArr})`);
+      key.innerHTML = `key: ${e.key}`;
+      code.innerHTML = `code: ${e.code}`;
       setTimeout(function () {
         keydown.classList.remove("check");
         el.classList.remove("on");
       }, 300);
     }
 
-    myInput.addEventListener("keypress", keypressEvent);
-    myInput.addEventListener("keydown", keydownEvent);
+    function keyupEvent(e) {
+      const el = document.querySelector(`#${e.code}`);
+      keyup.classList.add("check");
+      // el.classList.remove("on");
+
+      setTimeout(function () {
+        keyup.classList.remove("check");
+      }, 300);
+
+      if (e.code == "AltRight") {
+        el.classList.add("on");
+        colorArr = [];
+        for (let i = 0; i < 3; i++) {
+          colorArr.push(parseInt(Math.random() * 256));
+        }
+        el.style.setProperty("--main-color", `rgb(${colorArr})`);
+      }
+      setTimeout(function () {
+        el.classList.remove("on");
+      }, 300);
+    }
+
+    input.addEventListener("keypress", keypressEvent);
+    input.addEventListener("keydown", keydownEvent);
+    input.addEventListener("keyup", keyupEvent);
   </script>
 </html>
