@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <i class="bx bxs-check-shield"></i>
+      </header>
+      <h4>Enter OTP Code</h4>
+    </div>
+    <form>
+      <div class="input-field">
+        <input type="number" />
+        <input type="number" disabled />
+        <input type="number" disabled />
+        <input type="number" disabled />
+        <button>Verify OTP</button>
+      </div>
+    </form>
+  </body>
+  <script>
+    // input 요소들 가져오기
+    const inputs = document.querySelectorAll("input");
+
+    // button 요소 가져오기
+    const button = document.querySelector("button");
+
+    // input 요소들에 이벤트 함수 달아주기
+    inputs.forEach((el, index) => {
+      el.addEventListener("keyup", (e) => {
+        // 앞에서부터 입력될 때 다음 input을 활성화
+        const currentInput = el;
+        const nextInput = el.nextElementSibling;
+        const prevInput = el.previousElementSibling;
+
+        if (currentInput.value.length >= 1) {
+          currentInput.value = currentInput.value.substring(0, 1);
+          currentInput.blur();
+        }
+        if (
+          nextInput &&
+          nextInput.hasAttribute("disabled") &&
+          currentInput.value !== ""
+        ) {
+          nextInput.removeAttribute;
+        }
+      });
+    });
+  </script>
+</html>

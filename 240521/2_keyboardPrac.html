@@ -138,23 +138,21 @@
 
       setTimeout(function () {
         keypress.classList.remove("check");
-      });
+      }, 300);
     }
 
     function keydownEvent(e) {
       const el = document.querySelector(`#${e.code}`);
+      key.innerHTML = `key : ${e.key}`;
+      code.innerHTML = `code : ${e.code}`;
       keydown.classList.add("check");
-      if (e.code == "F1" && e.code == "F3") {
-        e.preventDefault();
-      }
       el.classList.add("on");
       colorArr = [];
       for (let i = 0; i < 3; i++) {
         colorArr.push(parseInt(Math.random() * 256));
       }
       el.style.setProperty("--main-color", `rgb(${colorArr})`);
-      key.innerHTML = `key: ${e.key}`;
-      code.innerHTML = `code: ${e.code}`;
+
       setTimeout(function () {
         keydown.classList.remove("check");
         el.classList.remove("on");
@@ -164,22 +162,10 @@
     function keyupEvent(e) {
       const el = document.querySelector(`#${e.code}`);
       keyup.classList.add("check");
-      // el.classList.remove("on");
+      el.classList.remove("on");
 
       setTimeout(function () {
         keyup.classList.remove("check");
-      }, 300);
-
-      if (e.code == "AltRight") {
-        el.classList.add("on");
-        colorArr = [];
-        for (let i = 0; i < 3; i++) {
-          colorArr.push(parseInt(Math.random() * 256));
-        }
-        el.style.setProperty("--main-color", `rgb(${colorArr})`);
-      }
-      setTimeout(function () {
-        el.classList.remove("on");
       }, 300);
     }
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <input id="input" type="text" placeholder="단어를 입력하세요" />
+    </div>
+    <div class="score">총점 : 0</div>
+  </body>
+  <script>
+    const words = [
+      "DW",
+      "JavaScript",
+      "DOM",
+      "BOM",
+      "document",
+      "window",
+      "Event",
+    ];
+    const input = document.querySelector("#input");
+    const scorePanel = document.querySelector(".score");
+    let count = 0;
+    let score = 0;
+    // 단어들이 뿌려질 container의 범위를 파악한다.
+    const container = document.querySelector("#container");
+    console.log(
+      `offsetWidth: ${container.offsetWidth}, offsetHeight: ${container.offsetHeight}`
+    );
+    const maxPositionX = container.offsetWidth - 100;
+    const maxPositionY = container.offsetHeight - 100;
+
+    // 단어를 생성하고 화면에 출력하는 부분
+    function init() {
+      words.forEach(function (el) {
+        // forEach는 words를 반복하지?
+        const span = document.createElement("span");
+        span.innerHTML = el;
+        span.classList.add("word");
+        span.setAttribute("id", el);
+        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+        container.append(span);
+      });
+    }
+  </script>
+</html>
