@@ -81,6 +81,9 @@
         span.innerHTML = el;
         span.classList.add("word");
         span.setAttribute("id", el);
+        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+        container.append(span);
       });
     }
   </script>
