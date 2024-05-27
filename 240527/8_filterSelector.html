@@ -21,11 +21,12 @@
       padding: 10px 0;
       font-size: 32px;
     }
-
+    table {
+      border-collapse: collapse;
+    }
     td {
       width: 200px;
-      height: 20px;
-      font-size: 20px;
+      font-size: 32px;
       text-align: center;
     }
   </style>
@@ -42,7 +43,7 @@
       <li>nine</li>
     </ul>
 
-    <table>
+    <table border="1">
       <tr>
         <td>이름</td>
         <td>주소</td>
@@ -74,7 +75,8 @@
     $("li:gt(4)").css("color", "pink");
     $("li:eq(4)").css("color", "blue");
 
-    $("tr:even").css("backgroundColor", "gray");
+    $("tr:even").css("backgroundColor", "#9f9f9f");
+    $("tr:odd").css("backgroundColor", "#f9f9f9");
     $("tr:first").css("backgroundColor", "black").css("color", "white");
   </script>
 </html>
