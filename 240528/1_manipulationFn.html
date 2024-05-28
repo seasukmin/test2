@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조작 관련 함수</title>
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <style>
+    * {
+      font-size: 32px;
+    }
+    p {
+      cursor: pointer;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <body>
+    <p>우주배경</p>
+    <p>컴1</p>
+    <p>진돗개</p>
+    <p>커피</p>
+  </body>
+  <script>
+    const imgArr = ["우주배경.jpg", "컴1.jpg", "진돗개.jpg", "커피.jpg"];
+    $("p").on("click", function () {
+      const index = $(this).index();
+      const pTags = $("p");
+      console.log(pTags);
+      //   console.log(index);
+      // 요소 내부에 추가
+      const imgTag = `<img src="../resources/Img/${imgArr[index]}"/>`;
+      // ~에 ~무엇을 ==> append
+      //   $(this).append(imgTag);
+      // ~무엇을 ~에 ==> appendTo
+      //   $(imgTag).appendTo(this);
+      // ~에 ~무엇을 ==> prepend
+      //   $(this).prepend(imgTag);
+      //   $(imgTag).prependTo(this);
+
+      // 요소 외부에 추가
+      //   $(this).after(imgTag); //???
+      //   $(imgTag).insertAfter(this);
+      $(this).before(imgTag);
+    });
+  </script>
+</html>
