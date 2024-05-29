@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../resources/js/jquery-3.6.4.js"></script>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      background-image: url(../resources/Img/background.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    input {
+      width: 180px;
+      height: 30px;
+      align-self: center;
+    }
+    .word {
+      color: #ffffff;
+      font-size: 30px;
+      font-weight: 500;
+      position: absolute;
+    }
+    .score {
+      color: #ffffff;
+      font-size: 40px;
+      font-weight: 600;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 15px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <input type="text" placeholder="단어를 입력하세요." />
+    </div>
+    <div clas="score">총점 : 0</div>
+  </body>
+  <script>
+    const words = [
+      "DW",
+      "JavaScript",
+      "DOM",
+      "BOM",
+      "document",
+      "window",
+      "Event",
+    ];
+    $.each(words, function (index, element) {
+      const span = document.createElement("span");
+      $("span").append(element);
+
+      console.log(span);
+    });
+  </script>
+</html>
