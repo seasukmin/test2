@@ -10,25 +10,24 @@
       box-sizing: border-box;
     }
     body {
-      margin: 0;
-      padding: 0;
       height: 100vh;
-      background-image: url(../resources/Img/background.jpg);
+      padding: 0;
+      margin: 0;
+      background-image: url(..//resources//Img//background.jpg);
       background-size: cover;
       background-repeat: no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-
-    .container {
+    #container {
       width: 90%;
       height: 80%;
       position: relative;
     }
-    input {
+    #input {
       width: 180px;
-      height: 30px;
+      height: 45px;
       font-size: 16px;
       padding: 10px;
       border: none;
@@ -54,28 +53,21 @@
     }
   </style>
   <body>
-    <div class="container">
-      <input type="text" placeholder="단어를 입력하세요." />
+    <div id="container">
+      <input id="input" type="text" placeholder="단어를 입력해주세요." />
     </div>
     <div class="score">총점 : 0</div>
   </body>
   <script>
-    const words = [
-      "DW",
-      "JavaScript",
-      "DOM",
-      "BOM",
-      "document",
-      "window",
-      "Event",
-    ];
-    const input = document.querySelector("input");
+    const words = ["DW", "JavaScript", "window"];
+
+    const input = document.querySelector("#input");
     const scorePanel = document.querySelector(".score");
     let count = 0;
     let score = 0;
 
-    const container = document.querySelector(".container");
-    const maxPositionX = container.offsetWidth - 90;
+    const container = document.querySelector("#container");
+    const maxPositionX = container.offsetWidth - 100;
     const maxPositionY = container.offsetHeight - 100;
 
     function init() {
@@ -89,6 +81,7 @@
         container.append(span);
       });
     }
+
     input.addEventListener("change", function () {
       const word = document.querySelector(`span[id=${input.value}]`);
       if (word != null) {
@@ -98,20 +91,21 @@
         count++;
 
         if (count == words.length) {
-          alert("clear");
-          if (confirm("재도전?")) {
+          alert("clear!!");
+          if (confirm("재도전??")) {
             window.location.reload();
           }
         }
       }
       input.value = "";
     });
+
     function wordRain() {
       const words = document.querySelectorAll(".word");
       setInterval(function () {
         words.forEach(function (el) {
           const rectSize = el.getBoundingClientRect();
-          el.style.top = `${rectSize.top - 75}px`;
+          el.style.top = `${rectSize.top - 65}px`;
           if (
             el.getBoundingClientRect().bottom >
             container.getBoundingClientRect().bottom -
