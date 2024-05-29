@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="../resources/js/jquery-3.6.4.js"></script>
   </head>
   <style>
     * {
       box-sizing: border-box;
     }
     body {
+      margin: 0;
+      padding: 0;
       height: 100vh;
       background-image: url(../resources/Img/background.jpg);
       background-size: cover;
@@ -23,14 +24,18 @@
     .container {
       width: 90%;
       height: 80%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      position: relative;
     }
     input {
       width: 180px;
       height: 30px;
-      align-self: center;
+      font-size: 16px;
+      padding: 10px;
+      border: none;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
     }
     .word {
       color: #ffffff;
@@ -52,7 +57,7 @@
     <div class="container">
       <input type="text" placeholder="단어를 입력하세요." />
     </div>
-    <div clas="score">총점 : 0</div>
+    <div class="score">총점 : 0</div>
   </body>
   <script>
     const words = [
@@ -64,11 +69,60 @@
       "window",
       "Event",
     ];
-    $.each(words, function (index, element) {
-      const span = document.createElement("span");
-      $("span").append(element);
+    const input = document.querySelector("input");
+    const scorePanel = document.querySelector(".score");
+    let count = 0;
+    let score = 0;
 
-      console.log(span);
+    const container = document.querySelector(".container");
+    const maxPositionX = container.offsetWidth - 90;
+    const maxPositionY = container.offsetHeight - 100;
+
+    function init() {
+      words.forEach(function (el) {
+        const span = document.createElement("span");
+        span.innerHTML = el;
+        span.classList.add("word");
+        span.setAttribute("id", el);
+        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+        container.append(span);
+      });
+    }
+    input.addEventListener("change", function () {
+      const word = document.querySelector(`span[id=${input.value}]`);
+      if (word != null) {
+        word.remove();
+        score = score + 100;
+        scorePanel.innerHTML = `총점 : ${score}`;
+        count++;
+
+        if (count == words.length) {
+          alert("clear");
+          if (confirm("재도전?")) {
+            window.location.reload();
+          }
+        }
+      }
+      input.value = "";
     });
+    function wordRain() {
+      const words = document.querySelectorAll(".word");
+      setInterval(function () {
+        words.forEach(function (el) {
+          const rectSize = el.getBoundingClientRect();
+          el.style.top = `${rectSize.top - 75}px`;
+          if (
+            el.getBoundingClientRect().bottom >
+            container.getBoundingClientRect().bottom -
+              parseInt(getComputedStyle(input).height.split("px")[0])
+          ) {
+            el.remove();
+          }
+        });
+      }, 1000);
+    }
+    init();
+    wordRain();
   </script>
 </html>
