@@ -53,21 +53,25 @@
     }
   </style>
   <body>
-    <div id="container">
-      <input id="input" type="text" placeholder="단어를 입력해주세요." />
+    <div class="container">
+      <input id="input" type="text" placeholder="단어를 입력하세요" />
     </div>
     <div class="score">총점 : 0</div>
   </body>
   <script>
-    const words = ["DW", "JavaScript", "window"];
-
-    const input = document.querySelector("#input");
+    const words = [
+      "DW",
+      "JavaScript",
+      "DOM",
+      "BOM",
+      "document",
+      "window",
+      "Event",
+    ];
+    const input = document.querySelector("input");
     const scorePanel = document.querySelector(".score");
-    let count = 0;
-    let score = 0;
-
-    const container = document.querySelector("#container");
-    const maxPositionX = container.offsetWidth - 100;
+    const container = document.querySelector(".container");
+    const maxPositionX = container.offsetWidth - 90;
     const maxPositionY = container.offsetHeight - 100;
 
     function init() {
@@ -91,7 +95,7 @@
         count++;
 
         if (count == words.length) {
-          alert("clear!!");
+          alert("clear");
           if (confirm("재도전??")) {
             window.location.reload();
           }
@@ -105,7 +109,7 @@
       setInterval(function () {
         words.forEach(function (el) {
           const rectSize = el.getBoundingClientRect();
-          el.style.top = `${rectSize.top - 65}px`;
+          el.style.top = `${rectSize.top - 75}px`;
           if (
             el.getBoundingClientRect().bottom >
             container.getBoundingClientRect().bottom -
