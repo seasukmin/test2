@@ -69,13 +69,12 @@
     // joinFormobj[input.name] = input.value;
     // });
 
-    const joinFormobj = formElChildrenArr.reduce(
-      (acc, cur) =>
-        // acc[cur.name] = cur.value;
-        // return acc;
-        // return {...acc, [cur.name]: cur.value}
-        ({ ...acc, [cur.name]: cur.value }),
-      {}
+    const joinFormobj = formElChildrenArr.reduce((acc, cur) =>
+      // acc[cur.name] = cur.value;
+      // return acc;
+      // consol.log(joinFormobj);
+      // return {...acc, [cur.name]: cur.value}
+      ({ ...acc, [cur.name]: cur.value })
     );
     console.log(joinFormobj);
     // formElChildren.name.value
