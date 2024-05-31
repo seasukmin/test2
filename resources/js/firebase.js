@@ -6,17 +6,16 @@ import {
   setDoc,
   doc,
   addDoc,
-} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCREEdi1EUrARen8jLYiZXP1o7mOkdj1lc",
-  authDomain: "myproject-8e5f0.firebaseapp.com",j
+  authDomain: "myproject-8e5f0.firebaseapp.com",
   projectId: "myproject-8e5f0",
   storageBucket: "myproject-8e5f0.appspot.com",
   messagingSenderId: "981961164823",
   appId: "1:981961164823:web:227d68716308f588fbf452",
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -24,7 +23,6 @@ const db = getFirestore(app);
 async function getDatas(collectionName) {
   const collect = await collection(db, collectionName);
   const snapshot = await getDocs(collect);
-
   return snapshot;
 }
 
@@ -44,4 +42,5 @@ async function addDatas(collectionName, dataObj) {
     return false;
   }
 }
+
 export { db, getDatas, addDatas };
