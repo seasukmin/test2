@@ -61,6 +61,7 @@
       box.classList.remove("active");
       //   console.log(e.dataTransfer);
       const files = [...e.dataTransfer.files];
+      console.log(...e.dataTransfer.files);
       //   title.innerHTML = files.map((e) => e.name).join("<br>");
 
       const fileNames = files.map(function (e) {

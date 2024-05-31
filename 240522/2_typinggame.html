@@ -41,9 +41,43 @@
     }
     .word {
       color: #ffffff;
-      font-size: 30px;
+      font-size: 20px;
       font-weight: 500;
       position: absolute;
+      animation-name: myanimation;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      border: 5px solid #3e3e3e;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes myanimation {
+      0% {
+        background-color: red;
+        transform: rotate(0deg);
+      }
+      25% {
+        background-color: YELLOW;
+        transform: rotate(25deg);
+      }
+      50% {
+        background-color: blue;
+        transform: rotate(50deg);
+      }
+      75% {
+        background-color: green;
+        transform: rotate(75deg);
+      }
+      100% {
+        background-color: red;
+        transform: rotate(100deg);
+      }
     }
     .score {
       color: #ffffff;
@@ -139,7 +173,7 @@
       setInterval(function () {
         words.forEach(function (el) {
           const rectSize = el.getBoundingClientRect();
-          el.style.top = `${rectSize.top - 75}px`;
+          el.style.top = `${rectSize.top - 55}px`;
           if (
             el.getBoundingClientRect().bottom >
             container.getBoundingClientRect().bottom -
