@@ -1,0 +1,36 @@
+html {
+  font-family: pretendard;
+  word-break: keep-all;
+}
+body {
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+}
+
+.DWMusic {
+  position: fixed;
+  inset: 0;
+  padding: 50px;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.bgcodfun {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bg-video {
+  width: 100%;
+  opacity: 0.5;
+}
+.coding {
+  font-size: 48px;
+  opacity: 0.5;
+}
+.fun {
+  font-size: 60px;
+  font-weight: 700;
+}
