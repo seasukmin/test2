@@ -67,3 +67,36 @@ body {
   font-size: 24px;
   font-weight: 300;
 }
+.Member-box {
+  width: 100%;
+  height: 300px;
+  background-color: rgba(124, 0, 226, 0.664);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 150px;
+  color: white;
+}
+.Member {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.Member1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.Member2 {
+  font-size: 24px;
+  font-weight: 300;
+}
+.benefit {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  border: 2px solid white;
+  border-radius: 15px;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 25px;
+}
