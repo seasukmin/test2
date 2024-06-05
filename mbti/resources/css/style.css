@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+.conteiner {
+  width: 100%;
+}
+html {
+  font-family: pretendard;
+}
+
+body {
+  margin: 0;
+}
