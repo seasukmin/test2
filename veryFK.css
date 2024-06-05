@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: pretendard;
+  word-break: keep-all;
+}
+body {
+  background-color: black;
+}
+.DWMusic {
+  position: fixed;
+  left: 280px;
+  top: 50px;
+  color: white;
+  font-weight: 700;
+  width: 100%;
+  z-index: 1;
+}
+.bgcodfun {
+  position: relative;
+}
+.codfun {
+  position: absolute;
+  left: 50%;
+  top: 37%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.coding {
+  font-size: 48px;
+  color: gray;
+}
+.fun {
+  font-size: 80px;
+  font-weight: 700;
+  color: white;
+}
+.bg {
+  width: 100%;
+}
+.bg-video {
+  width: 100%;
+  opacity: 0.5;
+}
+.phone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+}
+.phText {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 24px;
+}
+.phText1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+.phText2 {
+  font-size: 24px;
+  font-weight: 300;
+}
