@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Pretendard;
+  word-break: keep-all;
+  font-size: 16px;
+}
+section {
+  max-width: 1120px;
+  width: 100%;
+  margin: 80px auto;
+  padding: 0 36px;
+}
+.maGazin {
+  display: flex;
+  gap: 40px;
+}
+.maGazin-img {
+  border-radius: 24px;
+}
+.maGaiz-Text1 {
+  border: 1px solid #33333b;
+  background-color: #33333b;
+  width: fit-content;
+  padding: 10px 15px;
+  border-radius: 15px;
+  color: #868686;
+  font-weight: 700;
+}
+.maGaiz-Text2 {
+  font-weight: 700;
+  font-size: 48px;
+}
+#Playlist {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 24px;
+}
+.Playlist-img {
+  border-radius: 20px;
+  width: 100%;
+}
+.Playlist-Text1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+.Playlist-Text2 {
+  opacity: 0.5;
+}
+.Recommends {
+  display: flex;
+  gap: 24px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  opacity: 0.7;
+}
+.Recommend-img {
+  margin: 20px;
+}
+.Feelings-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.Feeling-img {
+  border-radius: 15px;
+  width: 100%;
+}
+.Top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.Top-img {
+  border-radius: 10px;
+}
+.Top-main {
+  display: flex;
+  gap: 24px;
+}
+.Top-num {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+.Top-num1 {
+  border: 1px solid #3e3e3e;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #33333b;
+  font-weight: 700;
+  font-size: 24px;
+}
+.Top-num2 {
+  color: red;
+  font-size: 12px;
+}
+.Top-Text1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.Top-Text2 {
+  font-size: 24px;
+  opacity: 0.6;
+}
