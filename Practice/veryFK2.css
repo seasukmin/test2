@@ -1,0 +1,61 @@
+main {
+  margin-left: 240px;
+  margin-bottom: 130px;
+}
+section {
+  max-width: 1180px;
+  width: 100%;
+  margin: 80px auto;
+  padding: 0 36px;
+}
+.Magazin {
+  display: flex;
+  gap: 24px;
+}
+.Magazin-img {
+  border-radius: 15px;
+}
+.Magazin-Text {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+}
+.Magazin-Text1 {
+  border: 1px solid #3e3e3e;
+  background-color: #3e3e3e;
+  border-radius: 15px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+.Magazin-Text2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+.Magazin-Text3 {
+  opacity: 0.5;
+}
+.Playlists {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.Playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.Playlist-img {
+  width: 100%;
+  border-radius: 15px;
+}
+.Playlist-Text1 {
+  font-size: 24px;
+  font-weight: 500;
+}
+.Playlist-Text2 {
+  opacity: 0.5;
+}

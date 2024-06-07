@@ -30,8 +30,39 @@
       </div>
     </div>
   </body>
-  <script>
+  <script type="module">
+    import { getDatas } from "./resources/js/firebase.js";
+    // 모듈형일때 경로에 앞에 ./ << 현재 있는 곳을 붙여줘야한다.
     const items = document.getElementById("items");
+
+    async function getMbtiinfo() {
+      const datas = await getDatas("mbtiColor");
+      let idx = 1;
+      datas.forEach((doc) => {
+        const info = doc.data();
+        items.insertAdjacentHTML(
+          "afterbegin",
+          `
+        <li class="item">
+            <div class="item-id">${idx}</div>
+            <div class="item-mbti">${info.mbti}</div>
+            <div class="item-arrow">
+              <img class="item-arrow-icon" src="resources/img/arrow.svg" />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: ${info.code}"
+            ></div>
+            <div class="item-color-code">${info.code}</div>
+          </li>
+        `
+        );
+        idx++;
+        // console.log(doc.data());
+      });
+      // console.log(datas[0]);
+    }
+    getMbtiinfo();
     const mbtiArr = [
       { mbti: "ENFP", code: "#efb578" },
       { mbti: "ENFP", code: "#8649b6" },
@@ -55,25 +86,25 @@
       { mbti: "INFJ", code: "#5f6600" },
     ];
     // const newmbtiArr = mbtiArr.length;
-    mbtiArr.forEach((info, idx) => {
-      //   const reverseIdx = newmbtiArr - idx;
-      items.insertAdjacentHTML(
-        "afterbegin",
-        `
-        <li class="item">
-            <div class="item-id">${idx + 1}</div>
-            <div class="item-mbti">${info.mbti}</div>
-            <div class="item-arrow">
-              <img class="item-arrow-icon" src="resources/img/arrow.svg" />
-            </div>
-            <div
-              class="item-color-chip"
-              style="background-color: ${info.code}"
-            ></div>
-            <div class="item-color-code">${info.code}</div>
-          </li>
-        `
-      );
-    });
+    // mbtiArr.forEach((info, idx) => {
+    //   //   const reverseIdx = newmbtiArr - idx;
+    //   items.insertAdjacentHTML(
+    //     "afterbegin",
+    //     `
+    //     <li class="item">
+    //         <div class="item-id">${idx + 1}</div>
+    //         <div class="item-mbti">${info.mbti}</div>
+    //         <div class="item-arrow">
+    //           <img class="item-arrow-icon" src="resources/img/arrow.svg" />
+    //         </div>
+    //         <div
+    //           class="item-color-chip"
+    //           style="background-color: ${info.code}"
+    //         ></div>
+    //         <div class="item-color-code">${info.code}</div>
+    //       </li>
+    //     `
+    //   );
+    // });
   </script>
 </html>
