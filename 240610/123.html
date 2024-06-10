@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    // text/javascript가 디폴트값
+
+    // 변수는 데이터를 저장할 때 쓰이는 '이름이 붙은 저장소'이다.
+
+    let message; // 선언만 되어있는 변수이며, undefined 값이 할당 되어있다.
+    message = "Hello";
+
+    // 변수 명명 규칙
+    // 1. 변수명에는 문자와 숫자, 특수문자($,_)
+    // 2. 첫번째 문자는 숫자가 될 수 없다.
+    // 3. 예악어는 사용할 수 없다.
+    let $;
+
+    // 1. admin과 name이라는 변수를 선언하세요.
+    let admin;
+    let name;
+    // 2. name에 값으로 "John"을 할당해 보세요.
+    name = "John";
+    // 3. name의 값을 admin에 똑같이 넣어보세요.
+    admin = name;
+    // 4. admin의 값을 alert 창으로 띄워보세요. "John"이 출력되어야 합니다.
+    alert(`${admin}`);
+
+    let str1 = "Hello";
+    let str2 = "Single quotes";
+    let str3 = `can embed another ${str1}`;
+
+    // 조건부 연산자 '?'
+    let num3 = +prompt("숫자를 입력하세요.");
+    let num4 = +prompt("숫자를 입력하세요.");
+    let result;
+    if (num3 < Infinity && num4 < Infinity) {
+      result = num3 - num4;
+    }
+    result = num3 > num4 ? num3 - num4 : num4 - num3;
+    alert(`두 수의 차는 ${result} 입니다.`);
+
+    // nullish 병합 연산자
+    let aa;
+    let bb = 10;
+    if (aa !== null && aa !== undefined) {
+      alert(aa);
+    } else {
+      alert(bb);
+    }
+
+    aa ?? bb; // ??은 aa가 null 혹은 undefined가 아니면 앞에 있는 aa를 쓰고 맞으면 bb를 쓴다
+    // nullish 병합 연산자?
+
+    // 반복문
+    while (condition) {
+      // 반복문 본문
+    }
+
+    do {
+      // 조건을 따지지 않고 반드시 한번은 실행된다.
+    } while (condition);
+
+    for (초기식; 조건식; 증감식) {}
+    for (let i = 0; i <= 10; i = 1 + 2) {
+      if (i % 3 == 0) {
+        continue; // 다른 코드들보다 위에 있어야 컨디뉴할지 정할 수 있으니 위치가 항상 위에
+      }
+    }
+
+    outer: for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (j % 3 == 0) {
+          break outer; // 반복문에 이름을 부여할 수 있고 break로 종료시킬 수 있다.(break의 기본값은 가장 가까운 반복문 종료)
+        }
+      }
+    }
+  </script>
+</html>
