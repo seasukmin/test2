@@ -38,8 +38,19 @@
     async function getMbtiinfo() {
       const datas = await getDatas("mbtiColor");
       let idx = 1;
+      const arr = [];
       datas.forEach((doc) => {
+        const timestamp = doc._document.createTime.timestamp.seconds;
         const info = doc.data();
+        const newobj = { ...info, timestamp: timestamp };
+        arr.push(newobj);
+        console.log(newobj);
+        // console.log(doc.data());
+      });
+      arr.sort(function (a, b) {
+        return a.timestamp - b.timestamp;
+      });
+      arr.forEach((info) => {
         items.insertAdjacentHTML(
           "afterbegin",
           `
@@ -58,33 +69,32 @@
         `
         );
         idx++;
-        // console.log(doc.data());
       });
       // console.log(datas[0]);
     }
-    getMbtiinfo();
-    const mbtiArr = [
-      { mbti: "ENFP", code: "#efb578" },
-      { mbti: "ENFP", code: "#8649b6" },
-      { mbti: "ENFP", code: "#a894b2" },
-      { mbti: "ENFJ", code: "#ecbb30" },
-      { mbti: "INFP", code: "#c4601e" },
-      { mbti: "ISFP", code: "#95fcc0" },
-      { mbti: "INFP", code: "#4d74b8" },
-      { mbti: "INTJ", code: "#40fa34" },
-      { mbti: "ENFP", code: "#106100" },
-      { mbti: "ESFJ", code: "#f0df32" },
-      { mbti: "ESTJ", code: "#10e479" },
-      { mbti: "INFP", code: "#6c84ac" },
-      { mbti: "ENTJ", code: "#aec7cb" },
-      { mbti: "INTJ", code: "#6746cb" },
-      { mbti: "ISTP", code: "#ff5028" },
-      { mbti: "INFP", code: "#36c667" },
-      { mbti: "ESFP", code: "#4c8f9e" },
-      { mbti: "ENFP", code: "#c88ce8" },
-      { mbti: "ENFP", code: "#c1ffc0" },
-      { mbti: "INFJ", code: "#5f6600" },
-    ];
+    // getMbtiinfo();
+    // const mbtiArr = [
+    //   { mbti: "ENFP", code: "#efb578" },
+    //   { mbti: "ENFP", code: "#8649b6" },
+    //   { mbti: "ENFP", code: "#a894b2" },
+    //   { mbti: "ENFJ", code: "#ecbb30" },
+    //   { mbti: "INFP", code: "#c4601e" },
+    //   { mbti: "ISFP", code: "#95fcc0" },
+    //   { mbti: "INFP", code: "#4d74b8" },
+    //   { mbti: "INTJ", code: "#40fa34" },
+    //   { mbti: "ENFP", code: "#106100" },
+    //   { mbti: "ESFJ", code: "#f0df32" },
+    //   { mbti: "ESTJ", code: "#10e479" },
+    //   { mbti: "INFP", code: "#6c84ac" },
+    //   { mbti: "ENTJ", code: "#aec7cb" },
+    //   { mbti: "INTJ", code: "#6746cb" },
+    //   { mbti: "ISTP", code: "#ff5028" },
+    //   { mbti: "INFP", code: "#36c667" },
+    //   { mbti: "ESFP", code: "#4c8f9e" },
+    //   { mbti: "ENFP", code: "#c88ce8" },
+    //   { mbti: "ENFP", code: "#c1ffc0" },
+    //   { mbti: "INFJ", code: "#5f6600" },
+    // ];
     // const newmbtiArr = mbtiArr.length;
     // mbtiArr.forEach((info, idx) => {
     //   //   const reverseIdx = newmbtiArr - idx;

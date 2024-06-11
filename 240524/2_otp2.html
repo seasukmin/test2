@@ -8,6 +8,7 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="2_otp.css" />
   </head>
   <body>
     <div class="container">
@@ -15,43 +16,51 @@
         <i class="bx bxs-check-shield"></i>
       </header>
       <h4>Enter OTP Code</h4>
-    </div>
-    <form>
-      <div class="input-field">
-        <input type="number" />
-        <input type="number" disabled />
-        <input type="number" disabled />
-        <input type="number" disabled />
+      <form>
+        <div class="input-field">
+          <input type="number" />
+          <input type="number" disabled />
+          <input type="number" disabled />
+          <input type="number" disabled />
+        </div>
         <button>Verify OTP</button>
-      </div>
-    </form>
+      </form>
+    </div>
   </body>
   <script>
     // input 요소들 가져오기
-    const inputs = document.querySelectorAll("input");
-
+    const inputs = document.querySelectorAll('input[type="number"]');
     // button 요소 가져오기
     const button = document.querySelector("button");
-
     // input 요소들에 이벤트 함수 달아주기
-    inputs.forEach((el, index) => {
-      el.addEventListener("keyup", (e) => {
-        // 앞에서부터 입력될 때 다음 input을 활성화
+    inputs.forEach(function (el) {
+      el.addEventListener("keydown", function () {
         const currentInput = el;
         const nextInput = el.nextElementSibling;
         const prevInput = el.previousElementSibling;
-
+        // console.log(currentInput);
+        // console.log(nextInput);
+        // console.log(prevInput);
+        // 앞에서부터 입력될 때 다음 input을 활성화
+        console.log(currentInput.value.length);
         if (currentInput.value.length >= 1) {
-          currentInput.value = currentInput.value.substring(0, 1);
-          currentInput.blur();
+          nextInput.removeAttribute("disabled", true);
+          // currentInput.value = currentInput.value.substring(0, 1);
+          nextInput.focus();
+          // currentInput.blur();
         }
-        if (
-          nextInput &&
-          nextInput.hasAttribute("disabled") &&
-          currentInput.value !== ""
-        ) {
-          nextInput.removeAttribute;
+
+        if (currentInput.value == "") {
+          prevInput.focus();
         }
+        if (currentInput.value.length > 1) {
+          return false;
+        }
+        // 백스페이스로 지우는 부분
+
+        // 첫번째 input 은 disabled 되면 안됨
+
+        // 네번째 input까지 채워지면 버튼 색상 변경
       });
     });
   </script>
