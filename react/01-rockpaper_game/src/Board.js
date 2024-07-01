@@ -1,7 +1,7 @@
 import React from "react";
 
 function Board({ point }) {
-  return <div>gdgd</div>;
+  return <div>{point}</div>;
 }
 
 export default Board;
