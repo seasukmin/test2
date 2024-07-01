@@ -44,6 +44,9 @@
 .nav {
   display: flex;
 }
-.red {
-  background-color: red;
+.Point {
+  display: flex;
+}
+.Main {
+  display: flex;
 }

@@ -1,7 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
 import resetButton from "./assets/ic-reset.svg";
-import rockButton from "./assets/scissor.svg";
+import rockButton from "./assets/rock.svg";
+import sisserButton from "./assets/scissor.svg";
+import paperButton from "./assets/paper.svg";
 
 function App() {
   return (
@@ -12,22 +14,33 @@ function App() {
           <img src={resetButton} />
         </button>
       </div>
-      <div>
+      <div className="Point">
         <div>나</div>
         <div>:</div>
         <div>상대</div>
       </div>
-      <div>
-        <img className="red" src={rockButton} />
+      <div className="Main">
+        <img src={rockButton} />
         <div>vs</div>
         <img src={rockButton} />
       </div>
-      <div></div>
-      <div></div>
       <div>
-        <button>주먹</button>
-        <button>가위</button>
-        <button>보</button>
+        배점
+        <input type="text" />매
+      </div>
+      <div>승부기록</div>
+      <div>
+        <button>
+          <img src={rockButton} />
+          주먹
+        </button>
+        <button>
+          <img src={sisserButton} />
+          가위
+        </button>
+        <button>
+          <img src={paperButton} />보
+        </button>
       </div>
     </div>
   );
