@@ -12154,7 +12154,7 @@ textarea.form-control-lg {
     display: flex !important;
   }
   .d-xxl-inline-flex {
-    display: inline-flex !important;
+    display: -flex !important;
   }
   .d-xxl-none {
     display: none !important;
