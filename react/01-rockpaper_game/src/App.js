@@ -135,9 +135,7 @@ function App() {
       </div>
       <div className="whowin">
         <p>승부기록</p>
-        <div>
-          {gameHistory1.join(",")} : {othergameHistory1.join(",")}
-        </div>
+        <div>{myTotalCount}</div>
       </div>
       <div className="footer">
         <button class="rock" onClick={RockScissorPaper1}>
