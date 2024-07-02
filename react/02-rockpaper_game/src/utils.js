@@ -19,3 +19,10 @@ export function generateRandomHand() {
     return "paper";
   }
 }
+
+export function compareHand(a, b) {
+  // 승리 ==> 1, 패배 => -1, 무승부 ==> 0
+  if (WINS[a] === b) return 1;
+  if (WINS[b] === a) return -1;
+  return 0;
+}
