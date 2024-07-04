@@ -6,27 +6,32 @@ import "./ReviewForm.css";
 function ReviewForm(props) {
   const [values, setValues] = useState({});
 
-  const handleChange = (e) => {
-    console.log(e.target.name, e.target.value);
+  const handleChange = (name, value) => {
+    setValues((prevValues) => ({ ...prevValues, [name]: value }));
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    // handleChange(name, value);
+    setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
   return (
     <form className="ReviewForm">
       <div>
-        <FileInput />
+        <FileInput name="imgUrl" onChange={handleChange} />
       </div>
       <div className="Form-container">
         <input
           type="text"
           name="title"
           placeholder="제목을 입력해주세요."
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
         <RatingInput />
         <textarea
           name="content"
           placeholder="내용을 입력해주세요."
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
         <button>확인</button>
       </div>
