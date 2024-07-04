@@ -50,16 +50,15 @@ async function getDatasByOrder(collectionName, options) {
     docId: doc.id,
     ...doc.data(),
   }));
-
   return resultData;
 }
 // order where Limit 함수
 async function getDatasByOrderLimit(collectionName, options) {
   const collect = await collection(db, collectionName);
   let q;
-  console.log(options.order);
   if (options.lq) {
     console.log(options.lq);
+    console.log(options.order);
     q = query(
       collect,
       orderBy(options.order, "desc"),
@@ -74,7 +73,7 @@ async function getDatasByOrderLimit(collectionName, options) {
   // asc가 오름차순 기본값 desc는 내림차순
   const snapshot = await getDocs(q);
   const lastQuery = snapshot.docs[snapshot.docs.length - 1];
-  console.log(lastQuery);
+
   const resultData = snapshot.docs.map((doc) => ({
     docId: doc.id,
     ...doc.data(),

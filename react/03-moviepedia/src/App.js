@@ -30,6 +30,7 @@ function App() {
       "movie",
       options
     );
+    console.log(resultData);
     if (!options.lq) {
       setItems(resultData);
     } else {
