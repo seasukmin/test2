@@ -9,6 +9,10 @@ import {
   deleteDoc,
   getDoc,
   updateDoc,
+  query,
+  orderBy,
+  limit,
+  startAfter,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -20,6 +24,7 @@ const firebaseConfig = {
   appId: "1:570357708984:web:6b27581f0b9af88baa9c4d",
   measurementId: "G-EELYEKKV5P",
 };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -31,7 +36,51 @@ async function getDatas(collectionName) {
     docId: doc.id,
     ...doc.data(),
   }));
+
   return resultData;
+}
+
+async function getDatasByOrder(collectionName, options) {
+  const collect = await collection(db, collectionName);
+  // const q = query(컬렉션정보, 조건1, 조건2, 조건3...);
+  const q = query(collect, orderBy(options.order, "desc"));
+  // asc가 오름차순 기본값 desc는 내림차순
+  const snapshot = await getDocs(q);
+  const resultData = snapshot.docs.map((doc) => ({
+    docId: doc.id,
+    ...doc.data(),
+  }));
+
+  return resultData;
+}
+// order where Limit 함수
+async function getDatasByOrderLimit(collectionName, options) {
+  const collect = await collection(db, collectionName);
+  let q;
+  console.log(options.order);
+  if (options.lq) {
+    console.log(options.lq);
+    q = query(
+      collect,
+      orderBy(options.order, "desc"),
+      startAfter(options.lq),
+      limit(options.limit)
+    );
+  } else {
+    q = query(collect, orderBy(options.order, "desc"), limit(options.limit));
+  }
+  // const q = query(컬렉션정보, 조건1, 조건2, 조건3...);
+
+  // asc가 오름차순 기본값 desc는 내림차순
+  const snapshot = await getDocs(q);
+  const lastQuery = snapshot.docs[snapshot.docs.length - 1];
+  console.log(lastQuery);
+  const resultData = snapshot.docs.map((doc) => ({
+    docId: doc.id,
+    ...doc.data(),
+  }));
+
+  return { resultData, lastQuery };
 }
 
 async function addDatas(collectionName, dataObj) {
@@ -58,11 +107,16 @@ async function deleteDatas(collectionName, docId) {
 
 async function updateDatas(collectionName, docId, updateInfoObj) {
   const docRef = await doc(db, collectionName, docId);
-  const docData = await getDoc(docRef);
+  // const docData = await getDoc(docRef);
   await updateDoc(docRef, updateInfoObj);
-  // doc(db, 컬렉션명, 문서ID);
-  // getDocs(문서레퍼런스);
-  // updateDoc(문서데이터, 수정할 정보객체);
 }
 
-export { db, getDatas, addDatas, deleteDatas, updateDatas };
+export {
+  db,
+  getDatas,
+  addDatas,
+  deleteDatas,
+  updateDatas,
+  getDatasByOrder,
+  getDatasByOrderLimit,
+};
