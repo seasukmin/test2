@@ -3,7 +3,7 @@ import FileInput from "./FileInput";
 import RatingInput from "./RatingInput";
 import "./ReviewForm.css";
 
-function ReviewForm(props) {
+function ReviewForm({ addData }) {
   const [values, setValues] = useState({});
 
   const handleChange = (name, value) => {
@@ -14,8 +14,13 @@ function ReviewForm(props) {
     handleChange(name, value);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await addData("movie", values);
+  };
+
   return (
-    <form className="ReviewForm">
+    <form className="ReviewForm" onSubmit={handleSubmit}>
       <div>
         <FileInput
           inputName="imgUrl"
@@ -40,7 +45,7 @@ function ReviewForm(props) {
           placeholder="내용을 입력해주세요."
           onChange={handleInputChange}
         />
-        <button>확인</button>
+        <button type="submit">확인</button>
       </div>
     </form>
   );

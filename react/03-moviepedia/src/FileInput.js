@@ -14,7 +14,7 @@ function FileInput({ inputName, setFile, value }) {
   const handleClearClick = () => {
     const inputNode = inputRef;
     console.log(inputNode);
-    inputNode.current.value = "";
+    // inputNode.current.value = "";
     setFile(inputName, null);
   };
   useEffect(() => {

@@ -14,6 +14,7 @@ import {
   limit,
   startAfter,
 } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAJP_AxEtYu1Dw76S3k01oFRpeC8u8yDs",
@@ -84,6 +85,12 @@ async function getDatasByOrderLimit(collectionName, options) {
 
 async function addDatas(collectionName, dataObj) {
   try {
+    const uuid = crypto.randomUUID();
+    const path = `movie/${uuid}`;
+
+    // id 필드의 값 ==> 가장 큰 id + 1
+    // createdAt, updateAt ==> 현재 날짜 밀리세컨즈로 바꿔서
+
     // 문서 ID 수동
     // const saveDoc = await doc(db, collectionName, '3');
     // console.log(`doc() 결과: ${saveDoc}`);
@@ -97,6 +104,14 @@ async function addDatas(collectionName, dataObj) {
   } catch (error) {
     return false;
   }
+}
+
+async function uploadImage(path, imgFile) {
+  // 스토리지 객체 가져오기
+  const storage = getStorage();
+  //  저장할 이미지 객체 생성
+  //  File 객체를 스토리지에 저장
+  //  저장한 File의 url 가져오기
 }
 
 async function deleteDatas(collectionName, docId) {

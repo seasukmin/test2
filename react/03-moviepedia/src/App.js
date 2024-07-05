@@ -3,7 +3,12 @@ import "./App.css";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 import logoImg from "./assets/logo.png";
-import { getDatas, getDatasByOrder, getDatasByOrderLimit } from "./firebase";
+import {
+  addDatas,
+  getDatas,
+  getDatasByOrder,
+  getDatasByOrderLimit,
+} from "./firebase";
 
 const LIMIT = 10;
 
@@ -66,7 +71,7 @@ function App() {
       </nav>
       <div className="App-container">
         <div className="App-ReviewForm">
-          <ReviewForm />
+          <ReviewForm addData={addDatas} />
         </div>
         <div className="App-sorts">
           <AppSortButton
