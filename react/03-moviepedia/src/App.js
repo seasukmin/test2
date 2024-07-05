@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import ReviewForm from "./ReviewForm";
-import ReviewList from "./ReviewList";
-import logoImg from "./assets/logo.png";
-import {
-  addDatas,
-  getDatas,
-  getDatasByOrder,
-  getDatasByOrderLimit,
-} from "./firebase";
+import { useEffect, useState } from 'react';
+import './App.css';
+import ReviewForm from './ReviewForm';
+import ReviewList from './ReviewList';
+import logoImg from './assets/logo.png';
+import mockItems from './mock.json';
+import { addDatas, getDatas, getDatasByOrder, getDatasByOrderLimit } from './firebase';
 
 const LIMIT = 10;
 
 function AppSortButton({ children, onClick, selected }) {
-  let isSelected = "";
+  let isSelected = '';
   if (selected) {
-    isSelected = "selected";
+    isSelected = 'selected';
   }
   return (
     <button className={`AppSortButton ${isSelected}`} onClick={onClick}>
@@ -26,28 +22,27 @@ function AppSortButton({ children, onClick, selected }) {
 
 function App() {
   const [items, setItems] = useState([]);
-  const [order, setOrder] = useState("createdAt");
+  const [order, setOrder] = useState('createdAt');
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
 
   const handleLoad = async (options) => {
     const { resultData, lastQuery } = await getDatasByOrderLimit(
-      "movie",
+      'movie',
       options
     );
-    console.log(resultData);
     if (!options.lq) {
       setItems(resultData);
     } else {
       setItems((prevItems) => [...prevItems, ...resultData]);
     }
-    if (!lastQuery) {
+    if(!lastQuery) {
       setHasNext(false);
     }
     setLq(lastQuery);
   };
-  const handleNewestClick = () => setOrder("createdAt");
-  const handleBestClick = () => setOrder("rating");
+  const handleNewestClick = () => setOrder('createdAt');
+  const handleBestClick = () => setOrder('rating');
 
   const handleMoreClick = () => {
     handleLoad({ order: order, limit: LIMIT, lq: lq });
@@ -59,41 +54,41 @@ function App() {
   }, [order]);
 
   return (
-    <div className="App">
-      <nav className="App-nav">
-        <div className="App-nav-container">
-          <img className="App-logo" src={logoImg} />
+    <div className='App'>
+      <nav className='App-nav'>
+        <div className='App-nav-container'>
+          <img className='App-logo' src={logoImg} />
           <select>
             <option>한국어</option>
             <option>English</option>
           </select>
         </div>
       </nav>
-      <div className="App-container">
-        <div className="App-ReviewForm">
-          <ReviewForm addData={addDatas} />
+      <div className='App-container'>
+        <div className='App-ReviewForm'>
+          <ReviewForm addData={addDatas}/>
         </div>
-        <div className="App-sorts">
+        <div className='App-sorts'>
           <AppSortButton
-            selected={order === "createdAt"}
+            selected={order === 'createdAt'}
             onClick={handleNewestClick}
           >
             최신순
           </AppSortButton>
           <AppSortButton
-            selected={order === "rating"}
+            selected={order === 'rating'}
             onClick={handleBestClick}
           >
             베스트순
           </AppSortButton>
         </div>
-        <div className="App-ReviewList">
+        <div className='App-ReviewList'>
           <ReviewList items={items} />
           {/* {hasNext && (<button className='App-load-more-button' onClick={handleMoreClick}>
             더보기
           </button>)} */}
-          <button
-            className="App-load-more-button"
+          <button 
+            className='App-load-more-button' 
             onClick={handleMoreClick}
             disabled={!hasNext}
           >
@@ -101,8 +96,8 @@ function App() {
           </button>
         </div>
       </div>
-      <footer className="App-footer">
-        <div className="App-footer-container">| 개인정보 처리방침</div>
+      <footer className='App-footer'>
+        <div className='App-footer-container'>| 개인정보 처리방침</div>
       </footer>
     </div>
   );

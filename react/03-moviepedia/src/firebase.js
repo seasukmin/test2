@@ -14,7 +14,7 @@ import {
   limit,
   startAfter,
 } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAJP_AxEtYu1Dw76S3k01oFRpeC8u8yDs",
@@ -45,21 +45,19 @@ async function getDatasByOrder(collectionName, options) {
   const collect = await collection(db, collectionName);
   // const q = query(컬렉션정보, 조건1, 조건2, 조건3...);
   const q = query(collect, orderBy(options.order, "desc"));
-  // asc가 오름차순 기본값 desc는 내림차순
   const snapshot = await getDocs(q);
   const resultData = snapshot.docs.map((doc) => ({
     docId: doc.id,
     ...doc.data(),
   }));
+
   return resultData;
 }
-// order where Limit 함수
+
 async function getDatasByOrderLimit(collectionName, options) {
   const collect = await collection(db, collectionName);
   let q;
   if (options.lq) {
-    console.log(options.lq);
-    console.log(options.order);
     q = query(
       collect,
       orderBy(options.order, "desc"),
@@ -69,12 +67,9 @@ async function getDatasByOrderLimit(collectionName, options) {
   } else {
     q = query(collect, orderBy(options.order, "desc"), limit(options.limit));
   }
-  // const q = query(컬렉션정보, 조건1, 조건2, 조건3...);
-
-  // asc가 오름차순 기본값 desc는 내림차순
   const snapshot = await getDocs(q);
   const lastQuery = snapshot.docs[snapshot.docs.length - 1];
-
+  console.log(lastQuery);
   const resultData = snapshot.docs.map((doc) => ({
     docId: doc.id,
     ...doc.data(),
@@ -87,31 +82,49 @@ async function addDatas(collectionName, dataObj) {
   try {
     const uuid = crypto.randomUUID();
     const path = `movie/${uuid}`;
+    const url = await uploadImage(path, dataObj.imgUrl);
+
+    dataObj.imgUrl = url;
+    // createdAt, updatedAt ==> 현재 날짜 밀리세컨즈로 바꿔서
+    const time = new Date().getTime();
+    dataObj.createdAt = time;
+    dataObj.updatedAt = time;
 
     // id 필드의 값 ==> 가장 큰 id + 1
-    // createdAt, updateAt ==> 현재 날짜 밀리세컨즈로 바꿔서
-
-    // 문서 ID 수동
-    // const saveDoc = await doc(db, collectionName, '3');
-    // console.log(`doc() 결과: ${saveDoc}`);
-    // const saveResult = await setDoc(saveDoc, dataObj);
-    // console.log(`setDoc() 결과: ${saveResult}`);
+    const lastId = await getLastNum(collectionName, "id");
+    dataObj.id = lastId + 1;
 
     // 문서 ID 자동
     const collect = await collection(db, collectionName);
-    await addDoc(collect, dataObj); // 결과 == undefined
+    const result = await addDoc(collect, dataObj);
+    console.log(result);
     return true;
   } catch (error) {
     return false;
   }
 }
 
+async function getLastNum(collectionName, field) {
+  const q = query(
+    collection(db, collectionName),
+    orderBy(field, "desc"),
+    limit(1)
+  );
+  const lastDoc = await getDocs(q);
+  const lastNum = lastDoc.docs[0].data()[field];
+  return lastNum;
+}
+
 async function uploadImage(path, imgFile) {
   // 스토리지 객체 가져오기
   const storage = getStorage();
-  //  저장할 이미지 객체 생성
-  //  File 객체를 스토리지에 저장
-  //  저장한 File의 url 가져오기
+  // 저장할 이미지 객체 생성
+  const imageRef = ref(storage, path);
+  // File 객체를 스토리지에 저장
+  await uploadBytes(imageRef, imgFile);
+  // 저장한 File의 url 가져오기
+  const url = await getDownloadURL(imageRef);
+  return url;
 }
 
 async function deleteDatas(collectionName, docId) {
