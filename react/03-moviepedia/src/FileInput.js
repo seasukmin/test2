@@ -34,7 +34,7 @@ function FileInput({ inputName, setFile, value }) {
     // => 사용자 파일이 변경되면 value 값 변경으로 인한 useEffect 함수 실행
     // => 앞에서 기억해뒀던 return 함수 실행
     return () => {
-      setPreview(null);
+      setPreview();
       URL.revokeObjectURL(nextPreview);
     };
   }, [value]);
