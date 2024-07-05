@@ -14,7 +14,13 @@ import {
   limit,
   startAfter,
 } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAJP_AxEtYu1Dw76S3k01oFRpeC8u8yDs",
@@ -97,8 +103,11 @@ async function addDatas(collectionName, dataObj) {
     // 문서 ID 자동
     const collect = await collection(db, collectionName);
     const result = await addDoc(collect, dataObj);
-    console.log(result);
-    return true;
+    const docSnap = await getDoc(result); // result ==> documentReference
+
+    const resultData = { ...docSnap.data(), docId: docSnap.id };
+
+    return resultData;
   } catch (error) {
     return false;
   }
@@ -127,9 +136,20 @@ async function uploadImage(path, imgFile) {
   return url;
 }
 
-async function deleteDatas(collectionName, docId) {
-  const docRef = await doc(db, collectionName, docId);
-  await deleteDoc(docRef);
+async function deleteDatas(collectionName, docId, imgUrl) {
+  // 1. 스토리지 객체 가져온다.
+  const storage = getStorage();
+  try {
+    // 2. 스토리지에서 이미지 삭제
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+    // 3. 컬렉션에서 문서 삭제
+    const docRef = await doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 async function updateDatas(collectionName, docId, updateInfoObj) {
