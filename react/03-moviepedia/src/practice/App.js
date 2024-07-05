@@ -26,4 +26,12 @@ function AppSortButton({ children, onClick, selected }) {
   };
 }
 
-function App() {}
+function App() {
+  const [items, setItems] = useState([]);
+  const [order, setOrder]=useState("createdAt")
+  const [lq, setlq] = useState();
+  const [hasNext, setHasNext]= useState(true);
+}
+ const handleLoad = async(option) => {
+  const { resultData, lastQuery} = await getDatasByOrderLimit
+ }
