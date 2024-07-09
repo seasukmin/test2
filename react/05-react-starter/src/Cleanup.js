@@ -1,4 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+function Hello() {
+  function effectFn() {
+    console.log(" created :) ");
+    return destroyedFn;
+  }
+  function destroyedFn() {
+    console.log(" destroyed :( ");
+  }
+  useEffect(effectFn, []);
+
+  return <h1>Hello</h1>;
+}
 
 function Cleanup(props) {
   const [showing, setShowing] = useState(false);
@@ -7,7 +20,8 @@ function Cleanup(props) {
   };
   return (
     <div>
-      <button onClick={onClick}>{showing ? "Hide" : ""}</button>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
     </div>
   );
 }

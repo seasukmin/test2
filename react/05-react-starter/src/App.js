@@ -2,6 +2,9 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import Cleanup from "./Cleanup";
 
+import OinTracker from "./MovieApp";
+import MovieApp from "./MovieApp";
+
 function App() {
   const [count, setCount] = useState(0);
   const [inputValue, setInputValue] = useState("");
@@ -24,12 +27,13 @@ function App() {
 
   return (
     <>
-      <input type="text" placeholder="Search here" onChange={handleChange} />
+      {/* <input type="text" placeholder="Search here" onChange={handleChange} />
       <h2>입력한 값 : {inputValue}</h2>
       <h1>{count}</h1>
       <button onClick={handleClick}>Click me</button>
-      <hr />
-      <Cleanup />
+      <hr /> */}
+      {/* <Cleanup /> */}
+      <MovieApp />
     </>
   );
 }
