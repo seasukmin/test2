@@ -1,35 +1,34 @@
 import React, { useEffect, useState } from "react";
-import Novie from "./Novie";
+import Movie from "./Movie";
 import "./MovieApp.css";
 
 function MovieApp(props) {
-  const [movies, setmovies] = useState([]);
-  const url =
-    "https://yts.mx/api/v2/list_movies.json?minimum_rating=8&sort_by=year";
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const url = `https://yts.mx/api/v2/list_movies.json?minimum_rating=8&sort_by=year`;
   const getMovies = async () => {
     const response = await fetch(url);
     const data = await response.json();
     const moviesArr = data.data.movies;
-    setmovies(moviesArr);
-    console.log(movies);
+    setMovies(moviesArr);
+    setIsLoading(false);
   };
   useEffect(() => {
     getMovies();
   }, []);
   return (
     <div className="container">
-      <div className="movies">
-        {movies.map((arrNum) => (
-          <Novie
-            key={arrNum.id}
-            img={arrNum.medium_cover_image}
-            title={arrNum.title}
-            year={arrNum.year}
-            summary={arrNum.summary}
-            genres={arrNum.genres}
-          />
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="loader">
+          <span>Loading...</span>
+        </div>
+      ) : (
+        <div className="movies">
+          {movies.map((movie) => {
+            return <Movie key={movie.id} movie={movie} />;
+          })}
+        </div>
+      )}
     </div>
   );
 }
