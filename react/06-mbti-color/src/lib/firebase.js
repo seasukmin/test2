@@ -23,6 +23,7 @@ const firebaseConfig = {
   messagingSenderId: "1076079226742",
   appId: "1:1076079226742:web:d285ee0988fad849e59457",
 };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -31,8 +32,12 @@ async function getAllDatas(collectionName, order) {
   const collect = collection(db, collectionName);
   const q = query(collect, orderBy(order, "desc")); // desc : 내림차순
   const querySnapshot = await getDocs(q);
-  debugger;
-  console.log(querySnapshot);
+  const resultData = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    docId: doc.id,
+  }));
+  return resultData;
+  //   debugger;
 }
 
 export { getAllDatas };

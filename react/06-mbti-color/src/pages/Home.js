@@ -9,13 +9,13 @@ function Home(props) {
   const [items, setItems] = useState([]);
   const handleLoad = async () => {
     // 파이어베이스에서 데이터 가져오기
-    await getAllDatas("mbtiColor", "id");
+    const resultData = await getAllDatas("mbtiColor", "id");
     // items state에 셋팅
+    setItems(resultData);
   };
-  debugger;
+
   useEffect(() => {
     handleLoad();
-    setItems(mockItems);
   }, []);
   return (
     <div className={styles.container}>
@@ -38,8 +38,8 @@ function Home(props) {
           + 새 컬러 등록하기
         </Link>
         <ul className={styles.items}>
-          {items.map((item) => {
-            return <ColorSurvey key={item.id} mbtiData={item} />;
+          {items.map((item, idx) => {
+            return <ColorSurvey key={idx} mbtiData={item} />;
           })}
         </ul>
       </main>
