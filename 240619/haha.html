@@ -17,3 +17,12 @@
 <!-- SPA => Single Page Application index.html 첨에는 느리지만 전환이 빠름 -->
 <!-- 요새는 SPA 추세로 바뀌는 중 그 중 하나가 react 등 여러가지가 있다. -->
 <!-- 자바스크립트에서 shadow DOM? 기술을 사용해서 만든게 virtual DOM을 만든게 react! -->
+<script>
+  function getFormattedDate() {
+    const today = new Date();
+    const isoString = today.toISOString();
+    // 20240715
+    console.log(isoString.split("T")[0]);
+  }
+  getFormattedDate();
+</script>
