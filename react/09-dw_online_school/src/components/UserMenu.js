@@ -14,10 +14,11 @@ function UserMenu(props) {
     if (!isOpen) return;
     const handleClickOutside = () => {
       setIsOpen(false);
-      alert("window Click handler");
     };
-
     window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
   }, [isOpen]);
 
   return (
@@ -27,11 +28,11 @@ function UserMenu(props) {
       </button>
       {isOpen && (
         <ul className={styles.popup}>
-          <Link>
+          <Link to="/wishlist">
             <li>위시리스트</li>
           </Link>
           <li className={styles.disabled}>회원가입</li>
-          <Link>
+          <Link to="/login">
             <li>로그인</li>
           </Link>
         </ul>
