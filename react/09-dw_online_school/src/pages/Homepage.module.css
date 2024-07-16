@@ -1,0 +1,26 @@
+.bg {
+  background: linear-gradient(
+    135deg,
+    #f9f9f9 48%,
+    #ebebeb 48% 78%,
+    #f9f9f9 78%
+  );
+  position: absolute;
+  inset: 0;
+}
+.container {
+  display: flex;
+  margin: 120px auto 226px;
+}
+.texts {
+}
+.heading {
+}
+.description {
+  color: #878787;
+}
+.figure {
+}
+.figure img {
+  max-width: 418px;
+}
