@@ -1,0 +1,51 @@
+.userMenu {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.iconButton {
+  border: none;
+  display: flex;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+.userMenu,
+.iconButton,
+.iconButton img {
+  width: 30px;
+  height: 30px;
+}
+ul.popup {
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: calc(100% + 25px);
+  right: -10px;
+  box-shadow: var(--box-shadow);
+  border-radius: 5px 0 5px 5px;
+  z-index: 1;
+  width: 130px;
+}
+ul.popup li {
+  padding: 15px 19px;
+  font-family: var(--noto-sans);
+}
+ul.popup li:hover {
+  background-color: #f4f4f4;
+  /* width: 100%; */
+}
+ul.popup li.disabled {
+  background-color: white;
+  color: #c4c4c4;
+  user-select: none;
+}
+.userMenu ul.popup a:hover {
+  text-decoration: none;
+}

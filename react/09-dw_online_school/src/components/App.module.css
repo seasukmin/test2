@@ -7,9 +7,6 @@ html {
 }
 body {
   margin: 0;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(165deg, #f9f9f9, #ebebeb);
 }
 a,
 a:hover,

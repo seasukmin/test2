@@ -7,20 +7,39 @@
   );
   position: absolute;
   inset: 0;
+  z-index: 0;
 }
 .container {
   display: flex;
   margin: 120px auto 226px;
 }
 .texts {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 100px;
+}
+.texts span {
+  box-shadow: inset 0 -14px #ebebeb;
+  padding-bottom: 4px;
 }
 .heading {
+  margin: 15px 0;
+  font-weight: 500;
 }
 .description {
   color: #878787;
+  margin: 15px 0 25px;
+  font-size: 18px;
+  text-align: left;
 }
 .figure {
+  padding: 20px;
+  flex: 1 1;
+  text-align: center;
 }
 .figure img {
   max-width: 418px;
+  width: 100%;
 }

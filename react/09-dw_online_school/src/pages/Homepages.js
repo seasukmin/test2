@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../components/Container";
 import landingImg from "../assets/landing.svg";
 import styles from "./Homepage.module.css";
+import Button from "../components/Button";
 
 function HomePage(props) {
   return (
@@ -20,7 +21,7 @@ function HomePage(props) {
             지금 함께 시작해보실래요?
           </p>
           <div>
-            <button>지금 시작하기</button>
+            <Button>지금 시작하기</Button>
           </div>
         </div>
         <div className={styles.figure}>
