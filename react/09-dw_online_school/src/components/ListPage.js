@@ -6,8 +6,24 @@ import caltalogImg from "../assets/catalog.svg";
 import communityImg from "../assets/community.svg";
 import QuestionListPage from "./../pages/QuestionListPage";
 
-function ListPage({ name, summer, back }) {
-  console.log(back);
+const community = {
+  name: "커뮤니티",
+  summer: "DW 온라인스쿨의 2만 수강생들과 함께 공부해봐요.",
+  background: "community",
+};
+const catalog = {
+  name: "모든 제작",
+  summer: "자체 제작된 코스들로 기초를 쌓으세요.",
+  background: "catalog",
+};
+
+const dataDict = {
+  community: community,
+  catalog: catalog,
+};
+
+function ListPage({ back, children }) {
+  const { name, summer } = dataDict[back];
   return (
     <>
       <div className={cn(styles.bg, styles[back])}>
@@ -20,7 +36,7 @@ function ListPage({ name, summer, back }) {
           <p className={styles.description}>{summer}</p>
         </div>
       </div>
-      <Container className={styles.container}></Container>
+      <Container className={styles.container}>{children}</Container>
     </>
   );
 }

@@ -1,0 +1,51 @@
+.form {
+  height: 40px;
+  position: relative;
+}
+.form input {
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  height: calc(39%);
+  padding: 10px;
+  border: none;
+  box-shadow: var(--box-shadow);
+  flex: 1 1;
+  outline: none;
+  border-radius: 5px 0 0 5px;
+}
+.form input::placeholder {
+  color: #878787;
+}
+.form button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #545454;
+  position: absolute;
+  top: 0;
+  right: -23px;
+  z-index: 1;
+  border-radius: 0 5px 5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 6px;
+}
+.form button img {
+  width: 24px;
+  height: 24px;
+}
+.courseList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+.emptyList {
+}
+.count {
+  color: #878787;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 20px 0;
+}
