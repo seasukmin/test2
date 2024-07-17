@@ -22,11 +22,18 @@
   font-weight: 500;
   font-size: 14px;
   margin: 0 0 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .courseItem .description {
   font-size: 12px;
   font-weight: 300;
   margin: 0 0 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .courseItem .tags {
   display: flex;

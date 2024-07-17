@@ -3,9 +3,15 @@ import CourseIcon from "./CourseIcon";
 import { Link } from "react-router-dom";
 import styles from "./CourseItem.module.css";
 import Card from "./Card";
+import { styled } from "styled-components";
+import getCourseColor from "./../utils/getCourseColor";
 
-function CourseItem({ items }) {
-  const { title, summary, language, photoUrl, difficulty } = items;
+function CourseItem({ course }) {
+  const { title, summary, language, photoUrl, difficulty, code } = course;
+  const courseColor = getCourseColor(code);
+  const thumbsStyle = {
+    borderColor: courseColor,
+  };
   const difficult = {
     1: "초급",
     2: "중급",
@@ -14,7 +20,7 @@ function CourseItem({ items }) {
   const level = difficult[difficulty];
   return (
     <Card className={styles.courseItem}>
-      <div className={styles.thumb}>
+      <div className={styles.thumb} style={thumbsStyle}>
         <CourseIcon photoUrl={photoUrl} />
       </div>
       <div className={styles.content}>

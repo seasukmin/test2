@@ -10,6 +10,15 @@ function UserMenu(props) {
     e.stopPropagation();
     setIsOpen(!isOpen);
   };
+  const [Log, setLog] = useState("로그인");
+
+  const LoginButton = (e) => {
+    localStorage.setItem("ID", "Tomato");
+
+    {
+      e.target.innerHTML == "로그인" ? setLog("로그아웃") : setLog("로그인");
+    }
+  };
   useEffect(() => {
     if (!isOpen) return;
     const handleClickOutside = () => {
@@ -32,8 +41,8 @@ function UserMenu(props) {
             <li>위시리스트</li>
           </Link>
           <li className={styles.disabled}>회원가입</li>
-          <Link to="/login">
-            <li>로그인</li>
+          <Link to="/login" onClick={LoginButton}>
+            <li>{Log}</li>
           </Link>
         </ul>
       )}
