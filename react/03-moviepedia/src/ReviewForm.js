@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import FileInput from './FileInput';
-import RatingInput from './RatingInput';
-import './ReviewForm.css';
+import React, { useState } from "react";
+import FileInput from "./FileInput";
+import RatingInput from "./RatingInput";
+import "./ReviewForm.css";
 
 const INITIAL_VALUE = {
   title: "",
   rating: 0,
   content: "",
-  imgUrl: null
-}
+  imgUrl: null,
+};
 
-function ReviewForm({addData, handleAddSuccess}) {
+function ReviewForm({ addData, handleAddSuccess }) {
   const [values, setValues] = useState(INITIAL_VALUE);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -32,35 +32,37 @@ function ReviewForm({addData, handleAddSuccess}) {
     setIsSubmitting(false);
 
     setValues(INITIAL_VALUE);
-  }
+  };
 
   return (
-    <form className='ReviewForm' onSubmit={handleSubmit}>
+    <form className="ReviewForm" onSubmit={handleSubmit}>
       <div>
         <FileInput
-          inputName='imgUrl'
+          inputName="imgUrl"
           setFile={handleChange}
           value={values.imgUrl}
         />
       </div>
-      <div className='Form-container'>
+      <div className="Form-container">
         <input
-          type='text'
-          name='title'
-          placeholder='제목을 입력해주세요.'
+          type="text"
+          name="title"
+          placeholder="제목을 입력해주세요."
           onChange={handleInputChange}
         />
         <RatingInput
-          inputName='rating'
+          inputName="rating"
           setRating={handleChange}
           value={values.rating}
         />
         <textarea
-          name='content'
-          placeholder='내용을 입력해주세요.'
+          name="content"
+          placeholder="내용을 입력해주세요."
           onChange={handleInputChange}
         />
-        <button type='submit' disabled={isSubmitting}>확인</button>
+        <button type="submit" disabled={isSubmitting}>
+          확인
+        </button>
       </div>
     </form>
   );

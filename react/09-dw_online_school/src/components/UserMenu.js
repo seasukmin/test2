@@ -5,20 +5,13 @@ import styles from "./UserMenu.module.css";
 
 function UserMenu(props) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const isLogined = JSON.parse(localStorage.getItem("member"));
   const handleButton = (e) => {
-    // setIsOpen(isOpen === false ? true : false);
     e.stopPropagation();
     setIsOpen(!isOpen);
   };
-  const [Log, setLog] = useState("로그인");
 
-  const LoginButton = (e) => {
-    localStorage.setItem("ID", "Tomato");
-
-    {
-      e.target.innerHTML == "로그인" ? setLog("로그아웃") : setLog("로그인");
-    }
-  };
   useEffect(() => {
     if (!isOpen) return;
     const handleClickOutside = () => {
@@ -29,6 +22,10 @@ function UserMenu(props) {
       window.removeEventListener("click", handleClickOutside);
     };
   }, [isOpen]);
+
+  const LogOutButton = () => {
+    localStorage.removeItem("member");
+  };
 
   return (
     <div className={styles.userMenu}>
@@ -41,9 +38,15 @@ function UserMenu(props) {
             <li>위시리스트</li>
           </Link>
           <li className={styles.disabled}>회원가입</li>
-          <Link to="/login" onClick={LoginButton}>
-            <li>{Log}</li>
-          </Link>
+          {!isLogined ? (
+            <Link to="/login">
+              <li>로그인</li>
+            </Link>
+          ) : (
+            <Link to="/login" onClick={LogOutButton}>
+              <li>로그아웃</li>
+            </Link>
+          )}
         </ul>
       )}
     </div>

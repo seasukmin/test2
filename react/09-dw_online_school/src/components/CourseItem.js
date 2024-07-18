@@ -7,7 +7,7 @@ import { styled } from "styled-components";
 import getCourseColor from "./../utils/getCourseColor";
 
 function CourseItem({ course }) {
-  const { title, summary, language, photoUrl, difficulty, code } = course;
+  const { title, summary, language, photoUrl, difficulty, code, slug } = course;
   const courseColor = getCourseColor(code);
   const thumbsStyle = {
     borderColor: courseColor,
@@ -25,7 +25,9 @@ function CourseItem({ course }) {
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>
-          <Link>{title}</Link>
+          <Link to={`/courses/${slug}`} state={{ course }}>
+            {title}
+          </Link>
         </h2>
         <p className={styles.description}>{summary}</p>
         <div>
