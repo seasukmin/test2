@@ -1,0 +1,24 @@
+.questionBox {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  padding: 10px 10px;
+  width: 100%;
+}
+.personImg {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.questionTitle {
+  font-size: 16px;
+  padding: 0 15px;
+}
+.questionDate {
+  font-size: 12px;
+  opacity: 0.5;
+  padding: 0 15px;
+}

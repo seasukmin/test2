@@ -6,7 +6,8 @@ import CourseListPage from "./pages/CourseListPage";
 import QuestionListPage from "./pages/QuestionListPage";
 import CoursePage from "./pages/CoursePage";
 import Login from "./components/Login";
-import WishList from "./pages/WishList";
+import WishListPage from "./pages/WishListPage";
+import Logout from "./components/Logout";
 
 function Main(props) {
   return (
@@ -18,9 +19,10 @@ function Main(props) {
             <Route index element={<CourseListPage />} />
             <Route path=":courseSlug" element={<CoursePage />} />
           </Route>
-          <Route path="questions" element={<QuestionListPage />} />
+          <Route path="questions" element={<QuestionListPage />}></Route>
           <Route path="login" element={<Login />} />
-          <Route path="wishlist" element={<WishList />} />
+          <Route path="logout" element={<Logout />} />
+          <Route path="wishlist" element={<WishListPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

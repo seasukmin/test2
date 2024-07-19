@@ -3,8 +3,8 @@ import CourseIcon from "./CourseIcon";
 import { Link } from "react-router-dom";
 import styles from "./CourseItem.module.css";
 import Card from "./Card";
-import { styled } from "styled-components";
 import getCourseColor from "./../utils/getCourseColor";
+import CloseButtonImg from "../assets/closeButton.svg";
 
 function CourseItem({ course }) {
   const { title, summary, language, photoUrl, difficulty, code, slug } = course;
@@ -22,6 +22,7 @@ function CourseItem({ course }) {
     <Card className={styles.courseItem}>
       <div className={styles.thumb} style={thumbsStyle}>
         <CourseIcon photoUrl={photoUrl} />
+        <img className={styles.deleteButton} />
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>

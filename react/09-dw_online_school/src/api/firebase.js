@@ -1,9 +1,13 @@
 import { initializeApp } from "firebase/app";
 import {
+  arrayRemove,
+  arrayUnion,
   collection,
+  doc,
   getDocs,
   getFirestore,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 
@@ -70,8 +74,31 @@ async function getMember(values) {
   }
   return { memberobj, message };
 }
+
+async function updateDatas(collectionName, docId, updateobj, option) {
+  // 문서의 reference 객체가 필요
+  const docRef = doc(db, collectionName, docId);
+  try {
+    if (!option) {
+      await updateDoc(docRef, updateobj);
+    } else {
+      if (option.type == "ADD") {
+        await updateDoc(docRef, {
+          [option.fieldName]: arrayUnion(updateobj),
+        });
+      } else if (option.type == "DELETE") {
+        await updateDoc(docRef, {
+          [option.fieldName]: arrayRemove(updateobj),
+        });
+      }
+    }
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
 //두 개의 조건을 입력하면 둘 중 뭐가 틀렸는지 알 수가 없다 그러니 먼저 email로 조회한다.
 // email이 없어도 snapshot 객체는 나오니 docs를 확인해라..~!
 // 소셜 로그인이 생기면서 아이디와 패스워드를 같이 판단해서 둘 중 하나 틀..
 
-export { getDatas, getData, getMember };
+export { getDatas, getData, getMember, updateDatas };
