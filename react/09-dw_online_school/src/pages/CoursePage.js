@@ -14,6 +14,7 @@ function CoursePage() {
   const { pathname, state } = props;
   const { courseSlug } = useParams();
   const navigate = useNavigate();
+  console.log(courseSlug);
 
   const [course, setCourse] = useState();
   // undefined.code
