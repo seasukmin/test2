@@ -130,50 +130,6 @@ async function getLastNum(collectionName, field) {
   const lastId = lastDoc.docs[0].data()[field];
   return lastId;
 }
-// try {
-//   const uuid = crypto.randomUUID();
-//   const path = `Food/${uuid}`;
-//   const url = await uploadImage(path, addObj.imgUrl);
-//   addObj.imgUrl = url;
-//   // createdAt, updatedAt ==> 현재 날짜 밀리세컨즈로 바꿔서
-//   const time = new Date().getTime();
-//   addObj.createdAt = time;
-//   addObj.updatedAt = time;
-//   // id 필드의 값 ==> 가장 큰 id + 1
-//   const lastId = await getLastNum(collectionName, "id");
-//   dataObj.id = lastId + 1;
-//   // 문서 ID 자동
-//   const collect = await collection(db, collectionName);
-//   const result = await addDoc(collect, dataObj);
-//   const docSnap = await getDoc(result); // result ==> documentReference
-//   const resultData = { ...docSnap.data(), docId: docSnap.id };
-//   return resultData;
-// } catch (error) {
-//   return false;
-// }
-
-// async function getLastNum(collectionName, field) {
-//   const q = query(
-//     collection(db, collectionName),
-//     orderBy(field, "desc"),
-//     limit(1)
-//   );
-//   const lastDoc = await getDocs(q);
-//   const lastNum = lastDoc.docs[0].data()[field];
-//   return lastNum;
-// }
-
-// async function uploadImage(path, imgFile) {
-//   // 스토리지 객체 가져오기
-//   const storage = getStorage();
-//   // 저장할 이미지 객체 생성
-//   const imageRef = ref(storage, path);
-//   // File 객체를 스토리지에 저장
-//   await uploadBytes(imageRef, imgFile);
-//   // 저장한 File의 url 가져오기
-//   const url = await getDownloadURL(imageRef);
-//   return url;
-// }
 
 async function deleteDatas(collectionName, docId, imgUrl) {
   // 1. 스토리지 객체 가져온다.
