@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import ReviewForm from "./ReviewForm";
-import ReviewList from "./ReviewList";
-import logoImg from "./assets/logo.png";
-import mockItems from "./mock.json";
+import { useEffect, useState } from 'react';
+import './App.css';
+import ReviewForm from './ReviewForm';
+import ReviewList from './ReviewList';
+import logoImg from './assets/logo.png';
+import mockItems from './mock.json';
 import {
   addDatas,
   deleteDatas,
@@ -11,16 +11,16 @@ import {
   getDatasByOrder,
   getDatasByOrderLimit,
   updateDatas,
-} from "./firebase";
-import LocaleSelect from "./LocaleSelect";
-import useTranslate from "./hooks/useTranslate";
+} from './firebase';
+import LocaleSelect from './LocaleSelect';
+import useTranslate from './hooks/useTranslate';
 
 const LIMIT = 10;
 
 function AppSortButton({ children, onClick, selected }) {
-  let isSelected = "";
+  let isSelected = '';
   if (selected) {
-    isSelected = "selected";
+    isSelected = 'selected';
   }
   return (
     <button className={`AppSortButton ${isSelected}`} onClick={onClick}>
@@ -31,14 +31,14 @@ function AppSortButton({ children, onClick, selected }) {
 
 function App() {
   const [items, setItems] = useState([]);
-  const [order, setOrder] = useState("createdAt");
+  const [order, setOrder] = useState('createdAt');
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
   const t = useTranslate();
 
   const handleLoad = async (options) => {
     const { resultData, lastQuery } = await getDatasByOrderLimit(
-      "movie",
+      'movie',
       options
     );
     if (!options.lq) {
@@ -51,8 +51,8 @@ function App() {
     }
     setLq(lastQuery);
   };
-  const handleNewestClick = () => setOrder("createdAt");
-  const handleBestClick = () => setOrder("rating");
+  const handleNewestClick = () => setOrder('createdAt');
+  const handleBestClick = () => setOrder('rating');
 
   const handleMoreClick = () => {
     handleLoad({ order: order, limit: LIMIT, lq: lq });
@@ -78,10 +78,10 @@ function App() {
   const handleDelete = async (docId, imgUrl) => {
     // 1. 파이어베이스에 접근해서 imgUrl 을 사용해 스토리지에 있는 사진파일 삭제
     // 2. docId 를 사용해 문서 삭제
-    const result = await deleteDatas("movie", docId, imgUrl);
+    const result = await deleteDatas('movie', docId, imgUrl);
     // db에서 삭제를 성공햇을 때만 그 결과를 화면에 반영한다.
     if (!result) {
-      alert("저장된 이미지 파일이 없습니다. \n관리자에게 문의하세요.");
+      alert('저장된 이미지 파일이 없습니다. \n관리자에게 문의하세요.');
       return false;
     }
     // 3. items 에서 docId 가 같은 요소(객체)를 찾아서 제거
@@ -100,35 +100,35 @@ function App() {
   }, [order]);
 
   return (
-    <div className="App">
-      <nav className="App-nav">
-        <div className="App-nav-container">
-          <img className="App-logo" src={logoImg} />
+    <div className='App'>
+      <nav className='App-nav'>
+        <div className='App-nav-container'>
+          <img className='App-logo' src={logoImg} />
           <LocaleSelect />
         </div>
       </nav>
-      <div className="App-container">
-        <div className="App-ReviewForm">
+      <div className='App-container'>
+        <div className='App-ReviewForm'>
           <ReviewForm
             onSubmit={addDatas}
             handleSubmitSuccess={handleAddSuccess}
           />
         </div>
-        <div className="App-sorts">
+        <div className='App-sorts'>
           <AppSortButton
-            selected={order === "createdAt"}
+            selected={order === 'createdAt'}
             onClick={handleNewestClick}
           >
-            {t("newest")}
+            {t('newest')}
           </AppSortButton>
           <AppSortButton
-            selected={order === "rating"}
+            selected={order === 'rating'}
             onClick={handleBestClick}
           >
-            {t("best")}
+            {t('best')}
           </AppSortButton>
         </div>
-        <div className="App-ReviewList">
+        <div className='App-ReviewList'>
           <ReviewList
             items={items}
             handleDelete={handleDelete}
@@ -139,17 +139,17 @@ function App() {
             더보기
           </button>)} */}
           <button
-            className="App-load-more-button"
+            className='App-load-more-button'
             onClick={handleMoreClick}
             disabled={!hasNext}
           >
-            {t("load more")}
+            {t('load more')}
           </button>
         </div>
       </div>
-      <footer className="App-footer">
-        <div className="App-footer-container">
-          {t("terms of service")} | {t("privacy policy")}
+      <footer className='App-footer'>
+        <div className='App-footer-container'>
+          {t('terms of service')} | {t('privacy policy')}
         </div>
       </footer>
     </div>

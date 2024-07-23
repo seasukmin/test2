@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FileInput from "./FileInput";
 import RatingInput from "./RatingInput";
 import "./ReviewForm.css";
+import { LocaleContext, useLocale } from "./contexts/LocaleConext";
+import useTranslate from "./hooks/useTranslate";
 
 const INITIAL_VALUE = {
   title: "",
@@ -10,9 +12,16 @@ const INITIAL_VALUE = {
   imgUrl: null,
 };
 
-function ReviewForm({ addData, handleAddSuccess }) {
-  const [values, setValues] = useState(INITIAL_VALUE);
+function ReviewForm({
+  onSubmit,
+  handleSubmitSuccess,
+  initialPreview,
+  initialValues = INITIAL_VALUE,
+  handleCancel,
+}) {
+  const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const t = useTranslate();
 
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
@@ -25,8 +34,8 @@ function ReviewForm({ addData, handleAddSuccess }) {
     e.preventDefault();
     // 버튼 비활성화
     setIsSubmitting(true);
-    const result = await addData("movie", values);
-    handleAddSuccess(result);
+    const result = await onSubmit("movie", values);
+    handleSubmitSuccess(result);
 
     // 버튼 활성화
     setIsSubmitting(false);
@@ -41,14 +50,16 @@ function ReviewForm({ addData, handleAddSuccess }) {
           inputName="imgUrl"
           setFile={handleChange}
           value={values.imgUrl}
+          initialPreview={initialPreview}
         />
       </div>
       <div className="Form-container">
         <input
           type="text"
           name="title"
-          placeholder="제목을 입력해주세요."
+          placeholder={t("title placeholder")}
           onChange={handleInputChange}
+          value={values.title}
         />
         <RatingInput
           inputName="rating"
@@ -57,11 +68,17 @@ function ReviewForm({ addData, handleAddSuccess }) {
         />
         <textarea
           name="content"
-          placeholder="내용을 입력해주세요."
+          placeholder={t("content placeholder")}
           onChange={handleInputChange}
+          value={values.content}
         />
+        {handleCancel && (
+          <button onClick={() => handleCancel(null)}>
+            {t("cancel button")}
+          </button>
+        )}
         <button type="submit" disabled={isSubmitting}>
-          확인
+          {t("confirm button")}
         </button>
       </div>
     </form>

@@ -24,7 +24,6 @@
 .ReviewListItem-rows .ReviewListItem-rating {
   margin-bottom: 8px;
 }
-
 .ReviewListItem-rows .ReviewListItem-date {
   margin: 0 0 5px;
   color: #bdbdbd;
@@ -62,9 +61,9 @@
   margin: 0;
 }
 .ReviewList > li {
-  padding: 30px 0;
-  border-bottom: 1px dashed #c5c5c5;
+    padding: 30px 0;
+    border-bottom: 1px dashed #c5c5c5;
 }
 .ReviewList > li:first-child {
-  padding-top: 0;
+    padding-top: 0;
 }

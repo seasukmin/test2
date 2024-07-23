@@ -1,5 +1,5 @@
-import React from "react";
-import "./Rating.css";
+import React from 'react';
+import './Rating.css';
 
 const RATINGS = [1, 2, 3, 4, 5];
 

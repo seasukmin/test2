@@ -12,6 +12,9 @@
   object-fit: cover;
   object-position: center;
 }
+.FileInput-preview.selected {
+  opacity: 0.48;
+}
 .FileInput-hidden-overlay {
   position: absolute;
   top: 0;
@@ -22,14 +25,14 @@
   opacity: 0;
 }
 .FileInput-clear-button {
-  width: 26px;
-  height: 26px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  padding: 7px;
-  background-color: rgba(0, 0, 0, 0.4);
-  position: absolute;
-  top: 9px;
-  right: 9px;
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 7px;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 9px;
+    right: 9px;
 }

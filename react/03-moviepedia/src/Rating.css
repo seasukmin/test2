@@ -1,7 +1,7 @@
 .Rating-star {
-  color: slategray;
-  cursor: pointer;
+    color: slategray;
+    cursor: pointer;
 }
 .Rating-star.selected {
-  color: yellowgreen;
+    color: yellowgreen;
 }

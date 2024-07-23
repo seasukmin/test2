@@ -1,0 +1,61 @@
+.FoodListItem {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 0 15px 15px 15px;
+}
+.FoodListItemRows {
+  display: flex;
+  column-gap: 10px;
+}
+.FoodListItemRow {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.FoodListItemTitle {
+  margin: 0;
+}
+.FoodListItemNum {
+  margin: 0 0 17px 0;
+  padding: 0;
+}
+.FoodListItemCal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b6bab2;
+  font-size: 16px;
+  margin: 0;
+  border-radius: 5px;
+  padding: 5px;
+  color: #4caf50;
+  font-weight: 500;
+}
+.FoodListItemHeader {
+  display: flex;
+  column-gap: 15px;
+}
+.FoodListItemDate {
+  margin: 0;
+}
+.FoodListItemButton {
+  display: flex;
+  gap: 10px;
+}
+.FoodListItemBottom {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.FoodListItemEditButton {
+  background-color: transparent;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.FoodListItemDeleteButton {
+  background-color: transparent;
+  border: 1px solid gray;
+  padding: 5px;
+  border-radius: 5px;
+}
