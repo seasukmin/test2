@@ -45,6 +45,16 @@ async function getDatas(collectionName) {
   return resultData;
 }
 
+// async function getDatasOrderByLimit(conllectionName, options) {
+//   const { fieldName, limit } = options;
+//   const q = query(getCollection(conllectionName), orderBy(fieldName, "desc"),limit(limit));
+//   const snapshot = await getDocs(q);
+//   const resultData= snapshot.docs.map((doc)=> ({
+//      ...doc.data(), docId: doc.id
+//   }))
+//   return resultData
+// }
+
 async function getDatasByOrder(collectionName, options) {
   const collect = await collection(db, collectionName);
   // const q = query(컬렉션정보, 조건1, 조건2, 조건3...);
@@ -66,6 +76,7 @@ async function getDatasByOrderLimit(collectionName, options) {
       collect,
       orderBy(options.order, "desc"),
       startAfter(options.lq),
+      // startAfter는 더보기 눌렀을때 마지막 인덱스 이후로 다시 나오게 알려주는 함수
       limit(options.limit)
     );
   } else {
@@ -146,6 +157,10 @@ async function deleteDatas(collectionName, docId, imgUrl) {
     return false;
   }
 }
+
+// async function deleteDatas(collectionName, id, imgUrl){
+
+// }
 
 async function updateDatas(collectionName, docId, updateInfoObj) {
   const docRef = await doc(db, collectionName, docId);

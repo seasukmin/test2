@@ -6,18 +6,108 @@ import logoTextImg from "../assets/logo-text.png";
 import FoodList from "./FoodList";
 import FoodForm from "./FoodForm";
 import searchImg from "../assets/ic-search.png";
-import { addDatas, getDatas } from "../api/firebase";
+import {
+  addDatas,
+  deleteDatas,
+  getDatas,
+  getDatasByOrder,
+  getDatasByOrderLimit,
+  updateDatas,
+} from "../api/firebase";
+import { getStorage } from "firebase/storage";
+let isSelected;
+function AppSortButton({ children, onClick, selected }) {
+  isSelected = "";
+  if (selected) {
+    isSelected = "selected";
+  }
+  return (
+    <button className={`AppsortButton ${isSelected}`} onClick={onClick}>
+      {children}
+    </button>
+  );
+}
 
-let foodList;
+const LIMIT = 5;
+let foodItems;
 function App() {
   const [Items, setItems] = useState([]);
-  async function handleLoad() {
-    const snapshot = await getDatas("food");
-    setItems(snapshot);
-  }
+  const [order, setOrder] = useState("createdAt");
+  const [lq, setLq] = useState();
+  const [hasNext, setHasNext] = useState(true);
+  const [keyword, setkeyword] = useState([]);
+
+  const handleKeywordChange = (e) => {
+    setkeyword(e.target.value);
+  };
+  const handleSubmitChange = (e) => {
+    e.preventDefault();
+    console.log(foodItems);
+    const searchItems = foodItems.filter(function (item) {
+      return item.title.includes(keyword);
+    });
+    setItems(searchItems);
+    setItems(foodItems.filter(({ title }) => title.includes(keyword)));
+  };
+  const handleLoad = async (options) => {
+    const { resultData, lastQuery } = await getDatasByOrderLimit(
+      "food",
+      options
+    );
+
+    // const handleLoad =async ()=>{
+    //   const resultData =  await getDatasByOrderLimit(
+    //     "food",
+    //     {options
+    //   );
+    // }
+    const getresult = await getDatas("food");
+    if (!options.lq) {
+      setItems(resultData);
+    } else {
+      setItems((prevItems) => [...prevItems, ...resultData]);
+    }
+    if (!lastQuery) {
+      setHasNext(false);
+    }
+    setLq(lastQuery);
+    foodItems = getresult;
+  };
+  //  기존꺼 유지하고 더보기 눌렀을때 추가로 나오게 하는 방법이 위에꺼
+  // lastQurey가 없으면 false!!
+  const handleNewestClick = () => setOrder("createdAt");
+  const handlecalorieClick = () => setOrder("calorie");
+
+  const handleUpdateSuccess = (result) => {
+    setItems((prevItems) => {
+      const splitIdx = prevItems.findIndex((item) => item.id === result.id);
+
+      return [
+        ...prevItems.slice(0, splitIdx),
+        result,
+        ...prevItems.slick(splitIdx + 1),
+      ];
+    });
+  };
+
+  const handleDelete = async (docId, imgUrl) => {
+    const result = await deleteDatas("food", docId, imgUrl);
+    if (!result) {
+      alert("저장된 이미지 파일이 없습니다. \n관리자에게 문의하세요.");
+      return false;
+    }
+    setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
+  };
+
+  const handleMoreClick = () => {
+    handleLoad({ order: order, limit: LIMIT, lq: lq });
+  };
+
   useEffect(() => {
-    handleLoad();
-  }, []);
+    handleLoad({ order: order, limit: LIMIT });
+    setHasNext(true);
+  }, [order]);
+
   return (
     <div className="App" style={{ backgroundImage: `url(${backgroundImg})` }}>
       <div className="App-nav">
@@ -25,25 +115,56 @@ function App() {
       </div>
       <div className="App-container">
         <div className="App-FoodForm">
-          <FoodForm onSubmit={addDatas} />
+          <FoodForm />
         </div>
         <div className="App-filter">
-          <input
-            className="App-Input"
-            style={{
-              backgroundImage: `url(${searchImg} )`,
-              backgroundRepeat: "no-repeat",
-            }}
-          />
-          <ul className="App-filterdle">
-            <li>최신순</li>
-            <li>칼로리순</li>
-          </ul>
+          <form className="App-search" onSubmit={handleSubmitChange}>
+            <input
+              className="App-search-input"
+              onChange={handleKeywordChange}
+            />
+            <button className="App-search-button">
+              <img src={searchImg} />
+            </button>
+          </form>
+          <div className="App-orders">
+            <AppSortButton
+              className="AppSortButton"
+              selected={order === "createdAt"}
+              onClick={handleNewestClick}
+              disabled={isSelected}
+            >
+              최신순
+            </AppSortButton>
+            <AppSortButton
+              className="AppSortButton"
+              selected={order === "calorie"}
+              onClick={handlecalorieClick}
+            >
+              칼로리순
+            </AppSortButton>
+          </div>
         </div>
         {Items.map((Items) => {
-          return <FoodList key={Items.id} Items={Items} />;
+          return (
+            <FoodList
+              key={Items.id}
+              Items={Items}
+              onUpdateSuccess={handleUpdateSuccess}
+              handleDelete={handleDelete}
+              onUpdate={updateDatas}
+            />
+          );
         })}
-        <button>더 보기</button>
+        {hasNext && (
+          <button
+            className="App-load-more-button"
+            onClick={handleMoreClick}
+            disabled={!hasNext}
+          >
+            더 보기
+          </button>
+        )}
       </div>
       <div className="App-footer">
         <div className="App-footer-container">

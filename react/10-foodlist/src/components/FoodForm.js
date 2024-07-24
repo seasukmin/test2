@@ -21,10 +21,16 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm({ onSubmit }) {
-  const [values, setValues] = useState(INITIAL_VALUE);
+function FoodForm({
+  handleSubmitSuccess,
+  initialPreview,
+  initialValues = INITIAL_VALUE,
+  onSubmit,
+  handleCancel,
+}) {
+  const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  console.log(values);
+
   const handleChange = (name, value) => {
     setValues((prevValues) => ({
       ...prevValues,
