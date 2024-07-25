@@ -74,7 +74,7 @@ function App() {
       ];
     });
   };
-
+  debugger;
   const handleDelete = async (docId, imgUrl) => {
     // 1. 파이어베이스에 접근해서 imgUrl 을 사용해 스토리지에 있는 사진파일 삭제
     // 2. docId 를 사용해 문서 삭제

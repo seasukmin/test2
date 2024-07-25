@@ -80,23 +80,26 @@ function App() {
 
   const handleUpdateSuccess = (result) => {
     setItems((prevItems) => {
-      const splitIdx = prevItems.findIndex((item) => item.id === result.id);
-
+      const splitIdx = prevItems.findIndex((Items) => Items.id === result.id);
       return [
         ...prevItems.slice(0, splitIdx),
         result,
-        ...prevItems.slick(splitIdx + 1),
+        ...prevItems.slice(splitIdx + 1),
       ];
     });
   };
 
   const handleDelete = async (docId, imgUrl) => {
-    const result = await deleteDatas("food", docId, imgUrl);
+    const { result, message } = await deleteDatas("food", docId, imgUrl);
     if (!result) {
-      alert("저장된 이미지 파일이 없습니다. \n관리자에게 문의하세요.");
+      alert(message);
       return false;
     }
     setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
+  };
+
+  const handleAddSuccess = (resultData) => {
+    setItems((prevItems) => [resultData, ...prevItems]);
   };
 
   const handleMoreClick = () => {
@@ -115,7 +118,7 @@ function App() {
       </div>
       <div className="App-container">
         <div className="App-FoodForm">
-          <FoodForm />
+          <FoodForm onSubmit={addDatas} handleAddSuccess={handleAddSuccess} />
         </div>
         <div className="App-filter">
           <form className="App-search" onSubmit={handleSubmitChange}>
@@ -150,7 +153,7 @@ function App() {
             <FoodList
               key={Items.id}
               Items={Items}
-              onUpdateSuccess={handleUpdateSuccess}
+              handleUpdateSuccess={handleUpdateSuccess}
               handleDelete={handleDelete}
               onUpdate={updateDatas}
             />

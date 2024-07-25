@@ -6,8 +6,8 @@ import { addDatas } from "../api/firebase";
 
 const INITIAL_VALUE = {
   title: "",
-  content: "",
   calorie: 0,
+  content: "",
   imgUrl: null,
 };
 
@@ -27,6 +27,7 @@ function FoodForm({
   initialValues = INITIAL_VALUE,
   onSubmit,
   handleCancel,
+  handleAddSuccess,
 }) {
   const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,9 +44,18 @@ function FoodForm({
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await addDatas("food", values);
-    setValues(INITIAL_VALUE);
+    setIsSubmitting(true);
+    const result = await onSubmit("food", values);
+    if (onSubmit === addDatas) {
+      handleAddSuccess(result);
+    } else {
+      handleSubmitSuccess(result);
+    }
+
+    setIsSubmitting(false);
+    setValues(initialValues);
   };
+
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
       <FileInput
@@ -54,6 +64,7 @@ function FoodForm({
         onChange={handleChange}
         name="imgUrl"
         value={values.imgUrl}
+        initialPreview={initialPreview}
       />
       <div className="FoodForm-rows">
         <div className="FoodForm-title-calorie">
@@ -72,7 +83,20 @@ function FoodForm({
             name="calorie"
             value={values.calorie}
           />
-          <button className="FoodForm-submit-button" type="submit">
+          {handleCancel && (
+            <button
+              onClick={() => handleCancel(null)}
+              className="FoodForm-cancel-button"
+              type="button"
+            >
+              취소
+            </button>
+          )}
+          <button
+            className="FoodForm-submit-button"
+            type="submit"
+            // disabled={isSubmitting}
+          >
             확인
           </button>
         </div>

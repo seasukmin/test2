@@ -98,6 +98,10 @@
   border: 1px solid #e5cdcd;
   color: #b18181;
 }
+.FoodList-FoodForm {
+  list-style-type: none;
+  padding: 30px;
+}
 /* .FoodListItem {
   background-color: #fff;
   border-radius: 20px;

@@ -9,22 +9,14 @@ function formatDate(value) {
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 }
 
-// function FoodListItem({ item, handleDelete, handleEdit }) {
-//   const handleDeleteClick = () => {
-//     handleDelete(item.docId, item.imgUrl);
-//   };
-// }
-// const handleEditClick = () => {
-//   handleEadit(item.id);
-// };
-function FoodListItem({ Items, handleDelete, onUpdateSuccess, handleEdit }) {
-  const { id, imgUrl, title, content, createdAt, calorie } = Items;
+function FoodListItem({ Items, handleDelete, handleEdit }) {
+  const { id, imgUrl, title, content, createdAt, calorie, docId } = Items;
 
   const handleDeleteClick = () => {
     handleDelete(Items.docId, imgUrl);
   };
 
-  const handleEditClick = () => {
+  const handleEditClick = (e) => {
     handleEdit(id);
   };
   return (
@@ -59,23 +51,22 @@ function FoodListItem({ Items, handleDelete, onUpdateSuccess, handleEdit }) {
   );
 }
 
-function FoodList({ Items, onUpdateSuccess, handleDelete, onUpdate }) {
+function FoodList({ Items, handleUpdateSuccess, handleDelete, onUpdate }) {
   const [editngId, setEditingId] = useState(null);
-  if (!Items.id === editngId) {
-    const { id, imgUrl, title, content, createdAt, calorie } = Items;
-    const initialValues = { title, calorie, content, imgUrl };
+  if (Items.id === editngId) {
+    const { id, imgUrl, title, content, createdAt, calorie, docId } = Items;
+    const initialValues = { title, calorie, content, imgUrl: null };
 
     const handleSubmit = (collectionName, dataObj) => {
-      const result = onUpdate(collectionName, dataObj, id);
+      const result = onUpdate(collectionName, docId, dataObj);
       return result;
     };
     const handleSubmitSuccess = (result) => {
-      onUpdateSuccess(result);
+      handleUpdateSuccess(result);
       setEditingId(null);
     };
-
     return (
-      <li key={Items.id}>
+      <li key={Items.id} className="FoodList-FoodForm">
         <FoodForm
           initialValues={initialValues}
           initialPreview={imgUrl}

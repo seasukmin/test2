@@ -42,7 +42,7 @@ function ReviewForm({
 
     setValues(INITIAL_VALUE);
   };
-
+  debugger;
   return (
     <form className="ReviewForm" onSubmit={handleSubmit}>
       <div>

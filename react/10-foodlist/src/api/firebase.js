@@ -84,7 +84,6 @@ async function getDatasByOrderLimit(collectionName, options) {
   }
   const snapshot = await getDocs(q);
   const lastQuery = snapshot.docs[snapshot.docs.length - 1];
-  console.log(lastQuery);
   const resultData = snapshot.docs.map((doc) => ({
     docId: doc.id,
     ...doc.data(),
@@ -117,7 +116,10 @@ async function addDatas(collectionName, addObj) {
   addObj.updatedAt = time;
 
   // 컬렉션에 저장
-  await addDoc(getCollection(collectionName), addObj);
+  const result = await addDoc(getCollection(collectionName), addObj);
+  const docSnap = await getDoc(result);
+  const resultData = { ...docSnap.data(), docId: docSnap.id };
+  return resultData;
 }
 async function uploadImage(path, file) {
   const storage = getStorage();
@@ -145,16 +147,22 @@ async function getLastNum(collectionName, field) {
 async function deleteDatas(collectionName, docId, imgUrl) {
   // 1. 스토리지 객체 가져온다.
   const storage = getStorage();
+  let message;
   try {
     // 2. 스토리지에서 이미지 삭제
+    // 삭제할 파일의 참조객체 생성(ref 함수 사용)
+    message = "이미지 삭제에 실패했습니다. \n관리자에게 문의하세요.";
     const deleteRef = ref(storage, imgUrl);
+    // 파일 삭제
     await deleteObject(deleteRef);
+    message = "문서 삭제에 실패했습니다. \n관리자에게 문의하세요.";
     // 3. 컬렉션에서 문서 삭제
+    // 삭제할 문서의 참조객체 생성(doc 함수 사용)
     const docRef = await doc(db, collectionName, docId);
     await deleteDoc(docRef);
-    return true;
+    return { result: true, message: message };
   } catch (error) {
-    return false;
+    return { result: false, message: message };
   }
 }
 
@@ -164,8 +172,15 @@ async function deleteDatas(collectionName, docId, imgUrl) {
 
 async function updateDatas(collectionName, docId, updateInfoObj) {
   const docRef = await doc(db, collectionName, docId);
-  // const docData = await getDoc(docRef);
+  const docData = await getDoc(docRef);
   await updateDoc(docRef, updateInfoObj);
+  const resultData = { ...docData.data(), docId: docData.id };
+
+  try {
+    return resultData;
+  } catch (error) {
+    return false;
+  }
 }
 
 export {
