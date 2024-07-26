@@ -3,14 +3,15 @@ import "./FoodList.css";
 import FileInput from "./FileInput";
 import FoodForm from "./FoodForm";
 import { collection } from "firebase/firestore";
+import useTranslate from "../hooks/useTranslate";
 
 function formatDate(value) {
   const date = new Date(value);
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 }
-
 function FoodListItem({ Items, handleDelete, handleEdit }) {
   const { id, imgUrl, title, content, createdAt, calorie, docId } = Items;
+  const t = useTranslate();
 
   const handleDeleteClick = () => {
     handleDelete(Items.docId, imgUrl);
@@ -36,13 +37,13 @@ function FoodListItem({ Items, handleDelete, handleEdit }) {
               className="FoodListItem-edit-button"
               onClick={handleEditClick}
             >
-              수정
+              {t("edit button")}
             </button>
             <button
               className="FoodListItem-delete-button"
               onClick={handleDeleteClick}
             >
-              삭제
+              {t("delete button")}
             </button>
           </div>
         </div>
@@ -57,8 +58,8 @@ function FoodList({ Items, handleUpdateSuccess, handleDelete, onUpdate }) {
     const { id, imgUrl, title, content, createdAt, calorie, docId } = Items;
     const initialValues = { title, calorie, content, imgUrl: null };
 
-    const handleSubmit = (collectionName, dataObj) => {
-      const result = onUpdate(collectionName, docId, dataObj);
+    const handleSubmit = (collectionName, updateInfoObj) => {
+      const result = onUpdate(collectionName, docId, updateInfoObj, imgUrl);
       return result;
     };
     const handleSubmitSuccess = (result) => {

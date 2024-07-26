@@ -22,6 +22,8 @@ function FileInput({ photoUrl, name, value, onChange, initialPreview }) {
       URL.revokeObjectURL(nextPreview);
     };
   }, [value]);
+  //  요건 value가 없을떈 리턴하고
+  // URL.createObjectURL(value) <<??
   return (
     <div className="FileInput">
       <img

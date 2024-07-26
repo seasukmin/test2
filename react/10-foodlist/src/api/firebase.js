@@ -13,6 +13,7 @@ import {
   orderBy,
   limit,
   startAfter,
+  where,
 } from "firebase/firestore";
 import {
   deleteObject,
@@ -170,11 +171,39 @@ async function deleteDatas(collectionName, docId, imgUrl) {
 
 // }
 
-async function updateDatas(collectionName, docId, updateInfoObj) {
+async function updateDatas(collectionName, docId, updateInfoObj, imgUrl) {
   const docRef = await doc(db, collectionName, docId);
-  const docData = await getDoc(docRef);
+  // 저장되어있는 시간 관련 필드들의 값이 밀리셑컨드로 되어있기 때문에 getTime()함수 사용
+  const time = new Date().getTime();
+
+  // 사진 파일을 변경하지 않았을 때
+  if (updateInfoObj.imgUrl === null) {
+    //  사진이 변경되지 않았을 때 imgUrl 값이 null로 넘어기 떄문에
+    //  그 상태로 문서를 update 해버리면 imgUrl 값이 null로 바뀐다.
+    //  그렇기 때문에 updateObj 에서 imgUrl 프로퍼티를 삭제해준다.
+    delete updateInfoObj["imgUrl"];
+  } else {
+    // 사진 파일을 변경했을 때
+    // 기존 사진 삭제
+    const storage = getStorage();
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+
+    // 변경한 사진을 스토리지에 저장
+    const url = await uploadImage(createPath("food/"), updateInfoObj.imgUrl);
+    // 스토리지에 저장하고 그 파일의 url을 가져와서 updateObj의 imgUrl 값을 변경해준다.
+    // 왜? 기존 updateObj에 있는 imgUrl 은 'File'객체이고,
+    // 우리가 데이터베이스에 저장해야 할 imgUrl 은 문자열 Url이기 때문에..
+    updateInfoObj.imgUrl = url;
+  }
+
+  //  updatedAt 필드에 넣어줄 시간 데이터를 updateObj에 넣어준다.
+  updateInfoObj.updatedAt = time;
+
+  // 문서 필드 데이터 수정
   await updateDoc(docRef, updateInfoObj);
-  const resultData = { ...docData.data(), docId: docData.id };
+  const docSnap = await getDoc(docRef);
+  const resultData = { ...docSnap.data(), docId: docSnap.id };
 
   try {
     return resultData;
@@ -183,6 +212,20 @@ async function updateDatas(collectionName, docId, updateInfoObj) {
   }
 }
 
+async function getSearchDatas(collectionName, options) {
+  const q = query(
+    getCollection(collectionName),
+    where("title", ">=", options.keyword),
+    where("title", "<=", options.keyword + "\uf8ff"),
+    limit(options.limits)
+  );
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
+  return resultData;
+}
+// SQL문? << 흠..?
+// ms식?
 export {
   db,
   getDatas,
@@ -191,4 +234,5 @@ export {
   updateDatas,
   getDatasByOrder,
   getDatasByOrderLimit,
+  getSearchDatas,
 };
