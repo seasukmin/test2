@@ -3,6 +3,7 @@ import { getUserAuth } from "./api/firebase";
 import "./App.css";
 import SignIn from "./components/SignIn";
 import { onAuthStateChanged } from "firebase/auth";
+import ChatRoom from "./components/ChatRoom";
 
 function App() {
   const auth = getUserAuth();
@@ -24,11 +25,7 @@ function App() {
         <button onClick={handleLogout}>로그아웃</button>
       </header>
       <section>
-        {loginUser ? (
-          "채팅방 호출 할 예정"
-        ) : (
-          <SignIn auth={auth} login={setLoginUser} />
-        )}
+        {user ? <ChatRoom /> : <SignIn auth={auth} login={setLoginUser} />}
       </section>
     </div>
   );

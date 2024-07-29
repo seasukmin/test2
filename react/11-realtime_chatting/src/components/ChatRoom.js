@@ -9,6 +9,62 @@ function ChatRoom(props) {
           <img />
           <p>채팅 내용</p>
         </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
+        <div>
+          <img />
+          <p>채팅 내용</p>
+        </div>
       </main>
       <form>
         <input />
