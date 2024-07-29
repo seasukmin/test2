@@ -97,6 +97,7 @@ function FoodForm({
               {t("cancel button")}
             </button>
           )}
+
           <button
             className="FoodForm-submit-button"
             type="submit"
