@@ -17,6 +17,7 @@ import {
 } from "../api/firebase";
 import LocaleSelect from "./LocaleSelect";
 import useTranslate from "../hooks/useTranslate";
+import useAsync from "../hooks/useAsync";
 
 let isSelected;
 function AppSortButton({ children, onClick, selected }) {
@@ -40,6 +41,9 @@ function App() {
   const [hasNext, setHasNext] = useState(true);
   const [keyword, setkeyword] = useState([]);
   const t = useTranslate();
+  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, loadingError, getDatasAsync] =
+    useAsync(getDatasByOrderLimit);
 
   const handleKeywordChange = (e) => {
     setkeyword(e.target.value);
@@ -58,17 +62,13 @@ function App() {
     // setItems(foodItems.filter(({ title }) => title.includes(keyword)));
   };
   const handleLoad = async (options) => {
-    const { resultData, lastQuery } = await getDatasByOrderLimit(
-      "food",
-      options
-    );
-
-    // const handleLoad =async ()=>{
-    //   const resultData =  await getDatasByOrderLimit(
-    //     "food",
-    //     {options
-    //   );
-    // }
+    // setIsLoading(true);
+    // const { resultData, lastQuery } = await getDatasByOrderLimit(
+    //   "food",
+    //   options
+    // );
+    // setIsLoading(false);
+    const { resultData, lastQuery } = await getDatasAsync("food", options);
     const getresult = await getDatas("food");
     if (!options.lq) {
       setItems(resultData);
@@ -181,7 +181,7 @@ function App() {
           <button
             className="App-load-more-button"
             onClick={handleMoreClick}
-            disabled={!hasNext}
+            disabled={isLoading}
           >
             {t("load more")}
           </button>

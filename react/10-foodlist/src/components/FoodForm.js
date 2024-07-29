@@ -4,6 +4,7 @@ import "./FoodForm.css";
 import photoUrl from "../assets/preview-placeholder.png";
 import { addDatas } from "../api/firebase";
 import useTranslate from "../hooks/useTranslate";
+import useAsync from "../hooks/useAsync";
 
 const INITIAL_VALUE = {
   title: "",
@@ -31,7 +32,9 @@ function FoodForm({
   handleAddSuccess,
 }) {
   const [values, setValues] = useState(initialValues);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, submittingError, onSubmitAsync] = useAsync(onSubmit);
+
   const handleChange = (name, value) => {
     setValues((prevValues) => ({
       ...prevValues,
@@ -48,14 +51,13 @@ function FoodForm({
   // name, value, type은 무슨소리지?
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    const result = await onSubmit("food", values);
+    const result = await onSubmitAsync("food", values);
+
     {
       onSubmit === addDatas
         ? handleAddSuccess(result)
         : handleSubmitSuccess(result);
     }
-    setIsSubmitting(false);
     setValues(initialValues);
   };
 
