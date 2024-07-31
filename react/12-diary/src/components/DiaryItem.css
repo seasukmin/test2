@@ -1,0 +1,36 @@
+.diaryItem {
+  padding: 15px 0;
+  border-bottom: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.diaryItem .emotion_img_wrapper {
+  min-width: 120px;
+  height: 80px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+.diaryItem .emotion_img_wrapper img {
+  width: 50%;
+}
+.diaryItem .emotion_img_wrapper_1 {
+  background-color: #64c964;
+}
+.diaryItem .info_wrapper {
+  flex-grow: 1;
+  cursor: pointer;
+}
+.diaryItem .diary_date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+.diaryItem .diary_content_preview {
+  font-size: 18px;
+}
+.diaryItem .btn_wrapper {
+  min-width: 70px;
+}
