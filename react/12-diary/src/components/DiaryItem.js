@@ -1,22 +1,29 @@
 import React from "react";
 import Button from "./Button";
 import "./DiaryItem.css";
+import { Link } from "react-router-dom";
 
-function DiaryItem(props) {
+function formatDate(value) {
+  const date = new Date(value);
+  return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
+}
+// new Date(date).toLocaleDateString()
+function DiaryItem({ value }) {
+  const { content, date, emotion, docId } = value;
   return (
     <div className="diaryItem">
-      <div className="emotion_img_wrapper emotion_img_wrapper_1">
-        <img src="assets/emotion1.png" />
+      <div className={`emotion_img_wrapper emotion_img_wrapper_${emotion}`}>
+        <img src={`assets/emotion${emotion}.png`} />
       </div>
       <div className="info_wrapper">
-        <div className="diary_date">2024. 7. 31.</div>
+        <div className="diary_date">{formatDate(date)}</div>
         <div className="diary_content_preview">
-          오늘은 학생들이 많이 나오지 않았...
+          {`${content.slice(0, 25)}...`}
         </div>
       </div>
-      <div className="btn_wrapper">
+      <Link to={`/new/${docId}`} className="btn_wrapper">
         <Button text={"수정하기"} />
-      </div>
+      </Link>
     </div>
   );
 }
