@@ -8,7 +8,7 @@ function Newpage(props) {
   }, []);
   return (
     <div>
-      <DiaryEditor />
+      <DiaryEditor headText={"새 일기 작성하기"} />
     </div>
   );
 }

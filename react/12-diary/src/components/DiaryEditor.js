@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Button from "./Button";
 import { emotionList } from "../util/Emotion";
@@ -13,12 +13,17 @@ const INITIAL_VALUES = {
   emotion: 3,
 };
 
-function DiaryEditor(props) {
-  const { onCreate } = useContext(DiaryDispatchContext);
+function DiaryEditor({
+  headText,
+  button,
+  originData = INITIAL_VALUES,
+  isEdit,
+}) {
+  const { onCreate, onUpdate, onDelete } = useContext(DiaryDispatchContext);
   const contentRef = useRef();
   const Navigate = useNavigate();
 
-  const [values, setValues] = useState(INITIAL_VALUES);
+  const [values, setValues] = useState(originData);
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
@@ -32,16 +37,49 @@ function DiaryEditor(props) {
       contentRef.current.focus();
       return;
     }
-    if (window.confirm("새로운 일기를 저장하시겠습니까?")) {
-      onCreate(values);
+    if (
+      window.confirm(
+        isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 저장하시겠습니까?"
+      )
+    ) {
+      if (!isEdit) {
+        onCreate(values);
+      } else {
+        onUpdate(values);
+      }
+      Navigate("/", { replace: true });
     }
-    Navigate("/", { replace: true });
   };
+  const handleDeleteClick = () => {
+    if (window.confirm("일기를 삭제하시겠습니까?")) {
+      onDelete(values);
+      Navigate("/", { replace: true });
+    }
+  };
+
+  useEffect(() => {
+    if (isEdit) {
+      // 받아온 날짜 데이터를 밀리세컨즈 단위를 formattin 해주자(yyyy-mm-dd HH24:MM:ss)..
+      handleChange(
+        "date",
+        new Date(originData.date).toISOString().split("T")[0]
+      );
+    }
+  }, []);
   return (
     <div className="diaryEditor">
       <Header
-        headText={"새 일기 작성하기"}
+        headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
         leftChild={<Button text={"< 뒤로가기"} onClick={() => Navigate(-1)} />}
+        rightChild={
+          isEdit && (
+            <Button
+              text={"삭제하기"}
+              type={"negative"}
+              onClick={handleDeleteClick}
+            />
+          )
+        }
       />
       <div>
         <section>

@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import "./DiaryList.css";
 import DiaryItem from "./DiaryItem";
-import { useNavigate } from "react-router-dom";
-import { DiaryStateContext } from "../App";
+import { Link, useNavigate } from "react-router-dom";
 
 const sortOptionList = [
   { name: "최신순", value: "latest" },
@@ -34,44 +33,43 @@ function ControlMenu({ optionList, value, onChange }) {
 }
 
 function DiaryList({ diaryList }) {
-  const navigate = useNavigate();
   const [order, setOrder] = useState("latest");
   const [filter, setFilter] = useState("all");
+  const navigate = useNavigate();
 
   const getSortedDiaryList = () => {
     // 필터링 함수
     const getFilteredList = (diary) => {
-      console.log(diary);
-      // filter state를 good이면 (emotion의 값이 3보다 작거나 같을 때)
-      // filter state가 good이 아니면 (emotion의 값이 3보다 클 때)
-      if (diary.emotion <= 3) {
-        setFilter("good");
+      if (filter === "good") {
+        // filter state가 good 이면(emotion의 값이 3보다 작거나 같을 때)
+        return diary.emotion <= 3;
       } else {
-        setFilter("bad");
+        // filter state가 good 이 아니면(emotion의 값이 3보다 클 때)
+        return diary.emotion > 3;
       }
     };
-
+    // [1, 11, 21].sort((a,b) => b - a);
     // 정렬 함수
-    // [1,11,21].sort((a,b)=> b-a)
     const getOrderedList = (a, b) => {
-      // order state가 latest이면 b-a
-      // order state가 latest가 아니면 a-b
       if (order === "latest") {
-        return b - a;
+        return b.date - a.date;
       } else {
-        return a - b;
+        return a.date - b.date;
       }
+      // order state가 latest 이면 b - a
+      // order state가 latest 가 아니면 a - b
     };
-    const filteredList = diaryList.filter((diary) => {
-      getFilteredList(diary);
-    });
-    console.log(filteredList);
+    // const filteredList = diaryList.filter((diary) => getFilteredList(diary));
+    const filteredList =
+      filter === "all"
+        ? diaryList
+        : diaryList.filter(function (diary) {
+            return getFilteredList(diary);
+          });
     const sortedList = filteredList.sort(getOrderedList);
     return sortedList;
   };
-  useEffect(() => {
-    getSortedDiaryList();
-  }, []);
+
   return (
     <div className="diaryList">
       <div className="menu_wrapper">
@@ -95,8 +93,8 @@ function DiaryList({ diaryList }) {
           />
         </div>
       </div>
-      {diaryList.map((value) => {
-        return <DiaryItem value={value} key={value.id} />;
+      {getSortedDiaryList().map((value) => {
+        return <DiaryItem key={value.id} value={value} />;
       })}
     </div>
   );

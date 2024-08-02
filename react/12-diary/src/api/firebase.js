@@ -12,6 +12,9 @@ import {
   where,
   runTransaction,
   getDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -93,7 +96,28 @@ export async function getDatas(collectionName, queryOptions) {
   }));
   return resultData;
 }
+// 순수함수고ㅗ 불변성... dispatch가 주소를 바꺼준다.. <!_비록 값이 같더라도.
+export async function updateDatas(collectionName, docId, updateObj) {
+  try {
+    const docRef = await doc(db, collectionName, docId);
+    await updateDoc(docRef, updateObj);
+    const snapshot = await getDoc(docRef);
+    const resultData = { ...snapshot.data(), docId: snapshot.id };
+    return resultData;
+  } catch (error) {
+    console.log("Error update:", error);
+  }
+}
 
+export async function deleteDatas(collectionNamae, docId) {
+  try {
+    const docRef = await doc(db, collectionNamae, docId);
+    await deleteDoc(docRef);
+    return docId;
+  } catch (error) {
+    console.log("Error delete:", error);
+  }
+}
 // export { addDatas, getLastNum };
 
 // Transaction 데이터베이스의 작업 단위
