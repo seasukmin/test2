@@ -20,6 +20,7 @@ function DiaryEditor({
   isEdit,
 }) {
   const { onCreate, onUpdate, onDelete } = useContext(DiaryDispatchContext);
+
   const contentRef = useRef();
   const Navigate = useNavigate();
 

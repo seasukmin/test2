@@ -3,9 +3,14 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import DiaryList from "../components/DiaryList";
 import { DiaryStateContext } from "../App";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserAuth } from "../api/firebase";
 
 function Homepages(props) {
-  const diaryList = useContext(DiaryStateContext);
+  // const auth = getUserAuth();
+  const items = useSelector((state) => state.diary.items);
+  const dispatch = useDispatch();
+  // const { diaryList, userState } = useContext(DiaryStateContext);
   const [curDate, setCurDate] = useState(new Date());
   const [sortedItem, setSortedItem] = useState([]);
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
@@ -34,12 +39,12 @@ function Homepages(props) {
     ).getTime();
     // 3.diaryList 에서 date 필드가 firstDay와 lastDay 사이에 있는 원소들만 뽑아서
     // 새로운 배열을 만든다.
-    const newItem = diaryList.filter(
+    const newItem = items.filter(
       (diary) => firstDay < diary.date && diary.date <= lastDay
     );
     // 4. setSortedItem 함수 사용
     setSortedItem(newItem);
-  }, [curDate, diaryList]);
+  }, [curDate, items]);
   return (
     <div>
       <Header
@@ -47,7 +52,7 @@ function Homepages(props) {
         leftChild={<Button text={"<"} onClick={decreaseMonth} />}
         rightChild={<Button text={">"} onClick={increaseMonth} />}
       />
-      <DiaryList diaryList={sortedItem} />
+      <DiaryList diaryList={sortedItem} auth />
     </div>
   );
 }
