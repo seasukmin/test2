@@ -18,8 +18,10 @@ function DiaryEditor({
   button,
   originData = INITIAL_VALUES,
   isEdit,
+  isAuthenticated,
 }) {
   const { onCreate, onUpdate, onDelete } = useContext(DiaryDispatchContext);
+
   const contentRef = useRef();
   const Navigate = useNavigate();
 
@@ -68,19 +70,23 @@ function DiaryEditor({
   }, []);
   return (
     <div className="diaryEditor">
-      <Header
-        headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
-        leftChild={<Button text={"< 뒤로가기"} onClick={() => Navigate(-1)} />}
-        rightChild={
-          isEdit && (
-            <Button
-              text={"삭제하기"}
-              type={"negative"}
-              onClick={handleDeleteClick}
-            />
-          )
-        }
-      />
+      {isAuthenticated && (
+        <Header
+          headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
+          leftChild={
+            <Button text={"< 뒤로가기"} onClick={() => Navigate(-1)} />
+          }
+          rightChild={
+            isEdit && (
+              <Button
+                text={"삭제하기"}
+                type={"negative"}
+                onClick={handleDeleteClick}
+              />
+            )
+          }
+        />
+      )}
       <div>
         <section>
           <h4>오늘은 언제인가요?</h4>

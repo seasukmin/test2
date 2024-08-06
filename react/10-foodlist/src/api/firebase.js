@@ -224,6 +224,31 @@ async function getSearchDatas(collectionName, options) {
   const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
   return resultData;
 }
+function getQuery(collectionName, queryOption) {
+  const { conditions = [], orderBys = [], limits, lastQuery } = queryOption;
+  const collect = getCollection(collectionName);
+  let q = query(collect);
+
+  // where 조건
+  conditions.forEach((condition) => {
+    q = query(q, where(condition.field, condition.operator, condition.value));
+  });
+
+  // orderBy 조건
+  orderBys.forEach((order) => {
+    q = query(q, orderBy(order.field, order.direction || "asc"));
+  });
+
+  //  startAfter 조건
+  if (lastQuery) {
+    q = query(q, startAfter(lastQuery));
+  }
+
+  //  limit 조건
+  q = query(q, limit(limits));
+
+  return q;
+}
 // SQL문? << 흠..?
 // ms식?
 export {
@@ -235,4 +260,5 @@ export {
   getDatasByOrder,
   getDatasByOrderLimit,
   getSearchDatas,
+  getQuery,
 };
