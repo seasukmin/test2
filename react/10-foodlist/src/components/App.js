@@ -18,6 +18,9 @@ import {
 import LocaleSelect from "./LocaleSelect";
 import useTranslate from "../hooks/useTranslate";
 import useAsync from "../hooks/useAsync";
+import { useDispatch, useSelector } from "react-redux";
+import { addItems } from "../store/foodSlice";
+import { collection } from "firebase/firestore";
 
 let isSelected;
 function AppSortButton({ children, onClick, selected }) {
@@ -35,12 +38,15 @@ function AppSortButton({ children, onClick, selected }) {
 const LIMIT = 5;
 let foodItems;
 function App() {
+  const items = useSelector((state) => state.items);
+  console.log(items);
   const [Items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
   const [keyword, setkeyword] = useState([]);
   const t = useTranslate();
+  const dispatch = useDispatch();
   // const [isLoading, setIsLoading] = useState(false);
   const [isLoading, loadingError, getDatasAsync] =
     useAsync(getDatasByOrderLimit);
@@ -69,6 +75,7 @@ function App() {
     // );
     // setIsLoading(false);
     const { resultData, lastQuery } = await getDatasAsync("food", options);
+
     const getresult = await getDatas("food");
     if (!options.lq) {
       setItems(resultData);
@@ -81,6 +88,7 @@ function App() {
     setLq(lastQuery);
     foodItems = getresult;
   };
+
   //  기존꺼 유지하고 더보기 눌렀을때 추가로 나오게 하는 방법이 위에꺼
   // lastQurey가 없으면 false!!
   const handleNewestClick = () => setOrder("createdAt");

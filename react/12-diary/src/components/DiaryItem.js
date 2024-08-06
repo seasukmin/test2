@@ -8,7 +8,7 @@ function formatDate(value) {
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 }
 // new Date(date).toLocaleDateString()
-function DiaryItem({ value }) {
+function DiaryItem({ value, isAuthenticated }) {
   const Navigate = useNavigate();
   const { content, date, emotion, docId, id } = value;
   const goDetail = () => {
@@ -31,7 +31,7 @@ function DiaryItem({ value }) {
           {`${content.slice(0, 25)}...`}
         </div>
       </div>
-      <Button text={"수정하기"} onClick={goDetail2} />
+      {isAuthenticated && <Button text={"수정하기"} onClick={goDetail2} />}
     </div>
   );
 }

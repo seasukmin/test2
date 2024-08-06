@@ -6,10 +6,13 @@ import { DiaryStateContext } from "./../App";
 import { emotionList } from "../util/Emotion";
 import "./DiaryPage.css";
 import { changeTitle } from "../util/changeTitle";
+import { useSelector } from "react-redux";
 
 function DiaryPage(props) {
   const { id } = useParams();
-  const { diaryList } = useContext(DiaryStateContext);
+  // const { diaryList } = useContext(DiaryStateContext);
+  const items = useSelector((state) => state.diary.items);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [data, setData] = useState();
   const Navigate = useNavigate();
   const goDetail = () => {
@@ -20,11 +23,11 @@ function DiaryPage(props) {
   }, []);
 
   useEffect(() => {
-    if (diaryList.length > 0) {
+    if (items.length > 0) {
       // targetDiary 를 찾는 방법
       // 전체 diaryList 를 확인해서 useParams로 가져온 id 와 같은 diary data를 뽑아서
       // filter, findIndex, find
-      const targetDiary = diaryList.find((diary) => diary.id == id);
+      const targetDiary = items.find((diary) => diary.id == id);
 
       if (targetDiary) {
         // data state에 set 해준다.
@@ -34,7 +37,7 @@ function DiaryPage(props) {
         Navigate("/", { replace: true });
       }
     }
-  }, [diaryList]);
+  }, [items]);
 
   if (!data) {
     return <div className="diaryPage"></div>;
@@ -51,7 +54,13 @@ function DiaryPage(props) {
             <Button text={"< 뒤로가기"} onClick={() => Navigate(-1)} />
           }
           rightChild={
-            <Button text={"수정하기"} onClick={() => Navigate(`/edit/${id}`)} />
+            isAuthenticated && (
+              <Button
+                isAuthenticated={isAuthenticated}
+                text={"수정하기"}
+                onClick={() => Navigate(`/edit/${id}`)}
+              />
+            )
           }
         />
         <article>

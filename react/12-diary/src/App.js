@@ -4,12 +4,12 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Homepages from "./pages/Homepages";
 import Newpage from "./pages/Newpage";
 import {
-  addItem,
-  deleteItem,
+  // addItem,
+  // deleteItem,
   // fetchItems,
   initialState,
   reducer,
-  updateItem,
+  // updateItem,
 } from "./api/Itemreducer";
 import DiaryPage from "./pages/DiaryPage";
 import EditPage from "./pages/EditPage";
@@ -19,7 +19,13 @@ import { getUserAuth } from "./api/firebase";
 import { userInitialState, userReducer } from "./api/userReducer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchItems } from "./store/diarySlice";
+import {
+  addItem,
+  deleteItem,
+  fetchItems,
+  updateItem,
+} from "./store/diarySlice";
+import { loginSucces, logout } from "./store/userSlice";
 
 export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
@@ -42,7 +48,12 @@ function App() {
       emotion: values.emotion,
       userEmail: user.email,
     };
-    await addItem("diary", addObj, dispatch);
+    const param = {
+      collectionName: "diary",
+      addObj,
+    };
+    // await addItem("diary", addObj, dispatch);
+    dispatch(addItem(param));
   };
   // READ
   // UPDATE
@@ -53,13 +64,25 @@ function App() {
       content: values.content,
       emotion: values.emotion,
     };
-    await updateItem("diary", values.docId, updateObj, dispatch);
+
+    const param = {
+      collectionName: "diary",
+      docId: values.docId,
+      updateObj,
+    };
+    // await updateItem("diary", values.docId, updateObj, dispatch);
+    dispatch(updateItem(param));
   };
   // DELETE
-  const onDelete = async (docId) => {
-    await deleteItem("diary", docId, dispatch);
+  const onDelete = async (values) => {
+    const param = {
+      collectionName: "diary",
+      docId: values.docId,
+    };
+    dispatch(deleteItem(param));
+    // await deleteItem("diary", docId, dispatch);
   };
-
+  console.log(user);
   useEffect(() => {
     const param = {
       collectionName: "diary",
@@ -76,25 +99,36 @@ function App() {
     };
     dispatch(fetchItems(param));
   }, [user]);
+
+  console.log(user);
+  useEffect(() => {
+    // serialize(직렬화): 데이터를 저장할 때 저장할 수 있는 형태로 변환하는 것
+    // serialize가 안되는 타입 : Promise, Symbol, Map, Set, function, class
+    if (user) {
+      dispatch(loginSucces([user.email, true, null]));
+    } else {
+      dispatch(logout([null, false, null]));
+    }
+  }, [user]);
   return (
-    <DiaryStateContext.Provider value={{ auth }}>
-      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
-        <BrowserRouter>
-          <div className="App">
-            {/* <Button text={'로그인'} className='btn_login' onClick={goLogin} /> */}
-            <Routes>
-              <Route path="/">
-                <Route index element={<Homepages />} />
-                <Route path="new" element={<Newpage />} />
-                <Route path="edit/:id" element={<EditPage />} />
-                <Route path="diary/:id" element={<DiaryPage />} />
-                <Route path="login" element={<LoginPage />} />
-              </Route>
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </DiaryDispatchContext.Provider>
-    </DiaryStateContext.Provider>
+    // <DiaryStateContext.Provider value={{ auth }}>
+    <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
+      <BrowserRouter>
+        <div className="App">
+          {/* <Button text={'로그인'} className='btn_login' onClick={goLogin} /> */}
+          <Routes>
+            <Route path="/">
+              <Route index element={<Homepages />} />
+              <Route path="new" element={<Newpage />} />
+              <Route path="edit/:id" element={<EditPage />} />
+              <Route path="diary/:id" element={<DiaryPage />} />
+              <Route path="login" element={<LoginPage />} />
+            </Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </DiaryDispatchContext.Provider>
+    // </DiaryStateContext.Provider>
   );
 }
 

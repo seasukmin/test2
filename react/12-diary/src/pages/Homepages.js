@@ -52,7 +52,10 @@ function Homepages(props) {
         leftChild={<Button text={"<"} onClick={decreaseMonth} />}
         rightChild={<Button text={">"} onClick={increaseMonth} />}
       />
-      <DiaryList diaryList={sortedItem} auth />
+      <DiaryList
+        diaryList={sortedItem}
+        //  auth={auth}
+      />
     </div>
   );
 }

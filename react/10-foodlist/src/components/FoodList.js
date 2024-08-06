@@ -4,6 +4,8 @@ import FileInput from "./FileInput";
 import FoodForm from "./FoodForm";
 import { collection } from "firebase/firestore";
 import useTranslate from "../hooks/useTranslate";
+import { useSelector, useDispatch } from "react-redux";
+import { addItems, fetchItems } from "../store/foodSlice";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -53,6 +55,15 @@ function FoodListItem({ Items, handleDelete, handleEdit }) {
 }
 
 function FoodList({ Items, handleUpdateSuccess, handleDelete, onUpdate }) {
+  const dispatch = useDispatch();
+  const param = {
+    collectionName: "food",
+  };
+  dispatch(fetchItems(param));
+  const foodItem = useSelector(function (state) {
+    console.log(state.items);
+  });
+
   const [editngId, setEditingId] = useState(null);
   if (Items.id === editngId) {
     const { id, imgUrl, title, content, createdAt, calorie, docId } = Items;
