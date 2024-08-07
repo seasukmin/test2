@@ -19,7 +19,12 @@ import LocaleSelect from "./LocaleSelect";
 import useTranslate from "../hooks/useTranslate";
 import useAsync from "../hooks/useAsync";
 import { useDispatch, useSelector } from "react-redux";
-import { addItems, fetchItems } from "../store/foodSlice";
+import {
+  addItems,
+  fetchItems,
+  setOrder,
+  updateItems,
+} from "../store/foodSlice";
 import { collection } from "firebase/firestore";
 
 let isSelected;
@@ -39,12 +44,18 @@ const LIMIT = 5;
 let foodItems;
 function App() {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.food);
+  const {
+    items,
+    order,
+    lq,
+    hasNext,
+    //  isLoading
+  } = useSelector((state) => state.food);
   // console.log(items);
   // const [Items, setItems] = useState([]);
-  const [order, setOrder] = useState("createdAt");
-  const [lq, setLq] = useState();
-  const [hasNext, setHasNext] = useState(true);
+  // const [order, setOrder] = useState("createdAt");
+  // const [lq, setLq] = useState();
+  // const [hasNext, setHasNext] = useState(true);
   const [keyword, setkeyword] = useState([]);
   const t = useTranslate();
   // const [isLoading, setIsLoading] = useState(false);
@@ -67,34 +78,51 @@ function App() {
     }
     // setItems(foodItems.filter(({ title }) => title.includes(keyword)));
   };
-  const handleLoad = async (options) => {
-    // setIsLoading(true);
-    // const { resultData, lastQuery } = await getDatasByOrderLimit(
-    //   "food",
-    //   options
-    // );
-    // setIsLoading(false);
-    const { resultData, lastQuery } = await getDatasAsync("food", options);
 
-    const getresult = await getDatas("food");
-    if (!options.lq) {
-      // setItems(resultData);
-    } else {
-      // setItems((prevItems) => [...prevItems, ...resultData]);
-    }
-    if (!lastQuery) {
-      setHasNext(false);
-    }
-    setLq(lastQuery);
-    foodItems = getresult;
+  const handleLoad = async (options) => {
+    dispatch(fetchItems({ collectionName: "food", queryOptions: options }));
+    //   // setIsLoading(true);
+    //   // const { resultData, lastQuery } = await getDatasByOrderLimit(
+    //   //   "food",
+    //   //   options
+    //   // );
+    //   // setIsLoading(false);
+    //   const { resultData, lastQuery } = await getDatasAsync("food", options);
+
+    //   const getresult = await getDatas("food");
+    //   if (!options.lq) {
+    //     // setItems(resultData);
+    //   } else {
+    //     // setItems((prevItems) => [...prevItems, ...resultData]);
+    //   }
+    //   if (!lastQuery) {
+    //     setHasNext(false);
+    //   }
+    //   setLq(lastQuery);
+    //   foodItems = getresult;
   };
 
   //  기존꺼 유지하고 더보기 눌렀을때 추가로 나오게 하는 방법이 위에꺼
   // lastQurey가 없으면 false!!
-  const handleNewestClick = () => setOrder("createdAt");
-  const handlecalorieClick = () => setOrder("calorie");
+
+  const handleMoreClick = async () => {
+    const queryOptions = {
+      condition: [],
+      orderBys: [{ field: order, direction: "desc" }],
+      lastQuery: lq,
+      limits: LIMIT,
+    };
+    handleLoad(queryOptions);
+  };
+  const handleNewestClick = () => dispatch(setOrder("createdAt"));
+  const handlecalorieClick = () => dispatch(setOrder("calorie"));
+
+  const handleUpdate = (collectionName, docId, updateObj, imgUrl) => {
+    dispatch(updateItems({ collectionName, docId, updateObj, imgUrl }));
+  };
 
   const handleUpdateSuccess = (result) => {
+    console.log(result);
     // setItems((prevItems) => {
     //   const splitIdx = prevItems.findIndex((Items) => Items.id === result.id);
     //   return [
@@ -124,9 +152,6 @@ function App() {
   };
   // 흠.. resultData에 addDatas에 값이 넘어오고 그 값을 그 이전 값들에 바로 반영하는식.. 화면에 바로 반영해주는 식
 
-  const handleMoreClick = () => {
-    handleLoad({ order: order, limit: LIMIT, lq: lq });
-  };
   // 이해안됨.. 왜 핸들로드 안에 객체로 저걸 넣어준거지...?
   // 생각을 해보면 order는 말그대로 어떤 녀석을 어떤 정렬로 가져올지.. limit은 한번에 몇개, lq는 lastqeury를 알려줘서 거기에 도달하면 그 다음것부터 가져오게 하는 것..
   // 문제는 내가 이걸 안보고 만들 수 있을까??...
@@ -142,7 +167,8 @@ function App() {
     };
     // 여긴 lq가 필요없다 왜냐하면 LIMIT으로 설정한 최초 5개만 나오면 되기 때문
     // setHasNext(true);
-    dispatch(fetchItems({ collectionName: "food", queryOptions }));
+    // dispatch(fetchItems({ collectionName: "food", queryOptions }));
+    handleLoad(queryOptions);
   }, [order]);
 
   return (
@@ -189,7 +215,7 @@ function App() {
               Items={Items}
               handleUpdateSuccess={handleUpdateSuccess}
               handleDelete={handleDelete}
-              onUpdate={updateDatas}
+              onUpdate={handleUpdate}
             />
           );
         })}

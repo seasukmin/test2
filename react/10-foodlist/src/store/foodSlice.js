@@ -10,36 +10,57 @@ const foodSlice = createSlice({
   name: "food",
   initialState: {
     items: [],
-    error: null,
     lq: undefined,
-    isLoading: "idle",
+    isLoading: "false",
     loadingError: "",
+    order: "createdAt",
+    hasNext: true,
   },
-  // dispatch({type:"", payload:{resultData, lastQuery}})
-  reducers: {},
+  reducers: {
+    setOrder: (state, action) => {
+      state.order = action.payload;
+    },
+    setHasNext: (state, action) => {
+      state.hasNext = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchItems.pending, (state, action) => {
         state.isLoading = "Loading";
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
-        state.items = action.payload.resultData;
+        if (action.payload.isReset) {
+          state.items = action.payload.resultData;
+        } else {
+          action.payload.resultData.forEach((data) => {
+            state.items.push(data);
+          });
+          // state.items = [...state.items, ...action.payload.resultData];
+        }
+        // if (!action.payload.lastQuery) {
+        //   state.hasNext = false;
+        // } else {
+        //   state.hasNext = true;
+        // }
+        state.hasNext = action.payload.lastQuery ? true : false;
+        // state.hasNext = !!action.payload.lastQuery;
+        // !!는 위에 값과 같다.
+        // !(!action.payload.lastQuery)안이 false(undefined)면 true true면 false
         state.lq = action.payload.lastQuery;
-        state.isLoading = "complete";
+        state.isLoading = "false";
       })
       .addCase(fetchItems.rejected, (state, action) => {
-        state.isLoading = "fail";
+        state.isLoading = "false";
         state.loadingError = action.payload;
+      })
+      .addCase(updateItems.fulfilled, (state, action) => {
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.items[index] = action.payload;
+        state.isLoading = false;
       });
-    // .addCase(addItems.fulfilled, (state, action) => {
-    //   state.items.push(action.payload);
-    //   state.status = "complete";
-    // })
-    // .addCase(updateItems.fulfilled, (state, action) => {
-    //   state.items = state.items.map((item) =>
-    //     item.id === action.payload.id ? action.payload : item
-    //   );
-    // });
   },
 });
 
@@ -51,7 +72,7 @@ const fetchItems = createAsyncThunk(
         collectionName,
         queryOptions
       );
-
+      resultData.isReset = !queryOptions.lastQuery ? true : false;
       return resultData;
     } catch (error) {
       return "FETCH Error:" + error;
@@ -59,30 +80,36 @@ const fetchItems = createAsyncThunk(
     }
   }
 );
-// fetchItems("food");
-// const addItems = createAsyncThunk(
-//   "item/addItem",
-//   async ({ collectionName, addObj }) => {
-//     try {
-//       const resultData = await addDatas(collectionName, addObj);
-//       return resultData;
-//     } catch (error) {
-//       console.log("ADD Error", error);
-//     }
-//   }
-// );
+fetchItems("food");
+const addItems = createAsyncThunk(
+  "item/addItem",
+  async ({ collectionName, addObj }) => {
+    try {
+      const resultData = await addDatas(collectionName, addObj);
+      return resultData;
+    } catch (error) {
+      console.log("ADD Error", error);
+    }
+  }
+);
 
-// const updateItems = createAsyncThunk(
-//   "item/updateItem",
-//   async ({ collectionName, docId, updateObj }) => {
-//     try {
-//       const resultData = await updateDatas(collectionName, docId, updateObj);
-//       return resultData;
-//     } catch (error) {
-//       console.log("UPDATE Error", error);
-//     }
-//   }
-// );
+const updateItems = createAsyncThunk(
+  "item/updateItem",
+  async ({ collectionName, docId, updateObj, imgUrl }) => {
+    try {
+      const resultData = await updateDatas(
+        collectionName,
+        docId,
+        updateObj,
+        imgUrl
+      );
+      return resultData;
+    } catch (error) {
+      console.log("UPDATE Error", error);
+    }
+  }
+);
 
 export default foodSlice;
-export { fetchItems };
+export { fetchItems, addItems, updateItems };
+export const { setOrder } = foodSlice.actions;
