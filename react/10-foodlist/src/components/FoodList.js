@@ -90,34 +90,6 @@ function FoodList({ Items, handleUpdateSuccess, handleDelete, onUpdate }) {
         />
       </li>
     </ul>
-
-    // <div className="FoodListItem">
-    //   <img className="FoodListItemImg" />
-    //   <div className="FoodListItemRows">
-    //     <div>
-    //       <FileInput photoUrl={imgUrl} />
-    //     </div>
-    //     <div className="FoodListItemRow">
-    //       <div className="FoodListItemHeader">
-    //         <h2 className="FoodListItemTitle">{title}</h2>
-    //         <p className="FoodListItemCal">{calorie}Kcal</p>
-    //       </div>
-    //       <p className="FoodListItemNum">{content}</p>
-    //       <div className="FoodListItemBottom">
-    //         <p className="FoodListItemDate">{formatDate(Items.createdAt)}</p>
-    //         <div className="FoodListItemButton">
-    //           <button className="FoodListItemEditButton">수정</button>
-    //           <button
-    //             onClick={handleDelete}
-    //             className="FoodListItemDeleteButton"
-    //           >
-    //             삭제
-    //           </button>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
 

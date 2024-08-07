@@ -53,12 +53,12 @@ function FoodForm({
     e.preventDefault();
     const result = await onSubmitAsync("food", values);
 
+    setValues(initialValues);
     {
       onSubmit === addDatas
         ? handleAddSuccess(result)
         : handleSubmitSuccess(result);
     }
-    setValues(initialValues);
   };
 
   return (

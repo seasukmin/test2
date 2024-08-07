@@ -44,13 +44,10 @@ const LIMIT = 5;
 let foodItems;
 function App() {
   const dispatch = useDispatch();
-  const {
-    items,
-    order,
-    lq,
-    hasNext,
-    //  isLoading
-  } = useSelector((state) => state.food);
+  const { items, order, lq, hasNext, isLoading } = useSelector(
+    (state) => state.food
+  );
+  console.log(lq);
   // console.log(items);
   // const [Items, setItems] = useState([]);
   // const [order, setOrder] = useState("createdAt");
@@ -59,8 +56,8 @@ function App() {
   const [keyword, setkeyword] = useState([]);
   const t = useTranslate();
   // const [isLoading, setIsLoading] = useState(false);
-  const [isLoading, loadingError, getDatasAsync] =
-    useAsync(getDatasByOrderLimit);
+  // const [isLoading, loadingError, getDatasAsync] =
+  // useAsync(getDatasByOrderLimit);
 
   const handleKeywordChange = (e) => {
     setkeyword(e.target.value);
@@ -68,7 +65,7 @@ function App() {
   const handleSubmitChange = async (e) => {
     e.preventDefault();
     if (keyword === "") {
-      handleLoad({ order: order, limit: LIMIT, lq: undefined });
+      handleLoad({ order: order, limit: LIMIT });
     } else {
       const resultData = await getSearchDatas("food", {
         limit: LIMIT,
@@ -102,9 +99,6 @@ function App() {
     //   foodItems = getresult;
   };
 
-  //  기존꺼 유지하고 더보기 눌렀을때 추가로 나오게 하는 방법이 위에꺼
-  // lastQurey가 없으면 false!!
-
   const handleMoreClick = async () => {
     const queryOptions = {
       condition: [],
@@ -132,42 +126,42 @@ function App() {
     //   ];
     // });
   };
-  // updateDatas를 통해 업데이트된 result 값이 넘어와서 화면에 실시간으로 표현해주는 식
-  //  현재 아이템들의 인덱스를 찾아서 해당 아이템들 중 업데이트 된 녀석과 id가 같은 녀석의 인덱스 리턴해주는 값은 현재 아이템들 중 0부터(즉, 그 이전) 선택된 녀석이전까지와 선택해서 업데이트된 녀석 그리고 선택된 녀석의 인덱스에서 +1된 값
-  // 이전 + 업데이트된 녀석 + 이후 이런 구조로 리턴해서 화면에 뿌려준다.
+
   const handleDelete = async (docId, imgUrl) => {
     const { result, message } = await deleteDatas("food", docId, imgUrl);
     if (!result) {
       alert(message);
       return false;
     }
-    // setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
-  };
-  //  삭제식인데 컬렉션 food에 있는 docId와 imgUrl을 받아서 스토리지에서 이미지
-  // 삭제하고 firebase에서 문서도 삭제하기
-  // 그리고 setItems에 이전 녀석들 즉, 현재 녀석들을 필터를 통해서 줄여서 화면에 표시를 하는데 그 중에 기존 문서 docId들과 삭제하기 위해서 선택된 녀석에 docId 같지 않으면 줄인다 즉, item.docId 중 삭제된걸 제외하고 화면에 표시한다.
-
-  const handleAddSuccess = (resultData) => {
-    // setItems((prevItems) => [resultData, ...prevItems]);
-  };
-  // 흠.. resultData에 addDatas에 값이 넘어오고 그 값을 그 이전 값들에 바로 반영하는식.. 화면에 바로 반영해주는 식
-
-  // 이해안됨.. 왜 핸들로드 안에 객체로 저걸 넣어준거지...?
-  // 생각을 해보면 order는 말그대로 어떤 녀석을 어떤 정렬로 가져올지.. limit은 한번에 몇개, lq는 lastqeury를 알려줘서 거기에 도달하면 그 다음것부터 가져오게 하는 것..
-  // 문제는 내가 이걸 안보고 만들 수 있을까??...
-
-  useEffect(() => {
-    // handleLoad({ order: order, limit: LIMIT, lq: undefined });
-
     const queryOptions = {
       condition: [],
       orderBys: [{ field: order, direction: "desc" }],
       lastQuery: undefined,
       limits: LIMIT,
     };
-    // 여긴 lq가 필요없다 왜냐하면 LIMIT으로 설정한 최초 5개만 나오면 되기 때문
-    // setHasNext(true);
-    // dispatch(fetchItems({ collectionName: "food", queryOptions }));
+    handleLoad(queryOptions);
+    // setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
+  };
+
+  const handleAddSuccess = (resultData) => {
+    const queryOptions = {
+      condition: [],
+      orderBys: [{ field: order, direction: "desc" }],
+      lastQuery: undefined,
+      limits: LIMIT,
+    };
+    handleLoad(queryOptions);
+    // setItems((prevItems) => [resultData, ...prevItems]);
+  };
+
+  useEffect(() => {
+    // handleLoad({ order: order, limit: LIMIT, lq: undefined });
+    const queryOptions = {
+      condition: [],
+      orderBys: [{ field: order, direction: "desc" }],
+      lastQuery: undefined,
+      limits: LIMIT,
+    };
     handleLoad(queryOptions);
   }, [order]);
 
@@ -223,7 +217,7 @@ function App() {
           <button
             className="App-load-more-button"
             onClick={handleMoreClick}
-            disabled={isLoading}
+            disabled={!isLoading}
           >
             {t("load more")}
           </button>

@@ -1,10 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import {
-  addDatas,
-  getDatas,
-  getDatasByOrderLimit,
-  updateDatas,
-} from "../api/firebase";
+import { addDatas, getDatasByOrder, updateDatas } from "../api/firebase";
 
 const foodSlice = createSlice({
   name: "food",
@@ -36,17 +31,8 @@ const foodSlice = createSlice({
           action.payload.resultData.forEach((data) => {
             state.items.push(data);
           });
-          // state.items = [...state.items, ...action.payload.resultData];
         }
-        // if (!action.payload.lastQuery) {
-        //   state.hasNext = false;
-        // } else {
-        //   state.hasNext = true;
-        // }
         state.hasNext = action.payload.lastQuery ? true : false;
-        // state.hasNext = !!action.payload.lastQuery;
-        // !!는 위에 값과 같다.
-        // !(!action.payload.lastQuery)안이 false(undefined)면 true true면 false
         state.lq = action.payload.lastQuery;
         state.isLoading = "false";
       })
@@ -68,15 +54,11 @@ const fetchItems = createAsyncThunk(
   "items/fetchAllItems",
   async ({ collectionName, queryOptions }) => {
     try {
-      const resultData = await getDatasByOrderLimit(
-        collectionName,
-        queryOptions
-      );
+      const resultData = await getDatasByOrder(collectionName, queryOptions);
       resultData.isReset = !queryOptions.lastQuery ? true : false;
       return resultData;
     } catch (error) {
-      return "FETCH Error:" + error;
-      // console.log("FETCH Error:", error);
+      return "FETCH Error" + error;
     }
   }
 );
@@ -96,7 +78,7 @@ const updateItems = createAsyncThunk(
   "item/updateItem",
   async ({ collectionName, docId, updateObj, imgUrl }) => {
     try {
-      const resultData = await updateDatas(
+      const resultDate = await updateDatas(
         collectionName,
         docId,
         updateObj,
