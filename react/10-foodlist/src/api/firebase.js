@@ -70,25 +70,27 @@ async function getDatasByOrder(collectionName, options) {
 }
 
 async function getDatasByOrderLimit(collectionName, options) {
-  const collect = await collection(db, collectionName);
-  let q;
-  if (options.lq) {
-    q = query(
-      collect,
-      orderBy(options.order, "desc"),
-      startAfter(options.lq),
-      // startAfter는 더보기 눌렀을때 마지막 인덱스 이후로 다시 나오게 알려주는 함수
-      limit(options.limit)
-    );
-  } else {
-    q = query(collect, orderBy(options.order, "desc"), limit(options.limit));
-  }
+  let q = getQuery(collectionName, options);
   const snapshot = await getDocs(q);
-  const lastQuery = snapshot.docs[snapshot.docs.length - 1];
+  const docs = snapshot.docs;
+  const lastQuery = docs[docs.length - 1];
   const resultData = snapshot.docs.map((doc) => ({
     docId: doc.id,
     ...doc.data(),
   }));
+  // const collect = await collection(db, collectionName);
+  // let q;
+  // if (options.lq) {
+  //   q = query(
+  //     collect,
+  //     orderBy(options.order, "desc"),
+  //     startAfter(options.lq),
+  //     // startAfter는 더보기 눌렀을때 마지막 인덱스 이후로 다시 나오게 알려주는 함수
+  //     limit(options.limit)
+  //   );
+  // } else {
+  //   q = query(collect, orderBy(options.order, "desc"), limit(options.limit));
+  // }
 
   return { resultData, lastQuery };
 }

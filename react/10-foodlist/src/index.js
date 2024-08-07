@@ -7,9 +7,9 @@ import store from "./store/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <LocaleProvider defaultValue="ko">
-    <Provider store={store}>
+  <Provider store={store}>
+    <LocaleProvider defaultValue="ko">
       <App />
-    </Provider>
-  </LocaleProvider>
+    </LocaleProvider>
+  </Provider>
 );

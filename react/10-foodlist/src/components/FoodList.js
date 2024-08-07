@@ -55,15 +55,6 @@ function FoodListItem({ Items, handleDelete, handleEdit }) {
 }
 
 function FoodList({ Items, handleUpdateSuccess, handleDelete, onUpdate }) {
-  const dispatch = useDispatch();
-  const param = {
-    collectionName: "food",
-  };
-  dispatch(fetchItems(param));
-  const foodItem = useSelector(function (state) {
-    console.log(state.items);
-  });
-
   const [editngId, setEditingId] = useState(null);
   if (Items.id === editngId) {
     const { id, imgUrl, title, content, createdAt, calorie, docId } = Items;
@@ -91,7 +82,7 @@ function FoodList({ Items, handleUpdateSuccess, handleDelete, onUpdate }) {
   }
   return (
     <ul className="FoodList">
-      <li key={Items.id}>
+      <li>
         <FoodListItem
           Items={Items}
           handleDelete={handleDelete}
