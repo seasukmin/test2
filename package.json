@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "classnames": "^2.5.1",
-    "react-router-dom": "^6.24.1",
-    "redux": "^5.0.1"
+    "firebase": "^10.12.5",
+    "react-router-dom": "^6.26.0",
+    "redux": "^5.0.1",
+    "sass": "^1.77.8"
   }
 }
