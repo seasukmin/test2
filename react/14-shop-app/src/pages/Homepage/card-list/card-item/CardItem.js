@@ -8,7 +8,7 @@ function CardItem({ id, title, price, description, category, image, rating }) {
       <Link>
         <img src={image} />
       </Link>
-      <h5>{title}</h5>
+      <h5>{`${title}`}</h5>
       <div>
         <button>장바구니에 담기</button>
         <p>${price}</p>
