@@ -3,7 +3,7 @@ header {
   padding-bottom: 20px;
   display: flex;
   align-items: center;
-  /* justify-content: space-sbetween; */
+  /* justify-content: space-between; */
   border-bottom: 1px solid #e2e2e2;
   position: relative;
 }

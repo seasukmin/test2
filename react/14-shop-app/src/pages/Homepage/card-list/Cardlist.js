@@ -1,39 +1,36 @@
 import React, { useEffect } from "react";
+import styles from "./CardList.module.scss";
 import CardItem from "./card-item/CardItem";
-import styles from "./Cardlist.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import productsSlice, {
-  fetchProducts,
-} from "./../../../store/products/productsSlice";
+import { fetchProducts } from "../../../store/products/productsSlice";
+import CardSkeleton from "../card-skeleton/CardSkeleton";
 
-function Cardlist() {
-  // const limits = 6;
+function CardList() {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.productsSlice);
-  const category = "";
+  const { products, isLoading } = useSelector((state) => state.productsSlice);
+  const category = useSelector((state) => state.categoriesSlice);
   useEffect(() => {
     const queryOptions = {
       conditions: [
         {
           field: "category",
           operator: category ? "==" : ">=",
-          value: category.toLocaleLowerCase(),
+          value: category.toLowerCase(),
         },
       ],
-      // limits: limits,
     };
     dispatch(fetchProducts({ collectionName: "shop", queryOptions }));
   }, [category]);
 
+  if (isLoading) return <CardSkeleton />;
+
   return (
     <ul className={styles.card_list}>
       {products.map((product) => {
-        return <CardItem key={product.id} {...product} />;
+        return <CardItem item={product} />;
       })}
     </ul>
   );
 }
 
-export default Cardlist;
-
-// 프론트엔드 회사를 가면 firebase를 쓰긴하지만 .. 아니면 backend와 fecth 엑시오스? react콜??
+export default CardList;
