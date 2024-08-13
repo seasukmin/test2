@@ -10,6 +10,9 @@ function CartItem({ products }) {
   const incrementCount = () => {
     dispatch(incrementCount(id));
   };
+  const decrementCount = () => {
+    dispatch(decrementCount(id));
+  };
   return (
     <div className={styles.cart_item}>
       <Link>
@@ -26,7 +29,7 @@ function CartItem({ products }) {
       </div>
       <div className={styles.cart_count}>
         <div>
-          <button>-</button>
+          <button onClick={decrementCount}>-</button>
           <span>{quantity}</span>
           <button onClick={incrementCount}>+</button>
         </div>

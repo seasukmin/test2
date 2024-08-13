@@ -4,7 +4,7 @@ import NavCartItem from "./nav-cart-item/NavCartItem";
 import { useSelector } from "react-redux";
 
 function NavCartList(props) {
-  const { products } = useSelector((state) => state.productsSlice);
+  const { products } = useSelector((state) => state.cartSlice);
   return (
     <div className={styles.nav_cart_list}>
       {products.map((products) => {
