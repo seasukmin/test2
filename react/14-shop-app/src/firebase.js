@@ -132,10 +132,10 @@ export async function updateQuantity(uid, CartItem) {
   }
 }
 
-export async function deleteDatas(collectionNamae, docId) {
+export async function deleteDatas(collectionName, docId) {
   try {
-    const cartRef = getCollection(collectionNamae);
-    const docRef = doc(cartRef, docId);
+    const cartRef = getCollection(collectionName);
+    const docRef = doc(cartRef, docId.toString());
     await deleteDoc(docRef);
     return docId;
   } catch (error) {
@@ -143,5 +143,10 @@ export async function deleteDatas(collectionNamae, docId) {
   }
 }
 
+export async function addCart(collectionName, cartObj) {
+  const collectionRef = getCollection(collectionName);
+  const cartRef = doc(collectionRef, cartObj.id.toString());
+  await setDoc(cartRef, cartObj);
+}
 // batch 여러번 작업을 한번에 몰아해준다 set이 그 작업을 넣어주는 명령어.
 // 공통함수!! 만들어보기

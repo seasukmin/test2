@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { increment } from "firebase/firestore";
-import { deleteDatas } from "../../firebase";
+import { addCart, deleteDatas } from "../../firebase";
+import { useDispatch } from "react-redux";
 
 const initialState = {
   products: localStorage.getItem("cartProducts")
@@ -50,6 +51,21 @@ const cartSlice = createSlice({
     },
   },
 });
+export const addCartItem = createAsyncThunk(
+  "cart/addCartItem",
+  async ({ collectionName, product }, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(addToCart(product));
+      const {
+        cartSlice: { products },
+      } = thunkAPI.getState();
+      const addItem = products.find(
+        (sliceProduct) => sliceProduct.id === product.id
+      );
+      await addCart(collectionName, addItem);
+    } catch (error) {}
+  }
+);
 
 export const deleteCartItem = createAsyncThunk(
   "cart/deleteCartItem",

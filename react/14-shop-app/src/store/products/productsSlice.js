@@ -31,7 +31,6 @@ const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async ({ collectionName, queryOptions }) => {
     const resultData = await getDatas(collectionName, queryOptions);
-    console.log(resultData);
     try {
       return resultData;
     } catch (error) {

@@ -11,9 +11,7 @@ function Form({ title, getDataForm, firebaseError }) {
   } = useForm({
     mode: "onChange",
   });
-  //   console.log(useForm());
   const onSubmit = ({ email, password }) => {
-    console.log(email);
     getDataForm(email, password);
     reset();
   };

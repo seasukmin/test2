@@ -8,8 +8,7 @@ function DetailPage() {
   const { id } = useParams();
   const productId = Number(id);
   const dispatch = useDispatch();
-  const { products, isLoading } = useSelector((state) => state.productSlice);
-  console.log(products);
+  const { products, isLoading } = useSelector((state) => state.cartSlice);
 
   useEffect(() => {
     const queryOptions = {

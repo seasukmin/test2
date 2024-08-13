@@ -19,6 +19,7 @@ function SignIn(props) {
         email,
         password
       );
+      console.log(userCredential);
       const { user } = userCredential;
       //   로컬 스토리지에서 장바구니 데이터 읽기
       const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
