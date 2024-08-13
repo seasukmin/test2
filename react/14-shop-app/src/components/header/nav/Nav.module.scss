@@ -7,9 +7,9 @@
   }
   li {
     font-size: 20px;
-    a {
-      @include hover-effect(blue);
-    }
+    // a {
+    //   @include hover-effect(blue);
+    // }
   }
   @media (min-width: 768px) {
     li {
@@ -56,4 +56,9 @@
 .nav li:hover .nav_hover_cart {
   opacity: 1;
   visibility: visible;
+}
+.nav_sign_out {
+  cursor: pointer;
+
+  @include hover-effect(blue);
 }

@@ -15,6 +15,8 @@ import {
   updateDoc,
   doc,
   deleteDoc,
+  setDoc,
+  writeBatch,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -31,8 +33,16 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-function getCollection(collectionName) {
-  return collection(db, collectionName);
+function getCollection(...path) {
+  let newPath = path;
+  if (typeof path[0] !== "string") {
+    [newPath] = path;
+    // newPath=path.flat()
+    // 한꺼플 까대기하는것.
+    // {[1,[2,[3,4],5] => flat()=> [1,2,[3,4],5]}
+    // flat(infinity)=> 모든 배열을 까대기하나 배열 하나는 남김! 바깥쪽 대괄호
+  }
+  return collection(db, ...newPath);
 }
 
 export function getUserAuth() {
@@ -88,3 +98,50 @@ export async function getData(collectionName, queryOptions) {
   const resultData = { ...doc.data(), docId: doc.id };
   return resultData;
 }
+
+export async function joinUser(uid, email) {
+  await setDoc(doc(db, "users", uid), { email: email });
+}
+
+export async function asyncCart(uid, cartArr) {
+  const cartRef = getCollection("users", uid, "cart");
+  const batch = writeBatch(db);
+
+  doc(db, "컬렉션명", "문서ID");
+
+  for (const item of cartArr) {
+    const result = await updateQuantity(uid, item);
+    if (!result) {
+      const itemRef = doc(cartRef, item.id.toString());
+      batch.set(itemRef, item);
+    }
+  }
+  await batch.commit();
+}
+
+export async function updateQuantity(uid, CartItem) {
+  const cartRef = getCollection("users", uid, "cart");
+  const itemRef = doc(cartRef, CartItem.id.toString());
+
+  // 문서가 존재하는지 확인
+  const itemDoc = await getDoc(itemRef);
+  if (itemDoc.exists()) {
+    const currentData = itemDoc.data();
+    const updatedQuantity = (currentData.quantity || 0) + 1;
+    await updateDoc(itemRef, { quantity: updatedQuantity });
+  }
+}
+
+export async function deleteDatas(collectionNamae, docId) {
+  try {
+    const cartRef = getCollection(collectionNamae);
+    const docRef = doc(cartRef, docId);
+    await deleteDoc(docRef);
+    return docId;
+  } catch (error) {
+    console.log("Error delete:", error);
+  }
+}
+
+// batch 여러번 작업을 한번에 몰아해준다 set이 그 작업을 넣어주는 명령어.
+// 공통함수!! 만들어보기

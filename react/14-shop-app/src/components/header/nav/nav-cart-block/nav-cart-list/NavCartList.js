@@ -8,7 +8,7 @@ function NavCartList(props) {
   return (
     <div className={styles.nav_cart_list}>
       {products.map((products) => {
-        return <NavCartItem key={products.id} products={products} />;
+        return <NavCartItem key={products.id} {...products} />;
       })}
       {/* <NavCartItem/> */}
       {/* <NavCartItem/> */}

@@ -2,9 +2,29 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import styles from "./NavCartItem.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteCartItem,
+  deleteFromCart,
+} from "../../../../../../store/cart/cartSlice";
 
-function NavCartItem({ products }) {
-  const { category, title, price, image, quantity, total } = products;
+function NavCartItem({ image, title, price, category, quantity, total, id }) {
+  const dispatch = useDispatch();
+  const { uid, isAuthenticated } = useSelector((state) => state.userSlice);
+
+  const deleteProduct = () => {
+    if (isAuthenticated) {
+      dispatch(
+        deleteCartItem({
+          collectionName: ["users", uid, "cart"],
+          productId: id,
+        })
+      );
+    } else {
+      dispatch(deleteFromCart(id));
+    }
+  };
+
   return (
     <div className={styles.nav_cart_item}>
       <Link>
@@ -14,13 +34,11 @@ function NavCartItem({ products }) {
         <h3>{category}</h3>
         <h2>{title}</h2>
         <span>
-          {price} x {quantity} = $ {price * total}
-          {/* $ {total.toFixed(2)} */}
-          {/* toFixed는 반올림(안에 숫자 2이면 2번쨰 숫자까지 표시) */}
+          {price} x {quantity} = ${total.toFixed(2)}
         </span>
       </div>
-      <button className={styles.nav_cart_delete}>
-        <AiOutlineDelete size={32} />
+      <button className={styles.nav_cart_delete} onClick={deleteProduct}>
+        <AiOutlineDelete />
       </button>
     </div>
   );

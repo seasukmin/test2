@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { increment } from "firebase/firestore";
+import { deleteDatas } from "../../firebase";
 
 const initialState = {
   products: localStorage.getItem("cartProducts")
@@ -19,6 +20,12 @@ const cartSlice = createSlice({
         quantity: 1,
         total: action.payload.price,
       });
+      localStorage.setItem("cartProducts", JSON.stringify(state.products));
+    },
+    deleteFromCart: (state, action) => {
+      state.products = state.products.filter(
+        (product) => product.id !== action.payload
+      );
       localStorage.setItem("cartProducts", JSON.stringify(state.products));
     },
     getTotalPrice: (state) => {
@@ -44,6 +51,25 @@ const cartSlice = createSlice({
   },
 });
 
+export const deleteCartItem = createAsyncThunk(
+  "cart/deleteCartItem",
+  async ({ collectionName, productId }, thunkAPI) => {
+    const resultData = await deleteDatas(collectionName, productId);
+    try {
+      if (resultData) {
+        thunkAPI.dispatch(deleteFromCart(productId));
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Error Delete CartItem");
+    }
+  }
+);
+
 export default cartSlice.reducer;
-export const { addToCart, getTotalPrice, incrementProduct, decrementProduct } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  getTotalPrice,
+  incrementProduct,
+  decrementProduct,
+  deleteFromCart,
+} = cartSlice.actions;
