@@ -10,10 +10,11 @@ import { signOut } from "firebase/auth";
 import { removeUser } from "../../../store/user/UserSlice";
 
 function Nav(props) {
-  const { products } = useSelector((state) => state.productsSlice);
+  const { products } = useSelector((state) => state.cartSlice);
   const { isAuthenticated } = useSelector((state) => state.userSlice);
   const auth = getUserAuth();
   const dispatch = useDispatch();
+
   const handleSignOut = async () => {
     try {
       await signOut(auth);
@@ -48,7 +49,11 @@ function Nav(props) {
         <li>
           {isAuthenticated ? (
             <div>
-              <GoSignOut title="로그아웃" onClick={handleSignOut} />
+              <GoSignOut
+                className={styles.nav_sign_out}
+                title="로그아웃"
+                onClick={handleSignOut}
+              />
             </div>
           ) : (
             <div>
