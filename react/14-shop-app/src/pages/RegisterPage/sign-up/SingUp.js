@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "../../../components/form/Form";
 import { useDispatch } from "react-redux";
-import { asyncCart, getUserAuth, joinUser } from "../../../firebase";
+import { syncCart, getUserAuth, joinUser } from "../../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "../../../store/user/UserSlice";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ function SingUp(props) {
       //   로컬 스토리지에서 장바구니 데이터 읽기
       const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
       await joinUser(user.uid, user.email);
-      await asyncCart(user.uid, cartItems);
+      await syncCart(user.uid, cartItems);
       dispatch(
         setUser({ email: user.email, token: user.refreshToken, uid: user.uid })
       );

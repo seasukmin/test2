@@ -109,9 +109,9 @@ export async function updateDatas(collectionName, docId, updateObj) {
   }
 }
 
-export async function deleteDatas(collectionNamae, docId) {
+export async function deleteDatas(collectionName, docId) {
   try {
-    const docRef = await doc(db, collectionNamae, docId);
+    const docRef = await doc(db, collectionName, docId);
     await deleteDoc(docRef);
     return docId;
   } catch (error) {

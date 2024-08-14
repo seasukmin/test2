@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { asyncCart, getUserAuth, joinUser } from "../../../firebase";
+import { getUserAuth, joinUser, syncCart } from "../../../firebase";
 import { setUser } from "../../../store/user/UserSlice";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { syncCartAndStorage } from "../../../store/cart/cartSlice";
 
 function SignIn(props) {
   const [firebaseError, setFirebaseError] = useState("");
@@ -19,15 +20,17 @@ function SignIn(props) {
         email,
         password
       );
-      console.log(userCredential);
       const { user } = userCredential;
       //   로컬 스토리지에서 장바구니 데이터 읽기
       const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
-      await joinUser(user.uid, user.email);
-      await asyncCart(user.uid, cartItems);
+
+      dispatch(syncCartAndStorage({ uid: user.uid, cartItems }));
       dispatch(
         setUser({ email: user.email, token: user.refreshToken, uid: user.uid })
       );
+      // await joinUser(user.uid, user.email);
+      // await syncCart(user.uid, cartItems);
+
       navigate("/");
     } catch (error) {
       console.log(error);
